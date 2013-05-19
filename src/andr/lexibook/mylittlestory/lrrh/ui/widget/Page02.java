@@ -37,7 +37,7 @@ public class Page02 extends PageView implements GifMovieView.DispearCallback {
         grand_start.setMovieAsset(ctx.getString(R.string.p02_grand_start));
         grand_loop.setMovieAsset(ctx.getString(R.string.p02_grand_loop));
         grand_start.dispear(9600, this);
-        grand_loop.delay(8000);
+        grand_loop.delay(9000);
         window.setPaused(4240);
 
         params = (AbsoluteLayout.LayoutParams) mother.getLayoutParams();

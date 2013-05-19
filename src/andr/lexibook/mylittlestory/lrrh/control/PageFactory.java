@@ -33,15 +33,15 @@ public class PageFactory {
         pagesMap.put(pagesKey[0], Page01.class);
         pagesMap.put(pagesKey[1], Page02.class);
         pagesMap.put(pagesKey[2], Page03.class);
-//        pagesMap.put(pagesKey[3], Page04.class);
-//        pagesMap.put(pagesKey[4], Page05.class);
-//        pagesMap.put(pagesKey[5], Page06.class);
-//        pagesMap.put(pagesKey[6], Page07.class);
-//        pagesMap.put(pagesKey[7], Page08.class);
-//        pagesMap.put(pagesKey[8], Page09.class);
-//        pagesMap.put(pagesKey[9], Page10.class);
-//        pagesMap.put(pagesKey[10], Page11.class);
-//        pagesMap.put(pagesKey[11], Page12.class);
+        pagesMap.put(pagesKey[3], Page04.class);
+        pagesMap.put(pagesKey[4], Page05.class);
+        pagesMap.put(pagesKey[5], Page06.class);
+        pagesMap.put(pagesKey[6], Page07.class);
+        pagesMap.put(pagesKey[7], Page08.class);
+        pagesMap.put(pagesKey[8], Page09.class);
+        pagesMap.put(pagesKey[9], Page10.class);
+        pagesMap.put(pagesKey[10], Page11.class);
+        pagesMap.put(pagesKey[11], Page12.class);
     }
 
     public static PageFactory getInstance(Context ctx) {
