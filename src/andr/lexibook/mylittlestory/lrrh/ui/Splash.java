@@ -41,13 +41,13 @@ public class Splash extends BaseActivity implements View.OnTouchListener {
     }
 
     private void toMenu() {
-//        if (readMode.isFirst()) {
-//            readMode.setFirst(false);
-//            io.save(readMode);
-//            toPage(LangSelect.class);
-//        } else {
-//            toPage(Menu.class);
-//        }
+        if (readMode.isFirst()) {
+            readMode.setFirst(false);
+            io.save(readMode);
+            toPage(LangSelect.class);
+        } else {
+            toPage(Menu.class);
+        }
         toPage(LangSelect.class);
         finish();
     }

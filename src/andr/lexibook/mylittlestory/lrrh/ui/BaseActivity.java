@@ -59,6 +59,9 @@ public class BaseActivity extends Activity {
     public MediaPlayer espPlayer;
     public MediaPlayer itaPlayer;
 
+    //control read mode
+    public boolean isPages = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -200,23 +203,6 @@ public class BaseActivity extends Activity {
      */
     public void setReadMode(String mode) {
         readMode.setMode(mode);
-        sp.edit().putString("mode", mode).commit();
-    }
-
-    public String getLanguage() {
-        return sp.getString("lang", lang);
-    }
-
-    public String getReadMode() {
-        return sp.getString("mode", READ_SELF);
-    }
-
-    public boolean isReadAuto() {
-        return getReadMode().equals(READ_AUTO);
-    }
-
-    public boolean isReadSelf() {
-        return getReadMode().equals(READ_SELF);
     }
 
     public float getDimens(int dimensId) {

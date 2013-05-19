@@ -115,7 +115,7 @@ public class LangSelect extends BaseActivity implements GifMovieView.DispearCall
                 setLanguage(ITALIANO);
                 break;
         }
-        //toPage(Menu.class);
+        toPage(Menu.class);
     }
 
 }
