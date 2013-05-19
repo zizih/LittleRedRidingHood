@@ -94,10 +94,10 @@ public class Menu extends BaseActivity implements View.OnLongClickListener, View
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.gif_menu_read_auto:
-                pool.play(soundFactory.getMenuAutoSoundId(1), 1, 1, 0, 0, 1);
+                pool.play(soundFactory.getMenuAutoId(1), 1, 1, 0, 0, 1);
                 break;
             case R.id.gif_menu_read_self:
-                pool.play(soundFactory.getMenuSelfSoundId(1), 1, 1, 0, 0, 1);
+                pool.play(soundFactory.getMenuSelfId(1), 1, 1, 0, 0, 1);
                 break;
             default:
                 break;

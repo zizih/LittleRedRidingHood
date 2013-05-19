@@ -15,7 +15,7 @@ public class Splash extends BaseActivity implements View.OnTouchListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-        int soundId = soundFactory.getSplashSoundId(1);
+        int soundId = soundFactory.getSplashId(1);
         int tmpId = pool.play(soundId, 1, 1, 0, 0, 1);
         System.out.println(" TmpId:  " + tmpId + " soundId: " + soundId);
 
