@@ -28,7 +28,7 @@ public class Pages extends BaseActivity {
         flipView.setAdapter(new FlipAdapter(this));
         setContentView(flipView);
 
-        //
+        flipView.setFlipByTouchEnabled(true);
         if (readMode.isAuto()) {
             flipView.setFlipByTouchEnabled(false);
             if (isFirst) {
@@ -51,7 +51,6 @@ public class Pages extends BaseActivity {
             pageCompleteListener = new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
-                    System.out.print(mediaPlayer.isPlaying() + " PP: " + position);
                     mPlayer.release();
                     flipView.setSelection(++position);
                     play(position);

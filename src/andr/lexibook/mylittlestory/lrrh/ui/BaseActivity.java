@@ -77,7 +77,6 @@ public class BaseActivity extends Activity {
         //about sound
         factory = MediaFactory.getInstance(this);
         //resume some params to last used
-        System.out.println(readMode.getLang() + " CHECK: " + checkLangToPath(readMode.getLang()));
         factory.setLang(checkLangToPath(readMode.getLang()));
 
         //about fling
@@ -117,7 +116,7 @@ public class BaseActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        System.out.println(Thread.currentThread().getName() + " ondestry! ");
+        System.out.println(Thread.currentThread().getClass() + " ondestry! ");
         io.save(readMode);
         System.gc();
         finish();
@@ -173,6 +172,7 @@ public class BaseActivity extends Activity {
      */
     public void setReadMode(boolean isAuto) {
         readMode.setAuto(isAuto);
+        io.save(readMode);
     }
 
     public float getDimens(int dimensId) {

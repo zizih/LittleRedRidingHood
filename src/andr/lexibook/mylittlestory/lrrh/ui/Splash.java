@@ -49,7 +49,6 @@ public class Splash extends BaseActivity implements View.OnTouchListener {
         } else {
             toPage(Menu.class);
         }
-        toPage(LangSelect.class);
         finish();
     }
 
