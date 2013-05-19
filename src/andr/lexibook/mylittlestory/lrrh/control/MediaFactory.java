@@ -37,7 +37,6 @@ public class MediaFactory {
         MediaPlayer mPlayer = new MediaPlayer();
         try {
             descriptor = ctx.getAssets().openFd(langPath + fileName);
-            System.out.println("Path: " + langPath + fileName);
             mPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getDeclaredLength());
             descriptor.close();
         } catch (IOException e) {
@@ -150,7 +149,6 @@ public class MediaFactory {
      */
 
     public MediaFactory setLang(String langPath) {
-        System.out.println(" TTSetLang: " + langPath);
         this.langPath = langPath;
         return this;
     }

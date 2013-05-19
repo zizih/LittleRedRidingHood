@@ -19,13 +19,18 @@ public class Pages extends BaseActivity {
     private boolean isFirst = true;
     private int position = 0;
     private MediaPlayer.OnCompletionListener langCompleteListener;
+    private MediaPlayer.OnCompletionListener pageCompleteListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
         flipView.setAdapter(new FlipAdapter(this));
+        setContentView(flipView);
+
+        //
         if (readMode.isAuto()) {
+            flipView.setFlipByTouchEnabled(false);
             if (isFirst) {
                 play(0);
                 isFirst = false;
@@ -36,15 +41,23 @@ public class Pages extends BaseActivity {
                     play(position);
                 }
             });
-        }
-        setContentView(flipView);
-        langCompleteListener = new MediaPlayer.OnCompletionListener() {
+            langCompleteListener = new MediaPlayer.OnCompletionListener() {
 
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                play(position);
-            }
-        };
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    play(position);
+                }
+            };
+            pageCompleteListener = new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    System.out.print(mediaPlayer.isPlaying() + " PP: " + position);
+                    mPlayer.release();
+                    flipView.setSelection(++position);
+                    play(position);
+                }
+            };
+        }
     }
 
     @Override
@@ -96,6 +109,7 @@ public class Pages extends BaseActivity {
                 break;
         }
         try {
+            mPlayer.setOnCompletionListener(pageCompleteListener);
             mPlayer.prepare();
             mPlayer.start();
         } catch (IOException e) {

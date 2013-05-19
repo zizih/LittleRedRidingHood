@@ -117,7 +117,7 @@ public class BaseActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        System.out.println(" ondestry! ");
+        System.out.println(Thread.currentThread().getName() + " ondestry! ");
         io.save(readMode);
         System.gc();
         finish();
@@ -165,6 +165,7 @@ public class BaseActivity extends Activity {
             e.printStackTrace();
         }
         readMode.setLang(lang);
+        io.save(readMode);
     }
 
     /**
