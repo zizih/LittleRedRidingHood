@@ -82,16 +82,14 @@ public class Menu extends BaseActivity implements View.OnLongClickListener, View
     public boolean onLongClick(View view) {
         switch (view.getId()) {
             case R.id.gif_menu_read_auto:
-                setReadMode(READ_AUTO);
+                setReadMode(true);
                 break;
             case R.id.gif_menu_read_self:
-                setReadMode(READ_SELF);
+                setReadMode(false);
                 break;
             default:
                 break;
         }
-        io.save(readMode);
-        readMode = io.get();
         toPage(Pages.class);
         return true;
     }

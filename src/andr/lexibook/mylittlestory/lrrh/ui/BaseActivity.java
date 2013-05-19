@@ -1,7 +1,6 @@
 package andr.lexibook.mylittlestory.lrrh.ui;
 
 import andr.lexibook.mylittlestory.lrrh.control.MediaFactory;
-import andr.lexibook.mylittlestory.lrrh.control.SoundFactory;
 import andr.lexibook.mylittlestory.lrrh.model.ReadMode;
 import andr.lexibook.mylittlestory.lrrh.util.ReadModeToFile;
 import andr.lexibook.mylittlestory.lrrh.util.ViewUtil;
@@ -9,12 +8,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -37,7 +34,6 @@ public class BaseActivity extends Activity {
     public final int EUTSCH = 3;
     public final int ESPANOL = 4;
     public final int ITALIANO = 5;
-    public String SPName;
 
     public int WIN_WIDTH;
     public int WIN_HEIGHT;
@@ -48,16 +44,10 @@ public class BaseActivity extends Activity {
 
     public ReadModeToFile io;
     public ReadMode readMode;
-    public String READ_SELF;
-    public String READ_AUTO;
 
     public MediaFactory factory;
     public MediaPlayer mPlayer;
-    public MediaPlayer engPlayer;
-    public MediaPlayer fraPlayer;
-    public MediaPlayer deuPlayer;
-    public MediaPlayer espPlayer;
-    public MediaPlayer itaPlayer;
+    public MediaPlayer langPlayer;
 
     //control read mode
     public boolean isPages = false;
@@ -65,30 +55,34 @@ public class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //about public attribute for subClass
         System.out.println(" on create! ");
+
+        //about public attribute for subClass
         toPage = new Intent();
-        io = new ReadModeToFile();
-        readMode = io.get();
-
-        //about sound
-        factory = new MediaFactory(this);
-
-        //about fling
-        READ_SELF = getString(R.string.read_self);
-        READ_AUTO = getString(R.string.read_auto);
-        WIN_WIDTH = getWindowManager().getDefaultDisplay().getWidth();
-        WIN_HEIGHT = getWindowManager().getDefaultDisplay().getHeight();
 
         //about menu
         inflater = getMenuInflater();
-        SPName = getResources().getString(R.string.sp_name);
-        sp = this.getSharedPreferences(SPName, 0);
         eng = getString(R.string.lang_english);
         fra = getString(R.string.lang_franch);
         deu = getString(R.string.lang_eutsch);
         esp = getString(R.string.lang_espanol);
         ita = getString(R.string.lang_italiano);
+
+        io = new ReadModeToFile();
+        readMode = io.get();
+        System.out.println(" ReadMode: " + readMode.getLang());
+        System.out.println(" ReadMode Auto: " + readMode.isAuto());
+        System.out.println(" ReadMode First: " + readMode.isFirst());
+
+        //about sound
+        factory = MediaFactory.getInstance(this);
+        //resume some params to last used
+        System.out.println(readMode.getLang() + " CHECK: " + checkLangToPath(readMode.getLang()));
+        factory.setLang(checkLangToPath(readMode.getLang()));
+
+        //about fling
+        WIN_WIDTH = getWindowManager().getDefaultDisplay().getWidth();
+        WIN_HEIGHT = getWindowManager().getDefaultDisplay().getHeight();
 
     }
 
@@ -124,6 +118,7 @@ public class BaseActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         System.out.println(" ondestry! ");
+        io.save(readMode);
         System.gc();
         finish();
     }
@@ -144,65 +139,39 @@ public class BaseActivity extends Activity {
         switch (langId) {
             case ENGLISH:
                 lang = eng;
-                engPlayer = factory.toEngLang().getLang();
-                try {
-                    engPlayer.prepare();
-                    engPlayer.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                langPlayer = factory.toEngLang().getLang();
                 break;
             case FRANCH:
                 lang = fra;
-                fraPlayer = factory.toFraLang().getLang();
-                try {
-                    fraPlayer.prepare();
-                    fraPlayer.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                langPlayer = factory.toFraLang().getLang();
                 break;
             case EUTSCH:
                 lang = deu;
-                deuPlayer = factory.toDeuLang().getLang();
-                try {
-                    deuPlayer.prepare();
-                    deuPlayer.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                langPlayer = factory.toDeuLang().getLang();
                 break;
             case ESPANOL:
                 lang = esp;
-                espPlayer = factory.toEspLang().getLang();
-                try {
-                    espPlayer.prepare();
-                    espPlayer.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                langPlayer = factory.toEspLang().getLang();
                 break;
             case ITALIANO:
                 lang = ita;
-                itaPlayer = factory.toItaLang().getLang();
-                try {
-                    itaPlayer.prepare();
-                    itaPlayer.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                langPlayer = factory.toItaLang().getLang();
                 break;
         }
+        try {
+            langPlayer.prepare();
+            langPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         readMode.setLang(lang);
-        sp.edit().putString("lang", lang).commit();
-        //Toast.makeText(this, "Choose " + lang, 1000).show();
     }
 
     /**
      * 设置所选的阅读模式
      */
-    public void setReadMode(String mode) {
-        readMode.setMode(mode);
+    public void setReadMode(boolean isAuto) {
+        readMode.setAuto(isAuto);
     }
 
     public float getDimens(int dimensId) {
@@ -215,6 +184,20 @@ public class BaseActivity extends Activity {
 
     public float getHeightScale() {
         return ViewUtil.getInstance(this).getHeightScale();
+    }
+
+    private String checkLangToPath(String lang) {
+        if (lang.equals(eng))
+            return getResources().getString(R.string.mp3_lang_eng);
+        if (lang.equals(fra))
+            return getResources().getString(R.string.mp3_lang_fra);
+        if (lang.equals(deu))
+            return getResources().getString(R.string.mp3_lang_deu);
+        if (lang.equals(esp))
+            return getResources().getString(R.string.mp3_lang_esp);
+        if (lang.equals(ita))
+            return getResources().getString(R.string.mp3_lang_ita);
+        return getResources().getString(R.string.mp3_lang_default);
     }
 
 }

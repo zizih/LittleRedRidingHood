@@ -4,9 +4,7 @@ import andr.lexibook.mylittlestory.lrrh.libs.FlipViewController;
 import andr.lexibook.mylittlestory.lrrh.model.FlipAdapter;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -19,29 +17,43 @@ public class Pages extends BaseActivity {
 
     private FlipViewController flipView;
     private boolean isFirst = true;
+    private int position = 0;
+    private MediaPlayer.OnCompletionListener langCompleteListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
         flipView.setAdapter(new FlipAdapter(this));
-        if (isFirst) {
-            play(0);
-            isFirst = false;
-        }
-        flipView.setOnViewFlipListener(new FlipViewController.ViewFlipListener() {
-            @Override
-            public void onViewFlipped(View view, int position) {
-                play(position);
-                Toast.makeText(getApplicationContext(), "Page: " + position, 1000).show();
+        if (readMode.isAuto()) {
+            if (isFirst) {
+                play(0);
+                isFirst = false;
             }
-        });
+            flipView.setOnViewFlipListener(new FlipViewController.ViewFlipListener() {
+                @Override
+                public void onViewFlipped(View view, int position) {
+                    play(position);
+                }
+            });
+        }
         setContentView(flipView);
+        langCompleteListener = new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                play(position);
+            }
+        };
     }
 
     @Override
     public void setLanguage(int langId) {
         super.setLanguage(langId);
+        if (readMode.isAuto()) {
+            mPlayer.release();
+            langPlayer.setOnCompletionListener(langCompleteListener);
+        }
     }
 
     private void play(int position) {
@@ -89,6 +101,7 @@ public class Pages extends BaseActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        this.position = position;
     }
 
     @Override

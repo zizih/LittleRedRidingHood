@@ -127,6 +127,7 @@ public class MediaFactory {
     }
 
     public MediaPlayer getSplash() {
+        System.out.println(" TT: " + langPath);
         if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_splash)))
             return mPlayerList.get(langPath + ctx.getResources().getString(R.string.mp3_splash)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_splash));
@@ -149,6 +150,7 @@ public class MediaFactory {
      */
 
     public MediaFactory setLang(String langPath) {
+        System.out.println(" TTSetLang: " + langPath);
         this.langPath = langPath;
         return this;
     }

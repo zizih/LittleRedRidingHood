@@ -11,18 +11,18 @@ public class ReadMode implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private boolean isFirst;
-    private String mode;
+    private boolean isAuto;
     private String lang;
 
     public ReadMode() {
         this.setFirst(true);
-        this.setMode("self");
+        this.setAuto(true);
         this.setLang("English");
     }
 
-    public ReadMode(boolean isFirst, String mode, String lang) {
+    public ReadMode(boolean isFirst, boolean isAuto, String lang) {
         this.isFirst = isFirst;
-        this.mode = mode;
+        this.isAuto = isAuto;
         this.lang = lang;
     }
 
@@ -38,16 +38,15 @@ public class ReadMode implements Serializable {
         isFirst = first;
     }
 
-    public void setMode(String mode) {
-        this.mode = mode;
-    }
-
     public boolean isFirst() {
         return isFirst;
     }
 
-    public String getMode() {
-        return mode;
+    public boolean isAuto() {
+        return isAuto;
     }
 
+    public void setAuto(boolean auto) {
+        isAuto = auto;
+    }
 }
