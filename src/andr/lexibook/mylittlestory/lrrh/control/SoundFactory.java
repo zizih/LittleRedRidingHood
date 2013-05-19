@@ -55,6 +55,7 @@ public class SoundFactory {
     public int getSound(String path, int priority) {
         try {
             soundId = pool.load(ctx.getAssets().openFd(path), priority);
+            System.out.println("loaded: " + loaded);
             System.out.println(path + " soundId: " + soundId);
         } catch (IOException e) {
             e.printStackTrace();

@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.io.IOException;
+
 /**
  * @author hezi
  */
@@ -15,9 +17,13 @@ public class Splash extends BaseActivity implements View.OnTouchListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-        int soundId = soundFactory.getSplashId(1);
-        int tmpId = pool.play(soundId, 1, 1, 0, 0, 1);
-        System.out.println(" TmpId:  " + tmpId + " soundId: " + soundId);
+        mPlayer = factory.getSplash();
+        try {
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -44,5 +50,11 @@ public class Splash extends BaseActivity implements View.OnTouchListener {
 //        }
         toPage(LangSelect.class);
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPlayer.release();
     }
 }

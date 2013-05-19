@@ -1,5 +1,6 @@
 package andr.lexibook.mylittlestory.lrrh.ui;
 
+import andr.lexibook.mylittlestory.lrrh.control.MediaFactory;
 import andr.lexibook.mylittlestory.lrrh.control.SoundFactory;
 import andr.lexibook.mylittlestory.lrrh.model.ReadMode;
 import andr.lexibook.mylittlestory.lrrh.util.ReadModeToFile;
@@ -7,12 +8,15 @@ import andr.lexibook.mylittlestory.lrrh.util.ViewUtil;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 /**
  * User: rain
@@ -47,26 +51,25 @@ public class BaseActivity extends Activity {
     public String READ_SELF;
     public String READ_AUTO;
 
-    public SoundFactory soundFactory;
-    public SoundPool pool;
-
-//    public int engSoundId;
-//    public int fraSoundId;
-//    public int deuSoundId;
-//    public int espSoundId;
-//    public int itaSoundId;
+    public MediaFactory factory;
+    public MediaPlayer mPlayer;
+    public MediaPlayer engPlayer;
+    public MediaPlayer fraPlayer;
+    public MediaPlayer deuPlayer;
+    public MediaPlayer espPlayer;
+    public MediaPlayer itaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //about public attribute for subClass
+        System.out.println(" on create! ");
         toPage = new Intent();
         io = new ReadModeToFile();
         readMode = io.get();
 
         //about sound
-        soundFactory = SoundFactory.getInstance(this);
-        pool = soundFactory.getSoundpool();
+        factory = new MediaFactory(this);
 
         //about fling
         READ_SELF = getString(R.string.read_self);
@@ -83,12 +86,6 @@ public class BaseActivity extends Activity {
         deu = getString(R.string.lang_eutsch);
         esp = getString(R.string.lang_espanol);
         ita = getString(R.string.lang_italiano);
-
-//        engSoundId = soundFactory.setLang(getResources().getString(R.string.mp3_lang_eng)).getLangId(1);
-//        fraSoundId = soundFactory.setLang(getResources().getString(R.string.mp3_lang_fra)).getLangId(1);
-//        deuSoundId = soundFactory.setLang(getResources().getString(R.string.mp3_lang_deu)).getLangId(1);
-//        espSoundId = soundFactory.setLang(getResources().getString(R.string.mp3_lang_esp)).getLangId(1);
-//        itaSoundId = soundFactory.setLang(getResources().getString(R.string.mp3_lang_ita)).getLangId(1);
 
     }
 
@@ -123,8 +120,7 @@ public class BaseActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //pool.release();
-        System.out.println(" POOL RELEASE! ");
+        System.out.println(" ondestry! ");
         System.gc();
         finish();
     }
@@ -142,32 +138,56 @@ public class BaseActivity extends Activity {
      * 设置所选的语言
      */
     public void setLanguage(int langId) {
-        int tmpId;
         switch (langId) {
             case ENGLISH:
                 lang = eng;
-                tmpId = pool.play(soundFactory.getEngSoundId(), 1, 1, 0, 0, 1);
-                Toast.makeText(this, lang + " Press: " + soundFactory.getEngSoundId() + " playId: " + tmpId, 1000).show();
+                engPlayer = factory.toEngLang().getLang();
+                try {
+                    engPlayer.prepare();
+                    engPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case FRANCH:
                 lang = fra;
-                tmpId = pool.play(soundFactory.getFraSoundId(), 1, 1, 0, 0, 1);
-                Toast.makeText(this, lang + " Press: " + soundFactory.getFraSoundId() + " playId: " + tmpId, 1000).show();
+                fraPlayer = factory.toFraLang().getLang();
+                try {
+                    fraPlayer.prepare();
+                    fraPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case EUTSCH:
                 lang = deu;
-                tmpId = pool.play(soundFactory.getDeuSoundId(), 1, 1, 0, 0, 1);
-                Toast.makeText(this, lang + " Press: " + soundFactory.getDeuSoundId() + " playId: " + tmpId, 1000).show();
+                deuPlayer = factory.toDeuLang().getLang();
+                try {
+                    deuPlayer.prepare();
+                    deuPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case ESPANOL:
                 lang = esp;
-                tmpId = pool.play(soundFactory.getEspSoundId(), 1, 1, 0, 0, 1);
-                Toast.makeText(this, lang + " Press: " + soundFactory.getEspSoundId() + " playId: " + tmpId, 1000).show();
+                espPlayer = factory.toEspLang().getLang();
+                try {
+                    espPlayer.prepare();
+                    espPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case ITALIANO:
                 lang = ita;
-                tmpId = pool.play(soundFactory.getItaSoundId(), 1, 1, 0, 0, 1);
-                Toast.makeText(this, lang + " Press: " + soundFactory.getItaSoundId() + " playId: " + tmpId, 1000).show();
+                itaPlayer = factory.toItaLang().getLang();
+                try {
+                    itaPlayer.prepare();
+                    itaPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
         }
         readMode.setLang(lang);

@@ -99,28 +99,23 @@ public class LangSelect extends BaseActivity implements GifMovieView.DispearCall
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.lang_english:
-                pool.play(soundFactory.getEngSoundId(), 1, 1, 0, 0, 1);
+            case R.id.gif_lang_eng:
                 setLanguage(ENGLISH);
                 break;
-            case R.id.lang_franch:
-                pool.play(soundFactory.getFraSoundId(), 1, 1, 0, 0, 1);
+            case R.id.gif_lang_fra:
                 setLanguage(FRANCH);
                 break;
             case R.id.gif_lang_deu:
-                pool.play(soundFactory.getDeuSoundId(), 1, 1, 0, 0, 1);
                 setLanguage(EUTSCH);
                 break;
-            case R.id.lang_espanol:
-                pool.play(soundFactory.getEspSoundId(), 1, 1, 0, 0, 1);
+            case R.id.gif_lang_esp:
                 setLanguage(ESPANOL);
                 break;
-            case R.id.lang_italiano:
-                pool.play(soundFactory.getItaSoundId(), 1, 1, 0, 0, 1);
+            case R.id.gif_lang_ita:
                 setLanguage(ITALIANO);
                 break;
         }
-        toPage(Menu.class);
+        //toPage(Menu.class);
     }
 
 }

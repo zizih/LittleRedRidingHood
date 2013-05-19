@@ -1,9 +1,12 @@
 package andr.lexibook.mylittlestory.lrrh.ui;
 
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsoluteLayout;
+
+import java.io.IOException;
 
 /**
  * User: rain
@@ -19,6 +22,9 @@ public class Menu extends BaseActivity implements View.OnLongClickListener, View
     private GifMovieView btn_read_self;
     private GifMovieView btn_read_auto;
     private AbsoluteLayout.LayoutParams params;
+
+    private MediaPlayer autoPlayer;
+    private MediaPlayer selfPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,10 +100,22 @@ public class Menu extends BaseActivity implements View.OnLongClickListener, View
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.gif_menu_read_auto:
-                pool.play(soundFactory.getMenuAutoId(1), 1, 1, 0, 0, 1);
+                autoPlayer = factory.getMenuAuto();
+                try {
+                    autoPlayer.prepare();
+                    autoPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.gif_menu_read_self:
-                pool.play(soundFactory.getMenuSelfId(1), 1, 1, 0, 0, 1);
+                selfPlayer = factory.getMenuSelf();
+                try {
+                    selfPlayer.prepare();
+                    selfPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             default:
                 break;
