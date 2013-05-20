@@ -25,7 +25,7 @@ public class PageFactory {
     private Map<String, Class<?>> pagesMap;
     private String[] pagesKey;
 
-    public PageFactory(Context ctx) {
+    private PageFactory(Context ctx) {
         this.ctx = (Activity) ctx;
         pages = new WeakHashMap<String, WeakReference<PageView>>();
         pagesKey = this.ctx.getResources().getStringArray(R.array.page_index);
@@ -60,6 +60,10 @@ public class PageFactory {
         for (int i = 0; i < count; i++) {
             getPage(pagesKey[i + current]);
         }
+    }
+
+    public PageView getPage(int position) {
+        return getPage(pagesKey[position]);
     }
 
     public PageView getPage(String key) {

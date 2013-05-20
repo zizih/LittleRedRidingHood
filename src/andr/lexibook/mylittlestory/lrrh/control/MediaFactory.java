@@ -21,7 +21,7 @@ public class MediaFactory {
     private String langPath;
     private Map<String, WeakReference<MediaPlayer>> mPlayerList;
 
-    public MediaFactory(Context ctx) {
+    private MediaFactory(Context ctx) {
         this.ctx = (Activity) ctx;
         this.langPath = ctx.getResources().getString(R.string.mp3_lang_default);
         this.mPlayerList = new WeakHashMap<String, WeakReference<MediaPlayer>>();

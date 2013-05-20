@@ -1,5 +1,8 @@
 package andr.lexibook.mylittlestory.lrrh.ui.ViewIml;
 
+import andr.lexibook.mylittlestory.lrrh.control.BgFactory;
+import andr.lexibook.mylittlestory.lrrh.control.Setting;
+import andr.lexibook.mylittlestory.lrrh.model.ReadMode;
 import andr.lexibook.mylittlestory.lrrh.util.ViewUtil;
 import android.app.Activity;
 import android.content.Context;
@@ -16,17 +19,26 @@ public class PageView extends View {
 
     protected static Activity ctx;
     public AbsoluteLayout page;
+    public AbsoluteLayout layout;
     public AbsoluteLayout.LayoutParams params;
+    public BgFactory bgFactory;
+    public Setting setting;
 
     public PageView(Context context, int layoutId) {
         super(context);
         this.ctx = (Activity) context;
         page = (AbsoluteLayout) ctx.getLayoutInflater().inflate(layoutId, null);
         params = (AbsoluteLayout.LayoutParams) page.getLayoutParams();
+        bgFactory = BgFactory.getInstance(ctx);
+        setting = Setting.getInstance();
     }
 
     public AbsoluteLayout getLayout() {
         return page;
+    }
+
+    public AbsoluteLayout getLayoutView() {
+        return layout;
     }
 
     public float getDimens(int dimensId) {

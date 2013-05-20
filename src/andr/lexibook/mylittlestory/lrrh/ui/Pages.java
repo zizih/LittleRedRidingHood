@@ -1,5 +1,7 @@
 package andr.lexibook.mylittlestory.lrrh.ui;
 
+import andr.lexibook.mylittlestory.lrrh.control.BgFactory;
+import andr.lexibook.mylittlestory.lrrh.control.PageFactory;
 import andr.lexibook.mylittlestory.lrrh.libs.FlipViewController;
 import andr.lexibook.mylittlestory.lrrh.model.FlipAdapter;
 import android.media.MediaPlayer;
@@ -20,27 +22,35 @@ public class Pages extends BaseActivity {
     private int position = 0;
     private MediaPlayer.OnCompletionListener langCompleteListener;
     private MediaPlayer.OnCompletionListener pageCompleteListener;
+    private PageFactory pageFactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        pageFactory = PageFactory.getInstance(this);
+
         flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
         flipView.setAdapter(new FlipAdapter(this));
         setContentView(flipView);
 
         flipView.setFlipByTouchEnabled(true);
-        if (readMode.isAuto()) {
+        flipView.setOnViewFlipListener(new FlipViewController.ViewFlipListener() {
+            @Override
+            public void onViewFlipped(View view, int position) {
+                pageFactory.getPage(position).getLayout()
+                        .setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang()))
+                                .getPageBg(position));
+                if (setting.getReadMode().isAuto())
+                    play(position);
+            }
+        });
+
+        if (setting.getReadMode().isAuto()) {
             flipView.setFlipByTouchEnabled(false);
             if (isFirst) {
                 play(0);
                 isFirst = false;
             }
-            flipView.setOnViewFlipListener(new FlipViewController.ViewFlipListener() {
-                @Override
-                public void onViewFlipped(View view, int position) {
-                    play(position);
-                }
-            });
             langCompleteListener = new MediaPlayer.OnCompletionListener() {
 
                 @Override
@@ -51,9 +61,11 @@ public class Pages extends BaseActivity {
             pageCompleteListener = new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
-                    mPlayer.release();
-                    flipView.setSelection(++position);
-                    play(position);
+                    if (position >= 0 && position < 12) {
+                        mPlayer.release();
+                        flipView.setSelection(++position);
+                        play(position);
+                    }
                 }
             };
         }
@@ -62,7 +74,7 @@ public class Pages extends BaseActivity {
     @Override
     public void setLanguage(int langId) {
         super.setLanguage(langId);
-        if (readMode.isAuto()) {
+        if (setting.getReadMode().isAuto()) {
             mPlayer.release();
             langPlayer.setOnCompletionListener(langCompleteListener);
         }

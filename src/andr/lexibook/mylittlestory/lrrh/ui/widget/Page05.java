@@ -42,5 +42,7 @@ public class Page05 extends PageView {
         params.x = (int) (getWidthScale() * getDimens(R.dimen.p05_grand_x));
         params.y = (int) (getHeightScale() * getDimens(R.dimen.p05_grand_y));
         grand.setLayoutParams(params);
+
+        layout = (AbsoluteLayout) findViewById(R.id.layout_p05);
     }
 }

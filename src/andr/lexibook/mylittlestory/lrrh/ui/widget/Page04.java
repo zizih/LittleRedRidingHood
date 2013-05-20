@@ -35,5 +35,6 @@ public class Page04 extends PageView {
         params.y = (int) (getHeightScale() * getDimens(R.dimen.p04_grand_y));
         grand.setLayoutParams(params);
 
+        layout = (AbsoluteLayout) findViewById(R.id.layout_p04);
     }
 }

@@ -22,6 +22,7 @@ public class Menu extends BaseActivity implements View.OnLongClickListener, View
     private GifMovieView btn_read_self;
     private GifMovieView btn_read_auto;
     private AbsoluteLayout.LayoutParams params;
+    private AbsoluteLayout page;
 
     private MediaPlayer autoPlayer;
     private MediaPlayer selfPlayer;
@@ -30,6 +31,8 @@ public class Menu extends BaseActivity implements View.OnLongClickListener, View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
+        page = (AbsoluteLayout) findViewById(R.id.layout_menu);
+        page.setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang())).getMenu());
 
         //init
         wolf = (GifMovieView) findViewById(R.id.gif_menu_wolf);

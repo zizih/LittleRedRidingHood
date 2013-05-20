@@ -49,5 +49,7 @@ public class Page08 extends PageView {
         params.x = (int) (getWidthScale() * getDimens(R.dimen.p08_hat_x));
         params.y = (int) (getHeightScale() * getDimens(R.dimen.p08_hat_y));
         hat.setLayoutParams(params);
+
+        layout = (AbsoluteLayout) findViewById(R.id.layout_p08);
     }
 }

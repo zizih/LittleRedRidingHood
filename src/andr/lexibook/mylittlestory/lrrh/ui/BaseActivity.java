@@ -1,6 +1,8 @@
 package andr.lexibook.mylittlestory.lrrh.ui;
 
+import andr.lexibook.mylittlestory.lrrh.control.BgFactory;
 import andr.lexibook.mylittlestory.lrrh.control.MediaFactory;
+import andr.lexibook.mylittlestory.lrrh.control.Setting;
 import andr.lexibook.mylittlestory.lrrh.model.ReadMode;
 import andr.lexibook.mylittlestory.lrrh.util.ReadModeToFile;
 import andr.lexibook.mylittlestory.lrrh.util.ViewUtil;
@@ -42,8 +44,7 @@ public class BaseActivity extends Activity {
     private SharedPreferences sp;
     private Intent toPage;
 
-    public ReadModeToFile io;
-    public ReadMode readMode;
+    public Setting setting;
 
     public MediaFactory factory;
     public MediaPlayer mPlayer;
@@ -51,6 +52,7 @@ public class BaseActivity extends Activity {
 
     //control read mode
     public boolean isPages = false;
+    public BgFactory bgFactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class BaseActivity extends Activity {
 
         //about public attribute for subClass
         toPage = new Intent();
+        bgFactory = BgFactory.getInstance(this);
 
         //about menu
         inflater = getMenuInflater();
@@ -68,16 +71,15 @@ public class BaseActivity extends Activity {
         esp = getString(R.string.lang_espanol);
         ita = getString(R.string.lang_italiano);
 
-        io = new ReadModeToFile();
-        readMode = io.get();
-        System.out.println(" ReadMode: " + readMode.getLang());
-        System.out.println(" ReadMode Auto: " + readMode.isAuto());
-        System.out.println(" ReadMode First: " + readMode.isFirst());
+        setting = Setting.getInstance();
+        System.out.println(" ReadMode: " + setting.getReadMode().getLang());
+        System.out.println(" ReadMode Auto: " + setting.getReadMode().isAuto());
+        System.out.println(" ReadMode First: " + setting.getReadMode().isFirst());
 
         //about sound
         factory = MediaFactory.getInstance(this);
         //resume some params to last used
-        factory.setLang(checkLangToPath(readMode.getLang()));
+        factory.setLang(checkLangToPath(setting.getReadMode().getLang()));
 
         //about fling
         WIN_WIDTH = getWindowManager().getDefaultDisplay().getWidth();
@@ -117,7 +119,7 @@ public class BaseActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         System.out.println(Thread.currentThread().getClass() + " ondestry! ");
-        io.save(readMode);
+        setting.save();
         System.gc();
         finish();
     }
@@ -163,16 +165,16 @@ public class BaseActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        readMode.setLang(lang);
-        io.save(readMode);
+        setting.getReadMode().setLang(lang);
+        setting.save();
     }
 
     /**
      * 设置所选的阅读模式
      */
     public void setReadMode(boolean isAuto) {
-        readMode.setAuto(isAuto);
-        io.save(readMode);
+        setting.getReadMode().setAuto(isAuto);
+        setting.save();
     }
 
     public float getDimens(int dimensId) {
@@ -199,6 +201,20 @@ public class BaseActivity extends Activity {
         if (lang.equals(ita))
             return getResources().getString(R.string.mp3_lang_ita);
         return getResources().getString(R.string.mp3_lang_default);
+    }
+
+    public int checkLangToId(String lang) {
+        if (lang.equals(eng))
+            return ENGLISH;
+        if (lang.equals(fra))
+            return FRANCH;
+        if (lang.equals(deu))
+            return EUTSCH;
+        if (lang.equals(esp))
+            return ESPANOL;
+        if (lang.equals(ita))
+            return ITALIANO;
+        return ENGLISH;
     }
 
 }
