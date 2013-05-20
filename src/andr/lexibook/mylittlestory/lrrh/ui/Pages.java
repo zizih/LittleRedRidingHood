@@ -37,7 +37,7 @@ public class Pages extends BaseActivity {
         flipView.setOnViewFlipListener(new FlipViewController.ViewFlipListener() {
             @Override
             public void onViewFlipped(View view, int position) {
-                pageFactory.getPage(position).getLayout()
+                pageFactory.getPage(position).getLayoutView()
                         .setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang()))
                                 .getPageBg(position));
                 if (setting.getReadMode().isAuto())

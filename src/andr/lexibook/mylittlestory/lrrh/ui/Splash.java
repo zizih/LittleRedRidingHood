@@ -22,7 +22,6 @@ public class Splash extends BaseActivity implements View.OnTouchListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
         page = (RelativeLayout) findViewById(R.id.layout_splash);
-        page.setBackgroundColor(Color.GREEN);
         page.setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang())).getSplash());
 
         mPlayer = factory.getSplash();
