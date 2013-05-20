@@ -1,28 +1,26 @@
 package andr.lexibook.mylittlestory.lrrh.ui;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.Button;
 
 import java.io.IOException;
 
 /**
  * @author hezi
  */
-public class Splash extends BaseActivity implements View.OnTouchListener {
+public class Splash extends BaseActivity implements View.OnClickListener {
 
-    private RelativeLayout page;
+    private Button btn_splash_bg;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-        page = (RelativeLayout) findViewById(R.id.layout_splash);
-        page.setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang())).getSplash());
+        btn_splash_bg = (Button) findViewById(R.id.btn_splash_bg);
+        btn_splash_bg.setOnClickListener(this);
+        refreshBg();
 
         mPlayer = factory.getSplash();
         try {
@@ -42,9 +40,8 @@ public class Splash extends BaseActivity implements View.OnTouchListener {
     }
 
     @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
+    public void onClick(View view) {
         toMenu();
-        return true;
     }
 
     private void toMenu() {
@@ -64,4 +61,14 @@ public class Splash extends BaseActivity implements View.OnTouchListener {
         super.onDestroy();
         mPlayer.release();
     }
+
+    @Override
+    public void changeBgByLang() {
+        refreshBg();
+    }
+
+    private void refreshBg() {
+        this.btn_splash_bg.setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang())).getSplash());
+    }
+
 }

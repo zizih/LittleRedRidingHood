@@ -36,11 +36,11 @@ public class LangSelect extends BaseActivity implements GifMovieView.DispearCall
         ita = (GifMovieView) findViewById(R.id.gif_lang_ita);
         grand = (GifMovieView) findViewById(R.id.gif_lang_grand);
 
-        eng.setMovieAsset(getString(R.string.lang_box));
-        fra.setMovieAsset(getString(R.string.lang_box));
-        deu.setMovieAsset(getString(R.string.lang_box));
-        esp.setMovieAsset(getString(R.string.lang_box));
-        ita.setMovieAsset(getString(R.string.lang_box));
+        eng.setMovieAsset(getString(R.string.lang_eng));
+        fra.setMovieAsset(getString(R.string.lang_fra));
+        deu.setMovieAsset(getString(R.string.lang_deu));
+        esp.setMovieAsset(getString(R.string.lang_esp));
+        ita.setMovieAsset(getString(R.string.lang_ita));
         grand.setMovieAsset(getString(R.string.lang_grand));
 
         params = (AbsoluteLayout.LayoutParams) eng.getLayoutParams();
@@ -73,15 +73,15 @@ public class LangSelect extends BaseActivity implements GifMovieView.DispearCall
         params.y = (int) (getHeightScale() * getDimens(R.dimen.lang_grand_y));
         grand.setLayoutParams(params);
 
-        eng.dispear(3400, this);
-        fra.delay(3000);
-        fra.dispear(3000 + 3400, this);
-        deu.delay(3000 * 2);
-        deu.dispear(3000 * 2 + 3400, this);
-        esp.delay(3000 * 3);
-        esp.dispear(3000 * 3 + 3000, this);
-        ita.delay(3000 * 4);
-        ita.dispear(3000 * 4 + 3000, this);
+//        eng.dispear(3400, this);
+//        fra.delay(3000);
+//        fra.dispear(3000 + 3400, this);
+//        deu.delay(3000 * 2);
+//        deu.dispear(3000 * 2 + 3400, this);
+//        esp.delay(3000 * 3);
+//        esp.dispear(3000 * 3 + 3000, this);
+//        ita.delay(3000 * 4);
+//        ita.dispear(3000 * 4 + 3000, this);
 
         eng.setOnClickListener(this);
         fra.setOnClickListener(this);

@@ -165,6 +165,7 @@ public class BaseActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        changeBgByLang();
         setting.getReadMode().setLang(lang);
         setting.save();
     }
@@ -215,6 +216,9 @@ public class BaseActivity extends Activity {
         if (lang.equals(ita))
             return ITALIANO;
         return ENGLISH;
+    }
+
+    public void changeBgByLang() {
     }
 
 }

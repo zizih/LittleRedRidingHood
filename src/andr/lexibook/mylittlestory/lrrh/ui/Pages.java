@@ -37,11 +37,7 @@ public class Pages extends BaseActivity {
         flipView.setOnViewFlipListener(new FlipViewController.ViewFlipListener() {
             @Override
             public void onViewFlipped(View view, int position) {
-                pageFactory.getPage(position).getLayoutView()
-                        .setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang()))
-                                .getPageBg(position));
-                if (setting.getReadMode().isAuto())
-                    play(position);
+
             }
         });
 
@@ -51,23 +47,8 @@ public class Pages extends BaseActivity {
                 play(0);
                 isFirst = false;
             }
-            langCompleteListener = new MediaPlayer.OnCompletionListener() {
-
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    play(position);
-                }
-            };
-            pageCompleteListener = new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    if (position >= 0 && position < 12) {
-                        mPlayer.release();
-                        flipView.setSelection(++position);
-                        play(position);
-                    }
-                }
-            };
+            langCompleteListener = new LangListener();
+            pageCompleteListener = new PageListener();
         }
     }
 
@@ -141,6 +122,37 @@ public class Pages extends BaseActivity {
         flipView.onPause();
     }
 
+    class Fliplistener implements FlipViewController.ViewFlipListener {
+
+        @Override
+        public void onViewFlipped(View view, int position) {
+            pageFactory.getPage(position).getLayoutView()
+                    .setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang()))
+                            .getPageBg(position));
+            if (setting.getReadMode().isAuto())
+                play(position);
+        }
+    }
+
+    class LangListener implements MediaPlayer.OnCompletionListener {
+
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            play(position);
+        }
+    }
+
+    class PageListener implements MediaPlayer.OnCompletionListener {
+
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            if (position >= 0 && position < 12) {
+                mPlayer.release();
+                flipView.setSelection(++position);
+                play(position);
+            }
+        }
+    }
 }
 
 
