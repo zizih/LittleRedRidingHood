@@ -51,6 +51,6 @@ public class Page11 extends PageView {
         params.y = (int) (getHeightScale() * getDimens(R.dimen.p11_wolf_y));
         wolf.setLayoutParams(params);
 
-        layout = (AbsoluteLayout) findViewById(R.id.layout_p11);
+        layout = (AbsoluteLayout) page.findViewById(R.id.layout_p11);
     }
 }

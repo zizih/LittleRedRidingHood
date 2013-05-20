@@ -50,14 +50,8 @@ public class Menu extends BaseActivity implements View.OnClickListener {
         btn_read_self.setMovieAsset(getString(R.string.menu_read_self));
 
         params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
-        System.out.println(getWidthScale() + " Menu Wolf OX:" + params.x);
-        System.out.println(getHeightScale() + " Menu Wolf OY:" + params.y);
-        System.out.println("Menu Wolf VX:" + getDimens(R.dimen.menu_wolf_x));
-        System.out.println("Menu Wolf VY:" + getDimens(R.dimen.menu_wolf_y));
         params.x = (int) (getWidthScale() * getDimens(R.dimen.menu_wolf_x));
-        params.x = (int) (getHeightScale() * getDimens(R.dimen.menu_wolf_y));
-        System.out.println("Menu Wolf X:" + params.x);
-        System.out.println("Menu Wolf Y:" + params.y);
+        params.y = (int) (getHeightScale() * getDimens(R.dimen.menu_wolf_y));
         wolf.setLayoutParams(params);
 
         params = (AbsoluteLayout.LayoutParams) red.getLayoutParams();
@@ -86,42 +80,39 @@ public class Menu extends BaseActivity implements View.OnClickListener {
         btn_read_self.setOnClickListener(this);
         autoListener = new AutoCompleteListener();
         selfListener = new SelfCompleteListener();
+
+        //
+        playAuto();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.gif_menu_read_auto:
-                autoPlayer = factory.getMenuAuto();
-                autoPlayer.setOnCompletionListener(autoListener);
-                try {
-                    autoPlayer.prepare();
-                    autoPlayer.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                setReadMode(true);
                 break;
             case R.id.gif_menu_read_self:
-                selfPlayer = factory.getMenuSelf();
-                selfPlayer.setOnCompletionListener(selfListener);
-                try {
-                    selfPlayer.prepare();
-                    selfPlayer.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                setReadMode(false);
                 break;
             default:
                 break;
         }
+        releasePlaying();
+        toPage(Pages.class);
+    }
+
+    private void releasePlaying() {
+        if (autoPlayer != null)
+            autoPlayer.release();
+        if (selfPlayer != null)
+            selfPlayer.release();
     }
 
     class AutoCompleteListener implements MediaPlayer.OnCompletionListener {
 
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
-            setReadMode(true);
-            toPage(Pages.class);
+            playSelf();
         }
     }
 
@@ -129,13 +120,13 @@ public class Menu extends BaseActivity implements View.OnClickListener {
 
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
-            setReadMode(false);
-            toPage(Pages.class);
+            playAuto();
         }
     }
 
     @Override
-    public void changeBgByLang() {
+    public void setLanguage(int langId) {
+        super.setLanguage(langId);
         refreshBg();
     }
 
@@ -143,4 +134,30 @@ public class Menu extends BaseActivity implements View.OnClickListener {
         this.page.setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang())).getMenu());
     }
 
+    private void playAuto() {
+        autoPlayer = factory.getMenuAuto();
+        autoPlayer.setOnCompletionListener(autoListener);
+        play(autoPlayer);
+    }
+
+    private void playSelf() {
+        selfPlayer = factory.getMenuSelf();
+        selfPlayer.setOnCompletionListener(selfListener);
+        play(selfPlayer);
+    }
+
+    private void play(MediaPlayer player) {
+        try {
+            player.prepare();
+            player.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        releasePlaying();
+    }
 }

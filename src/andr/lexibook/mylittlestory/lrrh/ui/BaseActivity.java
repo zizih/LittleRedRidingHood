@@ -31,11 +31,11 @@ public class BaseActivity extends Activity {
     public String ita;
     private String lang;
 
-    public final int ENGLISH = 1;
-    public final int FRANCH = 2;
-    public final int EUTSCH = 3;
-    public final int ESPANOL = 4;
-    public final int ITALIANO = 5;
+    public final int ENGLISH = 0;
+    public final int FRANCH = 1;
+    public final int EUTSCH = 2;
+    public final int ESPANOL = 3;
+    public final int ITALIANO = 4;
 
     public int WIN_WIDTH;
     public int WIN_HEIGHT;
@@ -165,7 +165,6 @@ public class BaseActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        changeBgByLang();
         setting.getReadMode().setLang(lang);
         setting.save();
     }
@@ -216,9 +215,6 @@ public class BaseActivity extends Activity {
         if (lang.equals(ita))
             return ITALIANO;
         return ENGLISH;
-    }
-
-    public void changeBgByLang() {
     }
 
 }

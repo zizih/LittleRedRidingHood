@@ -53,7 +53,7 @@ public class Page12 extends PageView implements View.OnClickListener {
         btn_menu.setOnClickListener(this);
         btn_quit.setOnClickListener(this);
 
-        layout = (AbsoluteLayout) findViewById(R.id.layout_p12);
+        layout = (AbsoluteLayout) page.findViewById(R.id.layout_p12);
     }
 
 

@@ -63,7 +63,8 @@ public class Splash extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
-    public void changeBgByLang() {
+    public void setLanguage(int langId) {
+        super.setLanguage(langId);
         refreshBg();
     }
 

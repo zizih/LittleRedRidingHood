@@ -20,6 +20,7 @@ public class Pages extends BaseActivity {
     private FlipViewController flipView;
     private boolean isFirst = true;
     private int position = 0;
+    private Fliplistener flipListener;
     private MediaPlayer.OnCompletionListener langCompleteListener;
     private MediaPlayer.OnCompletionListener pageCompleteListener;
     private PageFactory pageFactory;
@@ -33,13 +34,10 @@ public class Pages extends BaseActivity {
         flipView.setAdapter(new FlipAdapter(this));
         setContentView(flipView);
 
-        flipView.setFlipByTouchEnabled(true);
-        flipView.setOnViewFlipListener(new FlipViewController.ViewFlipListener() {
-            @Override
-            public void onViewFlipped(View view, int position) {
 
-            }
-        });
+        flipListener = new Fliplistener();
+        flipView.setFlipByTouchEnabled(true);
+        flipView.setOnViewFlipListener(flipListener);
 
         if (setting.getReadMode().isAuto()) {
             flipView.setFlipByTouchEnabled(false);
@@ -59,6 +57,9 @@ public class Pages extends BaseActivity {
             mPlayer.release();
             langPlayer.setOnCompletionListener(langCompleteListener);
         }
+        pageFactory.getPage(position).getLayoutView()
+                .setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang()))
+                        .getPageBg(position));
     }
 
     private void play(int position) {
@@ -122,13 +123,20 @@ public class Pages extends BaseActivity {
         flipView.onPause();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPlayer = null;
+        System.gc();
+    }
+
     class Fliplistener implements FlipViewController.ViewFlipListener {
 
         @Override
         public void onViewFlipped(View view, int position) {
-            pageFactory.getPage(position).getLayoutView()
-                    .setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang()))
-                            .getPageBg(position));
+//            pageFactory.getPage(position).getLayoutView()
+//                    .setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang()))
+//                            .getPageBg(position));
             if (setting.getReadMode().isAuto())
                 play(position);
         }
