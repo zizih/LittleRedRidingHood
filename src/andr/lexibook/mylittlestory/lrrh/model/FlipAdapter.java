@@ -1,6 +1,8 @@
 package andr.lexibook.mylittlestory.lrrh.model;
 
+import andr.lexibook.mylittlestory.lrrh.control.BgFactory;
 import andr.lexibook.mylittlestory.lrrh.control.PageFactory;
+import andr.lexibook.mylittlestory.lrrh.control.Setting;
 import andr.lexibook.mylittlestory.lrrh.ui.R;
 import android.app.Activity;
 import android.content.Context;
@@ -9,8 +11,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-public class FlipAdapter extends BaseAdapter implements OnClickListener {
+public class FlipAdapter extends BaseAdapter {
 
+    private Context ctx;
     private PageFactory pageFactory;
     private String[] pagesKey;
 
@@ -21,6 +24,7 @@ public class FlipAdapter extends BaseAdapter implements OnClickListener {
     private Callback callback;
 
     public FlipAdapter(Context context) {
+        this.ctx = context;
         pageFactory = PageFactory.getInstance(context);
         pagesKey = ((Activity) context).getResources().getStringArray(R.array.page_index);
     }
@@ -47,13 +51,7 @@ public class FlipAdapter extends BaseAdapter implements OnClickListener {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = pageFactory.getPage(pagesKey[position]).getLayout();
+        pageFactory.removePage(position);
         return convertView;
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-        }
-    }
-
 }

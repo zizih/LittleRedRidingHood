@@ -23,15 +23,15 @@ public class Pages extends BaseActivity {
     private Fliplistener flipListener;
     private MediaPlayer.OnCompletionListener langCompleteListener;
     private MediaPlayer.OnCompletionListener pageCompleteListener;
-    private PageFactory pageFactory;
+    private FlipAdapter flipAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pageFactory = PageFactory.getInstance(this);
 
         flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
-        flipView.setAdapter(new FlipAdapter(this));
+        flipAdapter = new FlipAdapter(this);
+        flipView.setAdapter(flipAdapter);
         setContentView(flipView);
 
 
@@ -57,9 +57,6 @@ public class Pages extends BaseActivity {
             mPlayer.release();
             langPlayer.setOnCompletionListener(langCompleteListener);
         }
-        pageFactory.getPage(position).getLayoutView()
-                .setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang()))
-                        .getPageBg(position));
     }
 
     private void play(int position) {
@@ -125,18 +122,15 @@ public class Pages extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        flipView = null;
         mPlayer = null;
-        System.gc();
+        super.onDestroy();
     }
 
     class Fliplistener implements FlipViewController.ViewFlipListener {
 
         @Override
         public void onViewFlipped(View view, int position) {
-//            pageFactory.getPage(position).getLayoutView()
-//                    .setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang()))
-//                            .getPageBg(position));
             if (setting.getReadMode().isAuto())
                 play(position);
         }

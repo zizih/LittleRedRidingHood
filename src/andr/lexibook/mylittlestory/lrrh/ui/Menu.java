@@ -34,7 +34,7 @@ public class Menu extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
         page = (AbsoluteLayout) findViewById(R.id.layout_menu);
-        refreshBg();
+        //refreshBg();
 
         //init
         wolf = (GifMovieView) findViewById(R.id.gif_menu_wolf);
@@ -102,10 +102,14 @@ public class Menu extends BaseActivity implements View.OnClickListener {
     }
 
     private void releasePlaying() {
-        if (autoPlayer != null)
+        if (autoPlayer != null) {
             autoPlayer.release();
-        if (selfPlayer != null)
+            autoPlayer = null;
+        }
+        if (selfPlayer != null) {
             selfPlayer.release();
+            selfPlayer = null;
+        }
     }
 
     class AutoCompleteListener implements MediaPlayer.OnCompletionListener {
@@ -127,12 +131,15 @@ public class Menu extends BaseActivity implements View.OnClickListener {
     @Override
     public void setLanguage(int langId) {
         super.setLanguage(langId);
-        refreshBg();
+        //refreshBg();
+        /**
+         *  here need to change to refresh two menu button
+         */
     }
 
-    private void refreshBg() {
-        this.page.setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang())).getMenu());
-    }
+//    private void refreshBg() {
+//        this.page.setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang())).getMenu());
+//    }
 
     private void playAuto() {
         autoPlayer = factory.getMenuAuto();
@@ -157,7 +164,12 @@ public class Menu extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        wolf = null;
+        red = null;
+        grand = null;
+        btn_read_self = null;
+        btn_read_auto = null;
         releasePlaying();
+        super.onDestroy();
     }
 }

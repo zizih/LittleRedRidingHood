@@ -51,7 +51,6 @@ public class BaseActivity extends Activity {
     public MediaPlayer langPlayer;
 
     //control read mode
-    public boolean isPages = false;
     public BgFactory bgFactory;
 
     @Override
@@ -165,7 +164,7 @@ public class BaseActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        setting.getReadMode().setLang(lang);
+        setting.setLang(lang);
         setting.save();
     }
 
@@ -173,7 +172,7 @@ public class BaseActivity extends Activity {
      * 设置所选的阅读模式
      */
     public void setReadMode(boolean isAuto) {
-        setting.getReadMode().setAuto(isAuto);
+        setting.setAuto(isAuto);
         setting.save();
     }
 

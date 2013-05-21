@@ -36,5 +36,11 @@ public class Page04 extends PageView {
         grand.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p04);
+        setDefaultBg();
+    }
+
+    @Override
+    public void setDefaultBg() {
+        layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.p04_bkg));
     }
 }

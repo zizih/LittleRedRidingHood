@@ -118,4 +118,13 @@ public class LangSelect extends BaseActivity implements GifMovieView.DispearCall
         toPage(Menu.class);
     }
 
+    @Override
+    protected void onDestroy() {
+        eng = null;
+        fra = null;
+        deu = null;
+        esp = null;
+        ita = null;
+        super.onDestroy();
+    }
 }

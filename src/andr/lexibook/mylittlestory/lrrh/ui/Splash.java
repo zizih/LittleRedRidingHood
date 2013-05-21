@@ -46,8 +46,8 @@ public class Splash extends BaseActivity implements View.OnClickListener {
 
     private void toMenu() {
         System.out.println(" Splash " + setting.getReadMode().isFirst());
-        if (setting.getReadMode().isFirst()) {
-            setting.getReadMode().setFirst(false);
+        if (setting.isFirst()) {
+            setting.setFirst(false);
             setting.save();
             toPage(LangSelect.class);
         } else {

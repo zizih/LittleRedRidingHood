@@ -10,7 +10,8 @@ public class Setting {
 
     private static Setting instance;
     private ReadMode readMode;
-    public ReadModeToFile io;
+    private ReadModeToFile io;
+    private boolean langChanged = false;
 
     private Setting() {
         io = new ReadModeToFile();
@@ -37,6 +38,15 @@ public class Setting {
 
     public void setLang(String lang) {
         this.readMode.setLang(lang);
+        this.langChanged = true;
+    }
+
+    public boolean isLangChanged() {
+        return langChanged;
+    }
+
+    public void setLangChanged(boolean langChanged) {
+        this.langChanged = langChanged;
     }
 
     public void setFirst(boolean isFirst) {

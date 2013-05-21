@@ -31,8 +31,8 @@ public class Page12 extends PageView implements View.OnClickListener {
         btn_menu = (GifMovieView) page.findViewById(R.id.gif_p12_btn_menu);
         btn_quit = (GifMovieView) page.findViewById(R.id.gif_p12_btn_quit);
 
-        btn_menu.setMovieAsset(ctx.getString(R.string.p12_btn));
-        btn_quit.setMovieAsset(ctx.getString(R.string.p12_btn));
+        btn_menu.setMovieAsset(ctx.getString(R.string.p12_menu));
+        btn_quit.setMovieAsset(ctx.getString(R.string.p12_quit));
         red.setMovieAsset(ctx.getString(R.string.p12_red));
 
         params = (AbsoluteLayout.LayoutParams) red.getLayoutParams();
@@ -54,6 +54,7 @@ public class Page12 extends PageView implements View.OnClickListener {
         btn_quit.setOnClickListener(this);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p12);
+        setDefaultBg();
     }
 
 
@@ -67,6 +68,11 @@ public class Page12 extends PageView implements View.OnClickListener {
                 System.exit(1);
                 break;
         }
+    }
+
+    @Override
+    public void setDefaultBg() {
+        layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.p12_bkg));
     }
 
 }

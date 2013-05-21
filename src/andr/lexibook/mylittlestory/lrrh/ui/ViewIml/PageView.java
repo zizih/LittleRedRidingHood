@@ -3,9 +3,11 @@ package andr.lexibook.mylittlestory.lrrh.ui.ViewIml;
 import andr.lexibook.mylittlestory.lrrh.control.BgFactory;
 import andr.lexibook.mylittlestory.lrrh.control.Setting;
 import andr.lexibook.mylittlestory.lrrh.model.ReadMode;
+import andr.lexibook.mylittlestory.lrrh.ui.R;
 import andr.lexibook.mylittlestory.lrrh.util.ViewUtil;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.AbsoluteLayout;
 
@@ -51,6 +53,9 @@ public class PageView extends View {
 
     public float getHeightScale() {
         return ViewUtil.getInstance(ctx).getHeightScale();
+    }
+
+    public void setDefaultBg() {
     }
 
 }

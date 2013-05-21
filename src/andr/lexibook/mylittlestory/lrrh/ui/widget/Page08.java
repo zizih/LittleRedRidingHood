@@ -51,5 +51,11 @@ public class Page08 extends PageView {
         hat.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p08);
+        setDefaultBg();
+    }
+
+    @Override
+    public void setDefaultBg() {
+        layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.p08_bkg));
     }
 }
