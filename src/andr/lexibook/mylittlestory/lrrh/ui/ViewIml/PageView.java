@@ -1,13 +1,10 @@
 package andr.lexibook.mylittlestory.lrrh.ui.ViewIml;
 
-import andr.lexibook.mylittlestory.lrrh.control.BgFactory;
+import andr.lexibook.mylittlestory.lrrh.control.BgSrc;
 import andr.lexibook.mylittlestory.lrrh.control.Setting;
-import andr.lexibook.mylittlestory.lrrh.model.ReadMode;
-import andr.lexibook.mylittlestory.lrrh.ui.R;
 import andr.lexibook.mylittlestory.lrrh.util.ViewUtil;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.AbsoluteLayout;
 
@@ -23,7 +20,7 @@ public class PageView extends View {
     public AbsoluteLayout page;
     public AbsoluteLayout layout;
     public AbsoluteLayout.LayoutParams params;
-    public BgFactory bgFactory;
+    public BgSrc bgSrc;
     public Setting setting;
 
     public PageView(Context context, int layoutId) {
@@ -31,8 +28,8 @@ public class PageView extends View {
         this.ctx = (Activity) context;
         page = (AbsoluteLayout) ctx.getLayoutInflater().inflate(layoutId, null);
         params = (AbsoluteLayout.LayoutParams) page.getLayoutParams();
-        bgFactory = BgFactory.getInstance(ctx);
-        setting = Setting.getInstance();
+        bgSrc = BgSrc.getInstance(ctx);
+        setting = Setting.getInstance(ctx);
     }
 
     public AbsoluteLayout getLayout() {
@@ -53,9 +50,6 @@ public class PageView extends View {
 
     public float getHeightScale() {
         return ViewUtil.getInstance(ctx).getHeightScale();
-    }
-
-    public void setDefaultBg() {
     }
 
 }

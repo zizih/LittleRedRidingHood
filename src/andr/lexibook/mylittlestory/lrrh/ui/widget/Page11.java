@@ -52,11 +52,6 @@ public class Page11 extends PageView {
         wolf.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p11);
-        setDefaultBg();
-    }
-
-    @Override
-    public void setDefaultBg() {
-        layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.p11_bkg));
+        layout.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getPageId(10));
     }
 }

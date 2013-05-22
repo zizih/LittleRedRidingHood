@@ -1,13 +1,10 @@
 package andr.lexibook.mylittlestory.lrrh.model;
 
-import andr.lexibook.mylittlestory.lrrh.control.BgFactory;
 import andr.lexibook.mylittlestory.lrrh.control.PageFactory;
-import andr.lexibook.mylittlestory.lrrh.control.Setting;
 import andr.lexibook.mylittlestory.lrrh.ui.R;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 

@@ -1,14 +1,12 @@
 package andr.lexibook.mylittlestory.lrrh.ui;
 
-import andr.lexibook.mylittlestory.lrrh.control.BgFactory;
+import andr.lexibook.mylittlestory.lrrh.control.BgSrc;
+import andr.lexibook.mylittlestory.lrrh.control.BtnGifSrc;
 import andr.lexibook.mylittlestory.lrrh.control.MediaFactory;
 import andr.lexibook.mylittlestory.lrrh.control.Setting;
-import andr.lexibook.mylittlestory.lrrh.model.ReadMode;
-import andr.lexibook.mylittlestory.lrrh.util.ReadModeToFile;
 import andr.lexibook.mylittlestory.lrrh.util.ViewUtil;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,13 +22,6 @@ import java.io.IOException;
  */
 public class BaseActivity extends Activity {
 
-    public String eng;
-    public String fra;
-    public String deu;
-    public String esp;
-    public String ita;
-    private String lang;
-
     public final int ENGLISH = 0;
     public final int FRANCH = 1;
     public final int EUTSCH = 2;
@@ -41,46 +32,33 @@ public class BaseActivity extends Activity {
     public int WIN_HEIGHT;
 
     private MenuInflater inflater;
-    private SharedPreferences sp;
     private Intent toPage;
 
     public Setting setting;
 
-    public MediaFactory factory;
+    public MediaFactory mediaFactory;
     public MediaPlayer mPlayer;
     public MediaPlayer langPlayer;
 
-    //control read mode
-    public BgFactory bgFactory;
+    public BgSrc bgSrc;
+    public BtnGifSrc btnSrc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         System.out.println(" on create! ");
-
-        //about public attribute for subClass
         toPage = new Intent();
-        bgFactory = BgFactory.getInstance(this);
-
-        //about menu
         inflater = getMenuInflater();
-        eng = getString(R.string.lang_english);
-        fra = getString(R.string.lang_franch);
-        deu = getString(R.string.lang_eutsch);
-        esp = getString(R.string.lang_espanol);
-        ita = getString(R.string.lang_italiano);
-
-        setting = Setting.getInstance();
+        setting = Setting.getInstance(this);
         System.out.println(" ReadMode: " + setting.getReadMode().getLang());
         System.out.println(" ReadMode Auto: " + setting.getReadMode().isAuto());
         System.out.println(" ReadMode First: " + setting.getReadMode().isFirst());
 
         //about sound
-        factory = MediaFactory.getInstance(this);
-        //resume some params to last used
-        factory.setLang(checkLangToPath(setting.getReadMode().getLang()));
+        mediaFactory = MediaFactory.getInstance(this);
+        mediaFactory.setLang(checkLangToPath(setting.getReadMode().getLang()));
 
-        //about fling
+        //adapt difference dispay
         WIN_WIDTH = getWindowManager().getDefaultDisplay().getWidth();
         WIN_HEIGHT = getWindowManager().getDefaultDisplay().getHeight();
 
@@ -138,24 +116,19 @@ public class BaseActivity extends Activity {
     public void setLanguage(int langId) {
         switch (langId) {
             case ENGLISH:
-                lang = eng;
-                langPlayer = factory.toEngLang().getLang();
+                langPlayer = mediaFactory.toEngLang().getLang();
                 break;
             case FRANCH:
-                lang = fra;
-                langPlayer = factory.toFraLang().getLang();
+                langPlayer = mediaFactory.toFraLang().getLang();
                 break;
             case EUTSCH:
-                lang = deu;
-                langPlayer = factory.toDeuLang().getLang();
+                langPlayer = mediaFactory.toDeuLang().getLang();
                 break;
             case ESPANOL:
-                lang = esp;
-                langPlayer = factory.toEspLang().getLang();
+                langPlayer = mediaFactory.toEspLang().getLang();
                 break;
             case ITALIANO:
-                lang = ita;
-                langPlayer = factory.toItaLang().getLang();
+                langPlayer = mediaFactory.toItaLang().getLang();
                 break;
         }
         try {
@@ -164,7 +137,7 @@ public class BaseActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        setting.setLang(lang);
+        setting.setLang(langId);
         setting.save();
     }
 
@@ -189,32 +162,20 @@ public class BaseActivity extends Activity {
     }
 
     private String checkLangToPath(String lang) {
-        if (lang.equals(eng))
-            return getResources().getString(R.string.mp3_lang_eng);
-        if (lang.equals(fra))
-            return getResources().getString(R.string.mp3_lang_fra);
-        if (lang.equals(deu))
-            return getResources().getString(R.string.mp3_lang_deu);
-        if (lang.equals(esp))
-            return getResources().getString(R.string.mp3_lang_esp);
-        if (lang.equals(ita))
-            return getResources().getString(R.string.mp3_lang_ita);
-        return getResources().getString(R.string.mp3_lang_default);
+        switch (setting.checkLangToId(lang)) {
+            case ENGLISH:
+                return getResources().getString(R.string.mp3_lang_eng);
+            case FRANCH:
+                return getResources().getString(R.string.mp3_lang_fra);
+            case EUTSCH:
+                return getResources().getString(R.string.mp3_lang_deu);
+            case ESPANOL:
+                return getResources().getString(R.string.mp3_lang_esp);
+            case ITALIANO:
+                return getResources().getString(R.string.mp3_lang_ita);
+            default:
+                return getResources().getString(R.string.mp3_lang_default);
+        }
     }
-
-    public int checkLangToId(String lang) {
-        if (lang.equals(eng))
-            return ENGLISH;
-        if (lang.equals(fra))
-            return FRANCH;
-        if (lang.equals(deu))
-            return EUTSCH;
-        if (lang.equals(esp))
-            return ESPANOL;
-        if (lang.equals(ita))
-            return ITALIANO;
-        return ENGLISH;
-    }
-
 }
 

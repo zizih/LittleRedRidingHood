@@ -1,5 +1,6 @@
 package andr.lexibook.mylittlestory.lrrh.ui;
 
+import andr.lexibook.mylittlestory.lrrh.control.BgSrc;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -18,11 +19,12 @@ public class Splash extends BaseActivity implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
+        bgSrc = BgSrc.getInstance(this);
         btn_splash_bg = (Button) findViewById(R.id.btn_splash_bg);
         btn_splash_bg.setOnClickListener(this);
         refreshBg();
 
-        mPlayer = factory.getSplash();
+        mPlayer = mediaFactory.getSplash();
         try {
             mPlayer.prepare();
             mPlayer.start();
@@ -69,7 +71,9 @@ public class Splash extends BaseActivity implements View.OnClickListener {
     }
 
     private void refreshBg() {
-        this.btn_splash_bg.setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang())).getSplash());
+        System.out.println("setting.getLangId(): " + setting.getLangId());
+        System.out.println("Splash Id: " + bgSrc.setLang(setting.getLangId()).getSplashId());
+        this.btn_splash_bg.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getSplashId());
     }
 
 }

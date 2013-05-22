@@ -1,5 +1,6 @@
 package andr.lexibook.mylittlestory.lrrh.ui.widget;
 
+import andr.lexibook.mylittlestory.lrrh.control.BtnGifSrc;
 import andr.lexibook.mylittlestory.lrrh.ui.Menu;
 import andr.lexibook.mylittlestory.lrrh.ui.R;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView;
@@ -20,6 +21,7 @@ public class Page12 extends PageView implements View.OnClickListener {
     private GifMovieView btn_quit;
     private GifMovieView red;
     private Intent menuIntent;
+    public BtnGifSrc btnSrc;
 
 
     public Page12(Context context) {
@@ -31,8 +33,9 @@ public class Page12 extends PageView implements View.OnClickListener {
         btn_menu = (GifMovieView) page.findViewById(R.id.gif_p12_btn_menu);
         btn_quit = (GifMovieView) page.findViewById(R.id.gif_p12_btn_quit);
 
-        btn_menu.setMovieAsset(ctx.getString(R.string.p12_menu));
-        btn_quit.setMovieAsset(ctx.getString(R.string.p12_quit));
+        btnSrc = BtnGifSrc.getInstance(context);
+        btn_menu.setMovieAsset(btnSrc.setLang(setting.getLangId()).getMenuBack());
+        btn_quit.setMovieAsset(btnSrc.setLang(setting.getLangId()).getQuit());
         red.setMovieAsset(ctx.getString(R.string.p12_red));
 
         params = (AbsoluteLayout.LayoutParams) red.getLayoutParams();
@@ -54,7 +57,7 @@ public class Page12 extends PageView implements View.OnClickListener {
         btn_quit.setOnClickListener(this);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p12);
-        setDefaultBg();
+        layout.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getPageId(11));
     }
 
 
@@ -68,11 +71,6 @@ public class Page12 extends PageView implements View.OnClickListener {
                 System.exit(1);
                 break;
         }
-    }
-
-    @Override
-    public void setDefaultBg() {
-        layout.setBackgroundDrawable(getResources().getDrawable(R.drawable.p12_bkg));
     }
 
 }

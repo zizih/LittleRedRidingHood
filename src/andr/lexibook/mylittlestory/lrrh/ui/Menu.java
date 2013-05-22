@@ -1,5 +1,6 @@
 package andr.lexibook.mylittlestory.lrrh.ui;
 
+import andr.lexibook.mylittlestory.lrrh.control.BtnGifSrc;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -22,7 +23,6 @@ public class Menu extends BaseActivity implements View.OnClickListener {
     private GifMovieView btn_read_self;
     private GifMovieView btn_read_auto;
     private AbsoluteLayout.LayoutParams params;
-    private AbsoluteLayout page;
 
     private MediaPlayer autoPlayer;
     private MediaPlayer selfPlayer;
@@ -33,8 +33,7 @@ public class Menu extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
-        page = (AbsoluteLayout) findViewById(R.id.layout_menu);
-        //refreshBg();
+        btnSrc = BtnGifSrc.getInstance(this);
 
         //init
         wolf = (GifMovieView) findViewById(R.id.gif_menu_wolf);
@@ -46,8 +45,8 @@ public class Menu extends BaseActivity implements View.OnClickListener {
         wolf.setMovieAsset(getString(R.string.menu_wolf));
         red.setMovieAsset(getString(R.string.menu_red));
         grand.setMovieAsset(getString(R.string.menu_grand));
-        btn_read_auto.setMovieAsset(getString(R.string.menu_read_auto));
-        btn_read_self.setMovieAsset(getString(R.string.menu_read_self));
+        btn_read_auto.setMovieAsset(btnSrc.setLang(setting.getLangId()).getMenuAuto());
+        btn_read_self.setMovieAsset(btnSrc.setLang(setting.getLangId()).getMenuSelf());
 
         params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
         params.x = (int) (getWidthScale() * getDimens(R.dimen.menu_wolf_x));
@@ -131,24 +130,28 @@ public class Menu extends BaseActivity implements View.OnClickListener {
     @Override
     public void setLanguage(int langId) {
         super.setLanguage(langId);
-        //refreshBg();
         /**
-         *  here need to change to refresh two menu button
+         * super method comtains langPlayer
          */
+        if (selfPlayer.isPlaying())
+            selfPlayer.setVolume(0, 0);
+        if (autoPlayer.isPlaying())
+            autoPlayer.setVolume(0, 0);
+        /**
+         *  here need to change menu button suitted language
+         */
+        btn_read_auto.setMovieAsset(btnSrc.setLang(langId).getMenuAuto());
+        btn_read_self.setMovieAsset(btnSrc.setLang(langId).getMenuSelf());
     }
 
-//    private void refreshBg() {
-//        this.page.setBackgroundDrawable(bgFactory.setLang(checkLangToId(setting.getLang())).getMenu());
-//    }
-
     private void playAuto() {
-        autoPlayer = factory.getMenuAuto();
+        autoPlayer = mediaFactory.getMenuAuto();
         autoPlayer.setOnCompletionListener(autoListener);
         play(autoPlayer);
     }
 
     private void playSelf() {
-        selfPlayer = factory.getMenuSelf();
+        selfPlayer = mediaFactory.getMenuSelf();
         selfPlayer.setOnCompletionListener(selfListener);
         play(selfPlayer);
     }

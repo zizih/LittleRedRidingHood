@@ -1,7 +1,6 @@
 package andr.lexibook.mylittlestory.lrrh.ui;
 
-import andr.lexibook.mylittlestory.lrrh.control.BgFactory;
-import andr.lexibook.mylittlestory.lrrh.control.PageFactory;
+import andr.lexibook.mylittlestory.lrrh.control.BgSrc;
 import andr.lexibook.mylittlestory.lrrh.libs.FlipViewController;
 import andr.lexibook.mylittlestory.lrrh.model.FlipAdapter;
 import android.media.MediaPlayer;
@@ -28,6 +27,7 @@ public class Pages extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        bgSrc = BgSrc.getInstance(this);
 
         flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
         flipAdapter = new FlipAdapter(this);
@@ -62,40 +62,40 @@ public class Pages extends BaseActivity {
     private void play(int position) {
         switch (position) {
             case 0:
-                mPlayer = factory.getPage01();
+                mPlayer = mediaFactory.getPage01();
                 break;
             case 1:
-                mPlayer = factory.getPage02();
+                mPlayer = mediaFactory.getPage02();
                 break;
             case 2:
-                mPlayer = factory.getPage03();
+                mPlayer = mediaFactory.getPage03();
                 break;
             case 3:
-                mPlayer = factory.getPage04();
+                mPlayer = mediaFactory.getPage04();
                 break;
             case 4:
-                mPlayer = factory.getPage05();
+                mPlayer = mediaFactory.getPage05();
                 break;
             case 5:
-                mPlayer = factory.getPage06();
+                mPlayer = mediaFactory.getPage06();
                 break;
             case 6:
-                mPlayer = factory.getPage07();
+                mPlayer = mediaFactory.getPage07();
                 break;
             case 7:
-                mPlayer = factory.getPage08();
+                mPlayer = mediaFactory.getPage08();
                 break;
             case 8:
-                mPlayer = factory.getPage09();
+                mPlayer = mediaFactory.getPage09();
                 break;
             case 9:
-                mPlayer = factory.getPage10();
+                mPlayer = mediaFactory.getPage10();
                 break;
             case 10:
-                mPlayer = factory.getPage11();
+                mPlayer = mediaFactory.getPage11();
                 break;
             case 11:
-                mPlayer = factory.getPage12();
+                mPlayer = mediaFactory.getPage12();
                 break;
         }
         try {
