@@ -19,12 +19,10 @@ public class MediaFactory {
     private Activity ctx;
     private static MediaFactory instance;
     private String langPath;
-    private Map<String, WeakReference<MediaPlayer>> mPlayerList;
 
     private MediaFactory(Context ctx) {
         this.ctx = (Activity) ctx;
         this.langPath = ctx.getResources().getString(R.string.mp3_lang_default);
-        this.mPlayerList = new WeakHashMap<String, WeakReference<MediaPlayer>>();
     }
 
     public static MediaFactory getInstance(Context ctx) {
@@ -48,99 +46,66 @@ public class MediaFactory {
     }
 
     public MediaPlayer getLang() {
-        if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_lang)))
-            return mPlayerList.get(langPath + ctx.getResources().getString(R.string.mp3_lang)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_lang));
     }
 
     public MediaPlayer getPage01() {
-        if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_p01)))
-            return mPlayerList.get(ctx.getResources().getString(R.string.mp3_p01)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_p01));
     }
 
     public MediaPlayer getPage02() {
-        if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_p02)))
-            return mPlayerList.get(langPath + ctx.getResources().getString(R.string.mp3_p02)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_p02));
     }
 
     public MediaPlayer getPage03() {
-        if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_p03)))
-            return mPlayerList.get(langPath + ctx.getResources().getString(R.string.mp3_p03)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_p03));
     }
 
     public MediaPlayer getPage04() {
-        if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_p04)))
-            return mPlayerList.get(langPath + ctx.getResources().getString(R.string.mp3_p04)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_p05));
     }
 
     public MediaPlayer getPage05() {
-        if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_p05)))
-            return mPlayerList.get(langPath + ctx.getResources().getString(R.string.mp3_p05)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_p06));
     }
 
     public MediaPlayer getPage06() {
-        if (mPlayerList.containsKey(ctx.getResources().getString(R.string.mp3_p06)))
-            return mPlayerList.get(ctx.getResources().getString(R.string.mp3_p06)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_p06));
     }
 
     public MediaPlayer getPage07() {
-        if (mPlayerList.containsKey(ctx.getResources().getString(R.string.mp3_p07)))
-            return mPlayerList.get(ctx.getResources().getString(R.string.mp3_p07)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_p07));
     }
 
     public MediaPlayer getPage08() {
-        if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_p08)))
-            return mPlayerList.get(ctx.getResources().getString(R.string.mp3_p08)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_p08));
     }
 
     public MediaPlayer getPage09() {
-        if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_p09)))
-            return mPlayerList.get(ctx.getResources().getString(R.string.mp3_p09)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_p09));
     }
 
     public MediaPlayer getPage10() {
-        if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_p10)))
-            return mPlayerList.get(ctx.getResources().getString(R.string.mp3_p10)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_p10));
     }
 
     public MediaPlayer getPage11() {
-        if (mPlayerList.containsKey(ctx.getResources().getString(R.string.mp3_p11)))
-            return mPlayerList.get(ctx.getResources().getString(R.string.mp3_p11)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_p11));
     }
 
     public MediaPlayer getPage12() {
-        if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_p12)))
-            return mPlayerList.get(ctx.getResources().getString(R.string.mp3_p12)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_p12));
     }
 
     public MediaPlayer getSplash() {
-        System.out.println(" TT: " + langPath);
-        if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_splash)))
-            return mPlayerList.get(langPath + ctx.getResources().getString(R.string.mp3_splash)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_splash));
     }
 
     public MediaPlayer getMenuAuto() {
-        if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_menu_auto)))
-            return mPlayerList.get(langPath + ctx.getResources().getString(R.string.mp3_menu_auto)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_menu_auto));
     }
 
     public MediaPlayer getMenuSelf() {
-        if (mPlayerList.containsKey(langPath + ctx.getResources().getString(R.string.mp3_menu_self)))
-            return mPlayerList.get(langPath + ctx.getResources().getString(R.string.mp3_menu_self)).get();
         return getMedia(ctx.getResources().getString(R.string.mp3_menu_self));
     }
 

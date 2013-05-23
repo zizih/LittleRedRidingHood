@@ -19,7 +19,6 @@ public class Page10 extends PageView {
     private GifMovieView hunter;
     private GifMovieView stone;
     private GifMovieView wolf;
-    private ImageView bg_cover;
 
     public Page10(Context context) {
         super(context, R.layout.page10);
@@ -29,7 +28,6 @@ public class Page10 extends PageView {
         hunter = (GifMovieView) page.findViewById(R.id.gif_p10_hunter);
         stone = (GifMovieView) page.findViewById(R.id.gif_p10_stone);
         wolf = (GifMovieView) page.findViewById(R.id.gif_p10_wolf);
-        bg_cover = (ImageView) page.findViewById(R.id.img_bg_cover);
 
         cloud.setMovieAsset(ctx.getString(R.string.p10_cloud));
         grand_red.setMovieAsset(ctx.getString(R.string.p10_grand_red));

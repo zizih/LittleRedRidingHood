@@ -81,6 +81,8 @@ public class Pages extends BaseActivity {
         this.position = position;
         if (mPlayer != null) {
             mPlayer.release();
+            mPlayer = null;
+            System.gc();
         }
         switch (position) {
             case 0:
@@ -150,9 +152,8 @@ public class Pages extends BaseActivity {
 
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
-            if (position >= 0 && position < 12) {
+            if (position >= 0 && position < 11) {
                 flipView.autoFlip();
-                play(position);
             }
         }
     }
