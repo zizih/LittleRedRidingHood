@@ -35,7 +35,7 @@ public class Page01 extends PageView {
         grand.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p01);
-        layout.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getPageId(0));
+        layout.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getPageDrawableId(0));
     }
 
 }

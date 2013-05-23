@@ -25,6 +25,7 @@ public class PageView extends View {
 
     public PageView(Context context, int layoutId) {
         super(context);
+        System.out.println(" New PageView: " + this.getClass().getName());
         this.ctx = (Activity) context;
         page = (AbsoluteLayout) ctx.getLayoutInflater().inflate(layoutId, null);
         params = (AbsoluteLayout.LayoutParams) page.getLayoutParams();

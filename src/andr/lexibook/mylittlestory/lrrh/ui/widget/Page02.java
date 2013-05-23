@@ -65,7 +65,7 @@ public class Page02 extends PageView implements GifMovieView.DispearCallback {
         grand_start.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p02);
-        layout.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getPageId(1));
+        layout.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getPageDrawableId(1));
     }
 
     @Override

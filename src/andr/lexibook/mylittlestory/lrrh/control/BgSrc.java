@@ -19,6 +19,7 @@ public class BgSrc {
             , R.drawable.deu_splash
             , R.drawable.esp_splash
             , R.drawable.ita_splash};
+
     private int[] engs = {R.drawable.eng_p01_bkg
             , R.drawable.eng_p02_bkg
             , R.drawable.eng_p03_bkg
@@ -110,11 +111,11 @@ public class BgSrc {
     /**
      * get drawable
      */
-    public Drawable getPage(int pageId) {
-        return getDrawable(langPagesId[this.langId][pageId]);
+    public Drawable getPageDrawable(int pageIndex) {
+        return getDrawable(langPagesId[this.langId][pageIndex]);
     }
 
-    public Drawable getSplash() {
+    public Drawable getSplashDrawable() {
         return getDrawable(splashs[this.langId]);
     }
 
@@ -125,12 +126,11 @@ public class BgSrc {
     /**
      * get drawablw ID
      */
-    public int getPageId(int pageId) {
-        return langPagesId[this.langId][pageId];
+    public int getPageDrawableId(int pageIndex) {
+        return langPagesId[this.langId][pageIndex];
     }
 
-    public int getSplashId() {
-        System.out.println("LangId: " + langId);
+    public int getSplashDrawableId() {
         return splashs[this.langId];
     }
 }

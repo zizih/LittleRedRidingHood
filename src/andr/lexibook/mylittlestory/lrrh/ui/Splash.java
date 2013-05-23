@@ -60,8 +60,8 @@ public class Splash extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         mPlayer.release();
+        super.onDestroy();
     }
 
     @Override
@@ -72,8 +72,8 @@ public class Splash extends BaseActivity implements View.OnClickListener {
 
     private void refreshBg() {
         System.out.println("setting.getLangId(): " + setting.getLangId());
-        System.out.println("Splash Id: " + bgSrc.setLang(setting.getLangId()).getSplashId());
-        this.btn_splash_bg.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getSplashId());
+        System.out.println("Splash Id: " + bgSrc.setLang(setting.getLangId()).getSplashDrawableId());
+        this.btn_splash_bg.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getSplashDrawableId());
     }
 
 }

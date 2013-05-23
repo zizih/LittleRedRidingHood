@@ -1,6 +1,7 @@
 package andr.lexibook.mylittlestory.lrrh.ui;
 
 import andr.lexibook.mylittlestory.lrrh.control.BgSrc;
+import andr.lexibook.mylittlestory.lrrh.control.PageFactory;
 import andr.lexibook.mylittlestory.lrrh.libs.FlipViewController;
 import andr.lexibook.mylittlestory.lrrh.model.FlipAdapter;
 import android.media.MediaPlayer;
@@ -23,11 +24,13 @@ public class Pages extends BaseActivity {
     private MediaPlayer.OnCompletionListener langCompleteListener;
     private MediaPlayer.OnCompletionListener pageCompleteListener;
     private FlipAdapter flipAdapter;
+    private PageFactory pageFactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bgSrc = BgSrc.getInstance(this);
+        pageFactory = PageFactory.getInstance(this);
 
         flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
         flipAdapter = new FlipAdapter(this);
@@ -57,6 +60,9 @@ public class Pages extends BaseActivity {
             mPlayer.release();
             langPlayer.setOnCompletionListener(langCompleteListener);
         }
+        System.out.println("PageId:" + this.position);
+        pageFactory.getPage(this.position).getLayoutView().setBackgroundResource(bgSrc.setLang(langId).getPageDrawableId(this.position));
+        flipAdapter.notifyDataSetChanged();
     }
 
     private void play(int position) {
@@ -108,25 +114,6 @@ public class Pages extends BaseActivity {
         this.position = position;
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        flipView.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        flipView.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        flipView = null;
-        mPlayer = null;
-        super.onDestroy();
-    }
-
     class Fliplistener implements FlipViewController.ViewFlipListener {
 
         @Override
@@ -154,6 +141,25 @@ public class Pages extends BaseActivity {
                 play(position);
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        flipView.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        flipView.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        flipView = null;
+        mPlayer = null;
+        super.onDestroy();
     }
 }
 

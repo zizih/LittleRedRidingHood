@@ -46,13 +46,10 @@ public class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println(" on create! ");
+        System.out.println(" Oncreate: " + this.getClass().getName());
         toPage = new Intent();
         inflater = getMenuInflater();
         setting = Setting.getInstance(this);
-        System.out.println(" ReadMode: " + setting.getReadMode().getLang());
-        System.out.println(" ReadMode Auto: " + setting.getReadMode().isAuto());
-        System.out.println(" ReadMode First: " + setting.getReadMode().isFirst());
 
         //about sound
         mediaFactory = MediaFactory.getInstance(this);
@@ -95,7 +92,7 @@ public class BaseActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        System.out.println(Thread.currentThread().getClass() + " ondestry! ");
+        System.out.println(" Ondestry: " + this.getClass().getName());
         setting.save();
         System.gc();
         finish();
