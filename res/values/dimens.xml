@@ -67,7 +67,7 @@
     <dimen name="p06_wolf_x">302px</dimen>
     <dimen name="p06_wolf_y">201px</dimen>
 
-    <dimen name="p07_red_x">103px</dimen>
+    <dimen name="p07_red_x">15px</dimen>
     <dimen name="p07_red_y">220px</dimen>
     <dimen name="p07_window_x">0px</dimen>
     <dimen name="p07_window_y">0px</dimen>
@@ -86,7 +86,7 @@
     <dimen name="p09_basket_x">34px</dimen>
     <dimen name="p09_basket_y">365px</dimen>
     <dimen name="p09_hunter_x">52px</dimen>
-    <dimen name="p09_hunter_y">7px</dimen>
+    <dimen name="p09_hunter_y">6px</dimen>
     <dimen name="p09_wolf_x">238px</dimen>
     <dimen name="p09_wolf_y">141px</dimen>
 

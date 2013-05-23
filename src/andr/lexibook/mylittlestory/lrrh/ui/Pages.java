@@ -60,7 +60,6 @@ public class Pages extends BaseActivity {
             mPlayer.release();
             langPlayer.setOnCompletionListener(langCompleteListener);
         }
-        System.out.println("PageId:" + this.position);
         pageFactory.getPage(this.position).getLayoutView().setBackgroundResource(bgSrc.setLang(langId).getPageDrawableId(this.position));
         flipAdapter.notifyDataSetChanged();
     }

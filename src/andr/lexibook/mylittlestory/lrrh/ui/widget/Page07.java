@@ -28,7 +28,7 @@ public class Page07 extends PageView {
         red.setMovieAsset(ctx.getString(R.string.p07_red));
         wolf.setMovieAsset(ctx.getString(R.string.p07_wolf));
 
-        window.setPaused(3200);
+        window.setPaused(4000);
 
         params = (AbsoluteLayout.LayoutParams) window.getLayoutParams();
         params.x = (int) (getWidthScale() * getDimens(R.dimen.p07_window_x));
