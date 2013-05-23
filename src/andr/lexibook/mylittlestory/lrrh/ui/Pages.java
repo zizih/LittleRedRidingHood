@@ -70,9 +70,10 @@ public class Pages extends BaseActivity {
             mPlayer.release();
             langPlayer.setOnCompletionListener(langCompleteListener);
         }
-        if (setting.getLangId() != langId) {
+        if (langChanged) {
             pageFactory.getPage(this.position).getLayoutView().setBackgroundResource(bgSrc.setLang(langId).getPageDrawableId(this.position));
             flipAdapter.notifyDataSetChanged();
+            langChanged = false;
         }
     }
 

@@ -42,6 +42,7 @@ public class BaseActivity extends Activity {
 
     public BgSrc bgSrc;
     public BtnGifSrc btnSrc;
+    public boolean langChanged;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +112,9 @@ public class BaseActivity extends Activity {
      * 设置所选的语言
      */
     public void setLanguage(int langId) {
+        if (setting.getLangId() != langId) {
+            langChanged = true;
+        }
         switch (langId) {
             case ENGLISH:
                 langPlayer = mediaFactory.toEngLang().getLang();

@@ -11,11 +11,9 @@ import android.content.Context;
  */
 public class Setting {
 
-    private Activity ctx;
     private static Setting instance;
     private ReadMode readMode;
     private ReadModeToFile io;
-    private boolean langChanged = false;
 
     /**
      * change language
@@ -33,7 +31,6 @@ public class Setting {
     public String ita;
 
     private Setting(Context ctx) {
-        this.ctx = (Activity) ctx;
         io = new ReadModeToFile();
         readMode = io.get();
         eng = ctx.getString(R.string.lang_english);
@@ -67,20 +64,10 @@ public class Setting {
 
     public void setLang(String lang) {
         this.readMode.setLang(lang);
-        this.langChanged = true;
     }
 
     public void setLang(int langId) {
         this.readMode.setLang(checkIdToLang(langId));
-        this.langChanged = true;
-    }
-
-    public boolean isLangChanged() {
-        return langChanged;
-    }
-
-    public void setLangChanged(boolean langChanged) {
-        this.langChanged = langChanged;
     }
 
     public void setFirst(boolean isFirst) {
