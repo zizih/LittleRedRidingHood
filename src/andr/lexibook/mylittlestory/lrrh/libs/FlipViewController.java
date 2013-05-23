@@ -19,6 +19,7 @@ package andr.lexibook.mylittlestory.lrrh.libs;
 
 import andr.lexibook.mylittlestory.lrrh.ui.R;
 import andr.lexibook.mylittlestory.lrrh.libs.utils.AphidLog;
+import andr.lexibook.mylittlestory.lrrh.util.ViewUtil;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -28,6 +29,7 @@ import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,6 +44,7 @@ import java.util.LinkedList;
 
 public class FlipViewController extends AdapterView<Adapter> {
 
+    private Context ctx;
     public static final int VERTICAL = 0;
     public static final int HORIZONTAL = 1;
 
@@ -111,6 +114,7 @@ public class FlipViewController extends AdapterView<Adapter> {
 
     public FlipViewController(Context context, int flipOrientation) {
         super(context);
+        this.ctx = context;
         init(context, flipOrientation);
     }
 
@@ -614,6 +618,13 @@ public class FlipViewController extends AdapterView<Adapter> {
         @Override
         public void onInvalidated() {
             onDataChanged();
+        }
+    }
+
+    // modify code
+    public void autoFlip() {
+        if (adapterIndex + 1 < adapterDataCount) {
+            cards.nextPage();
         }
     }
 }

@@ -4,8 +4,11 @@ import andr.lexibook.mylittlestory.lrrh.control.BgSrc;
 import andr.lexibook.mylittlestory.lrrh.control.PageFactory;
 import andr.lexibook.mylittlestory.lrrh.libs.FlipViewController;
 import andr.lexibook.mylittlestory.lrrh.model.FlipAdapter;
+import andr.lexibook.mylittlestory.lrrh.util.ViewUtil;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.view.MotionEvent;
 import android.view.View;
 
 import java.io.IOException;
@@ -43,13 +46,20 @@ public class Pages extends BaseActivity {
         flipView.setOnViewFlipListener(flipListener);
 
         if (setting.getReadMode().isAuto()) {
-            flipView.setFlipByTouchEnabled(false);
-            if (isFirst) {
-                play(0);
-                isFirst = false;
-            }
             langCompleteListener = new LangListener();
             pageCompleteListener = new PageListener();
+            flipView.setFlipByTouchEnabled(false);
+            if (isFirst) {
+                mPlayer = mediaFactory.getPage01();
+                mPlayer.setOnCompletionListener(pageCompleteListener);
+                try {
+                    mPlayer.prepare();
+                    mPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                isFirst = false;
+            }
         }
     }
 
@@ -60,11 +70,17 @@ public class Pages extends BaseActivity {
             mPlayer.release();
             langPlayer.setOnCompletionListener(langCompleteListener);
         }
-        pageFactory.getPage(this.position).getLayoutView().setBackgroundResource(bgSrc.setLang(langId).getPageDrawableId(this.position));
-        flipAdapter.notifyDataSetChanged();
+        if (setting.getLangId() != langId) {
+            pageFactory.getPage(this.position).getLayoutView().setBackgroundResource(bgSrc.setLang(langId).getPageDrawableId(this.position));
+            flipAdapter.notifyDataSetChanged();
+        }
     }
 
     private void play(int position) {
+        this.position = position;
+        if (mPlayer != null) {
+            mPlayer.release();
+        }
         switch (position) {
             case 0:
                 mPlayer = mediaFactory.getPage01();
@@ -110,7 +126,6 @@ public class Pages extends BaseActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.position = position;
     }
 
     class Fliplistener implements FlipViewController.ViewFlipListener {
@@ -135,8 +150,7 @@ public class Pages extends BaseActivity {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
             if (position >= 0 && position < 12) {
-                mPlayer.release();
-                flipView.setSelection(++position);
+                flipView.autoFlip();
                 play(position);
             }
         }

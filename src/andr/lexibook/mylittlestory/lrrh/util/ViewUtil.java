@@ -41,11 +41,19 @@ public class ViewUtil {
     }
 
     public float getWidthScale() {
-        return ctx.getWindowManager().getDefaultDisplay().getWidth() / 800.0f;
+        return getWinWidth() / 800.0f;
     }
 
     public float getHeightScale() {
-        return ctx.getWindowManager().getDefaultDisplay().getHeight() / 480.0f;
+        return getWinHeight() / 480.0f;
+    }
+
+    public float getWinWidth() {
+        return ctx.getWindowManager().getDefaultDisplay().getWidth();
+    }
+
+    public float getWinHeight() {
+        return ctx.getWindowManager().getDefaultDisplay().getHeight();
     }
 
 }
