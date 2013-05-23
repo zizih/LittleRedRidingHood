@@ -19,6 +19,7 @@ public class Page10 extends PageView {
     private GifMovieView hunter;
     private GifMovieView stone;
     private GifMovieView wolf;
+    private ImageView bg_cover;
 
     public Page10(Context context) {
         super(context, R.layout.page10);
@@ -28,6 +29,7 @@ public class Page10 extends PageView {
         hunter = (GifMovieView) page.findViewById(R.id.gif_p10_hunter);
         stone = (GifMovieView) page.findViewById(R.id.gif_p10_stone);
         wolf = (GifMovieView) page.findViewById(R.id.gif_p10_wolf);
+        bg_cover = (ImageView) page.findViewById(R.id.img_bg_cover);
 
         cloud.setMovieAsset(ctx.getString(R.string.p10_cloud));
         grand_red.setMovieAsset(ctx.getString(R.string.p10_grand_red));
@@ -59,6 +61,11 @@ public class Page10 extends PageView {
         params.x = (int) (getWidthScale() * getDimens(R.dimen.p10_wolf_x));
         params.y = (int) (getHeightScale() * getDimens(R.dimen.p10_wolf_y));
         wolf.setLayoutParams(params);
+
+        params = (AbsoluteLayout.LayoutParams) bg_cover.getLayoutParams();
+        params.x = (int) getWinWidth();
+        params.y = (int) getWinHeight();
+        bg_cover.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p10);
         layout.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getPageDrawableId(9));

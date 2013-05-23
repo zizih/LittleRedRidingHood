@@ -53,4 +53,12 @@ public class PageView extends View {
         return ViewUtil.getInstance(ctx).getHeightScale();
     }
 
+    public float getWinWidth() {
+        return ViewUtil.getInstance(ctx).getWinWidth();
+    }
+
+    public float getWinHeight() {
+        return ViewUtil.getInstance(ctx).getWinHeight();
+    }
+
 }
