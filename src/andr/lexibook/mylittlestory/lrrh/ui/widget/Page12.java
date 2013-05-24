@@ -73,4 +73,9 @@ public class Page12 extends PageView implements View.OnClickListener {
         }
     }
 
+    public void resetListener() {
+        btn_menu.setOnClickListener(this);
+        btn_quit.setOnClickListener(this);
+    }
+
 }

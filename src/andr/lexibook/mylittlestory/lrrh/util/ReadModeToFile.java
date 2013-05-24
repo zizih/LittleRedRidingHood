@@ -18,7 +18,7 @@ public class ReadModeToFile implements ISerializeToFile<ReadMode> {
     private File file;
 
     public ReadModeToFile() {
-        file = new File(getProjectPath() + File.separator + "isFirst");
+        file = new File(getProjectPath() + File.separator + "LittleRedRidingHood.setting");
     }
 
     @Override
