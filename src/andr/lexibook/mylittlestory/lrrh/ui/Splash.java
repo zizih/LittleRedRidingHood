@@ -47,8 +47,10 @@ public class Splash extends BaseActivity implements View.OnClickListener {
     }
 
     private void toMenu() {
-        mPlayer.release();
-        mPlayer = null;
+        if (mPlayer != null) {
+            mPlayer.release();
+            mPlayer = null;
+        }
         if (setting.isFirst()) {
             setting.setFirst(false);
             setting.save();

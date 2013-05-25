@@ -4,12 +4,8 @@ import andr.lexibook.mylittlestory.lrrh.control.BgSrc;
 import andr.lexibook.mylittlestory.lrrh.control.PageFactory;
 import andr.lexibook.mylittlestory.lrrh.libs.FlipViewController;
 import andr.lexibook.mylittlestory.lrrh.model.FlipAdapter;
-import andr.lexibook.mylittlestory.lrrh.ui.widget.Page12;
-import andr.lexibook.mylittlestory.lrrh.util.ViewUtil;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.view.MotionEvent;
 import android.view.View;
 
 import java.io.IOException;
@@ -41,7 +37,7 @@ public class Pages extends BaseActivity {
         flipView.setAdapter(flipAdapter);
         setContentView(flipView);
 
-
+        setting.setAuto(false);
         flipListener = new Fliplistener();
         flipView.setFlipByTouchEnabled(true);
         flipView.setOnViewFlipListener(flipListener);
@@ -75,9 +71,9 @@ public class Pages extends BaseActivity {
             pageFactory.getPage(this.position).getLayoutView().setBackgroundResource(bgSrc.setLang(langId).getPageDrawableId(this.position));
             flipAdapter.notifyDataSetChanged();
             langChanged = false;
-            if (this.position == 11) {
-                ((Page12) pageFactory.getPage(this.position)).resetListener();
-            }
+//            if (this.position == 11) {
+//                ((Page12) pageFactory.getPage(this.position)).resetListener();
+//            }
         }
     }
 

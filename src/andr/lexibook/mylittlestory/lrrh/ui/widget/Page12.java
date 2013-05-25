@@ -69,13 +69,9 @@ public class Page12 extends PageView implements View.OnClickListener {
                 break;
             case R.id.gif_p12_btn_quit:
                 ctx.finish();
+                System.exit(0);
                 break;
         }
-    }
-
-    public void resetListener() {
-        btn_menu.setOnClickListener(this);
-        btn_quit.setOnClickListener(this);
     }
 
 }

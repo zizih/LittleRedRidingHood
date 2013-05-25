@@ -273,9 +273,6 @@ public class GifMovieView extends View {
             if (mDelayed && ((android.os.SystemClock.uptimeMillis() - mDelayStart) <= mDelayPeroid)) {
                 invalidate();
                 return;
-            } else {
-                mDelayPeroid = 0;
-                mDelayed = false;
             }
 
             //deal with isPause

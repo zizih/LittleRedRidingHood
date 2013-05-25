@@ -111,9 +111,9 @@
     <dimen name="p11_wolf_y">109px</dimen>
 
     <dimen name="p12_btn_menu_x">332px</dimen>
-    <dimen name="p12_btn_menu_y">380px</dimen>
+    <dimen name="p12_btn_menu_y">378px</dimen>
     <dimen name="p12_btn_quit_x">564px</dimen>
-    <dimen name="p12_btn_quit_y">380px</dimen>
+    <dimen name="p12_btn_quit_y">378px</dimen>
     <dimen name="p12_red_x">123px</dimen>
     <dimen name="p12_red_y">66px</dimen>
 
