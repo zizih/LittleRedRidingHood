@@ -62,6 +62,7 @@ public class Page10 extends PageView {
         params.y = (int) (getHeightScale() * getDimens(R.dimen.p10_wolf_y));
         wolf.setLayoutParams(params);
 
+        bg_cover.setBackgroundResource(R.drawable.p10_bkg_cover);
         params = (AbsoluteLayout.LayoutParams) bg_cover.getLayoutParams();
         params.x = (int) getWinWidth();
         params.y = (int) getWinHeight();
