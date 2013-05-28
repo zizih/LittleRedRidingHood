@@ -4,9 +4,12 @@ import andr.lexibook.mylittlestory.lrrh.control.BgSrc;
 import andr.lexibook.mylittlestory.lrrh.control.PageFactory;
 import andr.lexibook.mylittlestory.lrrh.libs.FlipViewController;
 import andr.lexibook.mylittlestory.lrrh.model.FlipAdapter;
+import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView;
+import andr.lexibook.mylittlestory.lrrh.ui.widget.Page02;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AbsoluteLayout;
 
 import java.io.IOException;
 
@@ -25,6 +28,9 @@ public class Pages extends BaseActivity {
     private MediaPlayer.OnCompletionListener pageCompleteListener;
     private FlipAdapter flipAdapter;
     private PageFactory pageFactory;
+    private GifMovieView grand_start;
+    private GifMovieView grand_loop;
+    private Page02 p02;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,7 @@ public class Pages extends BaseActivity {
         flipView.setAdapter(flipAdapter);
         setContentView(flipView);
 
+        setting.setAuto(false);
         flipListener = new Fliplistener();
         flipView.setFlipByTouchEnabled(true);
         flipView.setOnViewFlipListener(flipListener);
@@ -57,6 +64,7 @@ public class Pages extends BaseActivity {
                 isFirst = false;
             }
         }
+        p02 = ((Page02) pageFactory.getPage(1));
     }
 
     @Override
@@ -70,9 +78,6 @@ public class Pages extends BaseActivity {
             pageFactory.getPage(this.position).getLayoutView().setBackgroundResource(bgSrc.setLang(langId).getPageDrawableId(this.position));
             flipAdapter.notifyDataSetChanged();
             langChanged = false;
-//            if (this.position == 11) {
-//                ((Page12) pageFactory.getPage(this.position)).resetListener();
-//            }
         }
     }
 
@@ -136,6 +141,16 @@ public class Pages extends BaseActivity {
         public void onViewFlipped(View view, int position) {
             if (setting.getReadMode().isAuto())
                 play(position);
+            if (position == 1) {
+                if (grand_start != null && grand_loop != null) {
+                    ((AbsoluteLayout) grand_start.getParent()).removeView(grand_start);
+                    ((AbsoluteLayout) grand_loop.getParent()).removeView(grand_loop);
+                }
+                grand_start = p02.getGrandStart();
+                grand_loop = p02.getGrandLoop();
+                ((AbsoluteLayout) view).addView(grand_start);
+                ((AbsoluteLayout) view).addView(grand_loop);
+            }
         }
     }
 

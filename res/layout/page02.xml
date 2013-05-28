@@ -15,20 +15,20 @@
             android:layout_y="@dimen/p02_window_y"
             />
 
-    <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
-            android:id="@+id/gif_p02_grand_start"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p02_grand_start_x"
-            android:layout_y="@dimen/p02_grand_start_y"
-            />
-    <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
-            android:id="@+id/gif_p02_grand_loop"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p02_grand_loop_x"
-            android:layout_y="@dimen/p02_grand_loop_y"
-            />
+    <!--<andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView-->
+            <!--android:id="@+id/gif_p02_grand_start"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_x="@dimen/p02_grand_start_x"-->
+            <!--android:layout_y="@dimen/p02_grand_start_y"-->
+            <!--/>-->
+    <!--<andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView-->
+            <!--android:id="@+id/gif_p02_grand_loop"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_x="@dimen/p02_grand_loop_x"-->
+            <!--android:layout_y="@dimen/p02_grand_loop_y"-->
+            <!--/>-->
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p02_mother"
             android:layout_height="wrap_content"
