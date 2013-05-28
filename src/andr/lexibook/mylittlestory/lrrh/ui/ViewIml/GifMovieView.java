@@ -100,16 +100,6 @@ public class GifMovieView extends View {
         requestLayout();
     }
 
-    /**
-     * 延时播放
-     */
-    public void delay(int delayTime) {
-        mDelayPeroid = delayTime;
-        mDelayStart = android.os.SystemClock.uptimeMillis();
-        mDelayed = true;
-        invalidate();
-    }
-
     @SuppressLint("NewApi")
     private void setViewAttributes(Context context, AttributeSet attrs, int defStyle) {
 
@@ -243,10 +233,24 @@ public class GifMovieView extends View {
     }
 
     public void dispear(long millisecond, DispearCallback callback) {
+        setVisibility(VISIBLE);
+        mCurrentAnimationTime = 0;
+        mMovieStart = android.os.SystemClock.uptimeMillis();
         mDispeared = true;
         mDispearTime = millisecond;
         mDispearStart = android.os.SystemClock.uptimeMillis();
         this.dispearCallback = callback;
+    }
+
+    /**
+     * 延时播放
+     */
+    public void delay(int delayTime) {
+        mCurrentAnimationTime = 0;
+        mMovieStart = android.os.SystemClock.uptimeMillis();
+        mDelayPeroid = delayTime;
+        mDelayStart = android.os.SystemClock.uptimeMillis();
+        mDelayed = true;
     }
 
     public void setPaused(long millisecond) {

@@ -34,7 +34,7 @@
 
     <dimen name="p02_grand_loop_x">550px</dimen>
     <dimen name="p02_grand_loop_y">231px</dimen>
-    <dimen name="p02_grand_start_x">537px</dimen>
+    <dimen name="p02_grand_start_x">540px</dimen>
     <dimen name="p02_grand_start_y">218px</dimen>
     <dimen name="p02_mother_x">0px</dimen>
     <dimen name="p02_mother_y">111px</dimen>
