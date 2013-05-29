@@ -33,8 +33,7 @@
     <string name="p04_wolf">gif/common/p04_wolf.gif</string>
     <string name="p04_grand">gif/common/p04_grand.gif</string>
     <string name="p05_door">gif/common/p05_door.gif</string>
-    <string name="p05_grand">gif/common/p05_grand.gif</string>
-    <string name="p05_wolf">gif/common/p05_wolf.gif</string>
+    <string name="p05_grand_wolf">gif/common/p05_grand_wolf.gif</string>
     <string name="p06_red">gif/common/p06_red.gif</string>
     <string name="p06_wolf">gif/common/p06_wolf.gif</string>
     <string name="p07_red">gif/common/p07_red.gif</string>

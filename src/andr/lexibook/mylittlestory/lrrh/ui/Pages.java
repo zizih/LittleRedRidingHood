@@ -36,8 +36,6 @@ public class Pages extends BaseActivity {
     private GifMovieView p07_window;
     private Page02 p02;
     private Page07 p07;
-    private boolean ifP02Remove = true;
-    private boolean ifP07Remove = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,10 +159,11 @@ public class Pages extends BaseActivity {
                 ((AbsoluteLayout) view).addView(p02_grand_loop);
                 ((AbsoluteLayout) view).addView(p02_window);
                 ((AbsoluteLayout) view).addView(p02_mother);
-                if (ifP02Remove) {
+                System.out.println(" P02: " + setting.isP02New());
+                if (setting.isP02New()) {
                     ((AbsoluteLayout) view).removeViewAt(0);
                     ((AbsoluteLayout) view).removeViewAt(0);
-                    ifP02Remove = false;
+                    setting.setP02New(false);
                 }
                 p02 = null;
                 p02_window = null;
@@ -180,9 +179,12 @@ public class Pages extends BaseActivity {
                 p07 = (Page07) pageFactory.getPage(6);
                 p07_window = p07.getWindow();
                 ((AbsoluteLayout) view).addView(p07_window);
-                if (ifP07Remove) {
+                System.out.println(" P07: " + setting.isP07New());
+                if (setting.isP07New()) {
+                    System.out.println(" P07 reMove: " + setting.isP07New());
                     ((AbsoluteLayout) view).removeViewAt(0);
-                    ifP07Remove = false;
+                    System.out.println(" P07 After reMove: " + setting.isP07New());
+                    setting.setP07New(false);
                 }
                 p07 = null;
                 p07_window = null;

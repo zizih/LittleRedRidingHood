@@ -43,10 +43,10 @@
     <dimen name="p01_red_x">47px</dimen>
     <dimen name="p01_red_y">173px</dimen>
 
-    <dimen name="p02_grand_loop_x">550px</dimen>
-    <dimen name="p02_grand_loop_y">231px</dimen>
+    <dimen name="p02_grand_loop_x">547px</dimen>
+    <dimen name="p02_grand_loop_y">226px</dimen>
     <dimen name="p02_grand_start_x">540px</dimen>
-    <dimen name="p02_grand_start_y">218px</dimen>
+    <dimen name="p02_grand_start_y">213px</dimen>
     <dimen name="p02_mother_x">0px</dimen>
     <dimen name="p02_mother_y">111px</dimen>
     <dimen name="p02_window_x">60px</dimen>
@@ -68,10 +68,8 @@
 
     <dimen name="p05_door_x">12px</dimen>
     <dimen name="p05_door_y">77px</dimen>
-    <dimen name="p05_grand_x">398px</dimen>
-    <dimen name="p05_grand_y">103px</dimen>
-    <dimen name="p05_wolf_x">322px</dimen>
-    <dimen name="p05_wolf_y">112px</dimen>
+    <dimen name="p05_grand_wolf_x">323px</dimen>
+    <dimen name="p05_grand_wolf_y">105px</dimen>
 
     <dimen name="p06_red_x">0px</dimen>
     <dimen name="p06_red_y">223px</dimen>
@@ -92,7 +90,7 @@
     <dimen name="p08_red_x">91px</dimen>
     <dimen name="p08_red_y">199px</dimen>
     <dimen name="p08_wolf_x">395px</dimen>
-    <dimen name="p08_wolf_y">103px</dimen>
+    <dimen name="p08_wolf_y">110px</dimen>
 
     <dimen name="p09_basket_x">34px</dimen>
     <dimen name="p09_basket_y">365px</dimen>
@@ -103,8 +101,8 @@
 
     <dimen name="p10_cloud_x">6px</dimen>
     <dimen name="p10_cloud_y">89px</dimen>
-    <dimen name="p10_grand_red_x">57px</dimen>
-    <dimen name="p10_grand_red_y">189px</dimen>
+    <dimen name="p10_grand_red_x">41px</dimen>
+    <dimen name="p10_grand_red_y">188px</dimen>
     <dimen name="p10_hunter_x">424px</dimen>
     <dimen name="p10_hunter_y">173px</dimen>
     <dimen name="p10_stone_x">548px</dimen>

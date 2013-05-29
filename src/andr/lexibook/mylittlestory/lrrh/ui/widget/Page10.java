@@ -65,10 +65,10 @@ public class Page10 extends PageView {
         layout.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getPageDrawableId(9));
 
         //about background imageview
-        p10_bkg_cover = (ImageView) findViewById(R.id.img_bg_cover);
+        p10_bkg_cover = (ImageView) page.findViewById(R.id.img_bg_cover);
         params = new AbsoluteLayout.LayoutParams(
-                getWidth(),
-                getHeight(),
+                (int) getWinWidth(),
+                (int) getWinHeight(),
                 0, 0
         );
         p10_bkg_cover.setLayoutParams(params);

@@ -21,6 +21,7 @@ public class Page07 extends PageView {
 
     public Page07(Context context) {
         super(context, R.layout.page07);
+        setting.setP07New(true);
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p07);
         layout.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getPageDrawableId(6));
 
@@ -56,10 +57,6 @@ public class Page07 extends PageView {
         window.setPaused(4000);
         window.invalidate();
         return window;
-    }
-
-    public void addWindow() {
-        layout.addView(window);
     }
 
 }
