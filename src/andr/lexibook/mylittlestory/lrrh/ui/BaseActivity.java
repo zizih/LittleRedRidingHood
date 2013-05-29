@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -47,7 +48,7 @@ public class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println(" Oncreate: " + this.getClass().getName());
+        Log.i(" Oncreate: ", this.getClass().getName());
         toPage = new Intent();
         inflater = getMenuInflater();
         setting = Setting.getInstance(this);
@@ -93,7 +94,7 @@ public class BaseActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        System.out.println(" Ondestry: " + this.getClass().getName());
+        Log.i(" Ondestry: ", this.getClass().getName());
         setting.save();
         System.gc();
         finish();
@@ -106,6 +107,7 @@ public class BaseActivity extends Activity {
         toPage.setClass(this, cls);
         startActivity(toPage);
         this.finish();
+        System.gc();
     }
 
     /**

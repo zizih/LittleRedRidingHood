@@ -254,6 +254,9 @@ public class GifMovieView extends View {
     }
 
     public void setPaused(long millisecond) {
+        setVisibility(VISIBLE);
+        mCurrentAnimationTime = 0;
+        mMovieStart = android.os.SystemClock.uptimeMillis();
         mPausedStart = android.os.SystemClock.uptimeMillis();
         mPausedTime = millisecond;
     }

@@ -27,6 +27,17 @@
     <dimen name="menu_wolf_x">163px</dimen>
     <dimen name="menu_wolf_y">80px</dimen>
 
+    <!--abnormal of gif-->
+    <dimen name="p02_grand_start_width">240px</dimen>
+    <dimen name="p02_grand_start_height">214px</dimen>
+    <dimen name="p02_grand_loop_width">232px</dimen>
+    <dimen name="p02_grand_loop_height">200px</dimen>
+    <dimen name="p02_window_width">202px</dimen>
+    <dimen name="p02_window_height">215px</dimen>
+    <dimen name="p07_window_width">800px</dimen>
+    <dimen name="p07_window_height">191px</dimen>
+
+    <!--gif of pages-->
     <dimen name="p01_grand_x">116px</dimen>
     <dimen name="p01_grand_y">95px</dimen>
     <dimen name="p01_red_x">47px</dimen>

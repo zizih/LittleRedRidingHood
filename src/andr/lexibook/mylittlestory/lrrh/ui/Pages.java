@@ -6,6 +6,7 @@ import andr.lexibook.mylittlestory.lrrh.libs.FlipViewController;
 import andr.lexibook.mylittlestory.lrrh.model.FlipAdapter;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView;
 import andr.lexibook.mylittlestory.lrrh.ui.widget.Page02;
+import andr.lexibook.mylittlestory.lrrh.ui.widget.Page07;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -28,9 +29,15 @@ public class Pages extends BaseActivity {
     private MediaPlayer.OnCompletionListener pageCompleteListener;
     private FlipAdapter flipAdapter;
     private PageFactory pageFactory;
-    private GifMovieView grand_start;
-    private GifMovieView grand_loop;
+    private GifMovieView p02_grand_start;
+    private GifMovieView p02_grand_loop;
+    private GifMovieView p02_window;
+    private GifMovieView p02_mother;
+    private GifMovieView p07_window;
     private Page02 p02;
+    private Page07 p07;
+    private boolean ifP02Remove = true;
+    private boolean ifP07Remove = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,7 @@ public class Pages extends BaseActivity {
         flipView.setAdapter(flipAdapter);
         setContentView(flipView);
 
+//        setting.setAuto(false);
         flipListener = new Fliplistener();
         flipView.setFlipByTouchEnabled(true);
         flipView.setOnViewFlipListener(flipListener);
@@ -63,7 +71,6 @@ public class Pages extends BaseActivity {
                 isFirst = false;
             }
         }
-        p02 = ((Page02) pageFactory.getPage(1));
     }
 
     @Override
@@ -134,21 +141,52 @@ public class Pages extends BaseActivity {
         }
     }
 
+    @SuppressWarnings("deprecation")
     class Fliplistener implements FlipViewController.ViewFlipListener {
 
         @Override
         public void onViewFlipped(View view, int position) {
             if (setting.getReadMode().isAuto())
                 play(position);
+            /**
+             * do with abnormal gif of page02
+             */
             if (position == 1) {
-                if (grand_start != null && grand_loop != null) {
-                    ((AbsoluteLayout) grand_start.getParent()).removeView(grand_start);
-                    ((AbsoluteLayout) grand_loop.getParent()).removeView(grand_loop);
+                p02 = (Page02) pageFactory.getPage(1);
+                p02_grand_start = p02.getGrandStart();
+                p02_grand_loop = p02.getGrandLoop();
+                p02_window = p02.getWindow();
+                p02_mother = p02.getMother();
+                ((AbsoluteLayout) view).addView(p02_grand_start);
+                ((AbsoluteLayout) view).addView(p02_grand_loop);
+                ((AbsoluteLayout) view).addView(p02_window);
+                ((AbsoluteLayout) view).addView(p02_mother);
+                if (ifP02Remove) {
+                    ((AbsoluteLayout) view).removeViewAt(0);
+                    ((AbsoluteLayout) view).removeViewAt(0);
+                    ifP02Remove = false;
                 }
-                grand_start = p02.getGrandStart();
-                grand_loop = p02.getGrandLoop();
-                ((AbsoluteLayout) view).addView(grand_start);
-                ((AbsoluteLayout) view).addView(grand_loop);
+                p02 = null;
+                p02_window = null;
+                p02_mother = null;
+                p02_grand_loop = null;
+                p02_grand_start = null;
+                System.gc();
+            }
+            /**
+             * do with abnormal gif of page07
+             */
+            if (position == 6) {
+                p07 = (Page07) pageFactory.getPage(6);
+                p07_window = p07.getWindow();
+                ((AbsoluteLayout) view).addView(p07_window);
+                if (ifP07Remove) {
+                    ((AbsoluteLayout) view).removeViewAt(0);
+                    ifP07Remove = false;
+                }
+                p07 = null;
+                p07_window = null;
+                System.gc();
             }
         }
     }
