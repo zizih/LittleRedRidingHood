@@ -5,7 +5,6 @@ import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.PageView;
 import android.content.Context;
 import android.widget.AbsoluteLayout;
-import android.widget.ImageView;
 
 /**
  * User: rain

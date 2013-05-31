@@ -36,6 +36,10 @@ public class Pages extends BaseActivity {
     private GifMovieView p07_window;
     private Page02 p02;
     private Page07 p07;
+    /**
+     * there are a strange thing that p02 is true after call factory.get();
+     */
+    private int p07WindowIndex = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,7 @@ public class Pages extends BaseActivity {
         flipView.setAdapter(flipAdapter);
         setContentView(flipView);
 
-//        setting.setAuto(false);
+        setting.setAuto(false);
         flipListener = new Fliplistener();
         flipView.setFlipByTouchEnabled(true);
         flipView.setOnViewFlipListener(flipListener);
@@ -150,7 +154,7 @@ public class Pages extends BaseActivity {
              * do with abnormal gif of page02
              */
             if (position == 1) {
-                p02 = (Page02) pageFactory.getPage(1);
+                p02 = (Page02) pageFactory.getPage(position);
                 p02_grand_start = p02.getGrandStart();
                 p02_grand_loop = p02.getGrandLoop();
                 p02_window = p02.getWindow();
@@ -159,7 +163,8 @@ public class Pages extends BaseActivity {
                 ((AbsoluteLayout) view).addView(p02_grand_loop);
                 ((AbsoluteLayout) view).addView(p02_window);
                 ((AbsoluteLayout) view).addView(p02_mother);
-                System.out.println(" P02: " + setting.isP02New());
+                for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
+                }
                 if (setting.isP02New()) {
                     ((AbsoluteLayout) view).removeViewAt(0);
                     ((AbsoluteLayout) view).removeViewAt(0);
@@ -176,14 +181,16 @@ public class Pages extends BaseActivity {
              * do with abnormal gif of page07
              */
             if (position == 6) {
-                p07 = (Page07) pageFactory.getPage(6);
+                p07 = (Page07) pageFactory.getPage(position);
                 p07_window = p07.getWindow();
+                p07WindowIndex = -1;
+                for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
+                    if (((AbsoluteLayout) view).getChildAt(i).getId() == p07_window.getId())
+                        p07WindowIndex = i;
+                }
                 ((AbsoluteLayout) view).addView(p07_window);
-                System.out.println(" P07: " + setting.isP07New());
-                if (setting.isP07New()) {
-                    System.out.println(" P07 reMove: " + setting.isP07New());
-                    ((AbsoluteLayout) view).removeViewAt(0);
-                    System.out.println(" P07 After reMove: " + setting.isP07New());
+                if (p07WindowIndex != -1) {
+                    ((AbsoluteLayout) view).removeViewAt(p07WindowIndex);
                     setting.setP07New(false);
                 }
                 p07 = null;
