@@ -16,9 +16,13 @@ public class ReadModeToFile implements ISerializeToFile<ReadMode> {
 
     private ReadMode cls;
     private File file;
+    private File tmpFile;
 
     public ReadModeToFile() {
-        file = new File(getProjectPath() + File.separator + "LittleRedRidingHood.setting");
+        tmpFile = new File(getProjectPath() + File.separator + "MyLittleStory");
+        if (!tmpFile.exists())
+            tmpFile.mkdirs();
+        file = new File(tmpFile.getPath() + File.separator + "LittleRedRidingHood.setting");
     }
 
     @Override

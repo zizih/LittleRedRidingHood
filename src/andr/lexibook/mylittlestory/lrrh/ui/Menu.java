@@ -133,9 +133,9 @@ public class Menu extends BaseActivity implements View.OnClickListener {
         /**
          * super method comtains langPlayer
          */
-        if (selfPlayer.isPlaying())
+        if (selfPlayer != null && selfPlayer.isPlaying())
             selfPlayer.setVolume(0, 0);
-        if (autoPlayer.isPlaying())
+        if (autoPlayer != null && autoPlayer.isPlaying())
             autoPlayer.setVolume(0, 0);
         /**
          *  here need to change menu button suitted language

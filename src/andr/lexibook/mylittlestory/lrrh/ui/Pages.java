@@ -52,7 +52,7 @@ public class Pages extends BaseActivity {
         flipView.setAdapter(flipAdapter);
         setContentView(flipView);
 
-        setting.setAuto(false);
+//        setting.setAuto(false);
         flipListener = new Fliplistener();
         flipView.setFlipByTouchEnabled(true);
         flipView.setOnViewFlipListener(flipListener);
