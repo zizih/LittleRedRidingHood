@@ -6,6 +6,7 @@ import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.PageView;
 import android.content.Context;
 import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * User: rain
@@ -72,5 +73,6 @@ public class Page10 extends PageView {
                 0, 0
         );
         p10_bkg_cover.setLayoutParams(params);
+//        Toast.makeText(context, "X: " + getWinWidth() + " Y: " + getWinHeight(), 1000).show();
     }
 }

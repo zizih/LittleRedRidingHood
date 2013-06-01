@@ -62,19 +62,19 @@
     <dimen name="p03_wolf_y">116px</dimen>
 
     <dimen name="p04_grand_x">385px</dimen>
-    <dimen name="p04_grand_y">182px</dimen>
+    <dimen name="p04_grand_y">183px</dimen>
     <dimen name="p04_wolf_x">8px</dimen>
     <dimen name="p04_wolf_y">140px</dimen>
 
     <dimen name="p05_door_x">12px</dimen>
     <dimen name="p05_door_y">77px</dimen>
     <dimen name="p05_grand_wolf_x">323px</dimen>
-    <dimen name="p05_grand_wolf_y">105px</dimen>
+    <dimen name="p05_grand_wolf_y">106px</dimen>
 
     <dimen name="p06_red_x">0px</dimen>
     <dimen name="p06_red_y">223px</dimen>
-    <dimen name="p06_wolf_x">303px</dimen>
-    <dimen name="p06_wolf_y">201px</dimen>
+    <dimen name="p06_wolf_x">304px</dimen>
+    <dimen name="p06_wolf_y">202px</dimen>
 
     <dimen name="p07_red_x">15px</dimen>
     <dimen name="p07_red_y">220px</dimen>
@@ -97,14 +97,14 @@
     <dimen name="p09_hunter_x">52px</dimen>
     <dimen name="p09_hunter_y">6px</dimen>
     <dimen name="p09_wolf_x">240px</dimen>
-    <dimen name="p09_wolf_y">143px</dimen>
+    <dimen name="p09_wolf_y">144px</dimen>
 
     <dimen name="p10_cloud_x">6px</dimen>
     <dimen name="p10_cloud_y">89px</dimen>
     <dimen name="p10_grand_red_x">57px</dimen>
     <dimen name="p10_grand_red_y">190px</dimen>
     <dimen name="p10_hunter_x">424px</dimen>
-    <dimen name="p10_hunter_y">173px</dimen>
+    <dimen name="p10_hunter_y">174px</dimen>
     <dimen name="p10_stone_x">548px</dimen>
     <dimen name="p10_stone_y">415px</dimen>
     <dimen name="p10_wolf_x">545px</dimen>
