@@ -2,12 +2,10 @@ package andr.lexibook.mylittlestory.lrrh.ui;
 
 import andr.lexibook.mylittlestory.lrrh.control.BtnGifSrc;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView;
-import android.media.MediaPlayer;
+import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.MenuRedGif;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsoluteLayout;
-
-import java.io.IOException;
 
 /**
  * User: rain
@@ -18,16 +16,11 @@ import java.io.IOException;
 public class Menu extends BaseActivity implements View.OnClickListener {
 
     private GifMovieView wolf;
-    private GifMovieView red;
+    private MenuRedGif red;
     private GifMovieView grand;
     private GifMovieView btn_read_self;
     private GifMovieView btn_read_auto;
     private AbsoluteLayout.LayoutParams params;
-
-    private MediaPlayer autoPlayer;
-    private MediaPlayer selfPlayer;
-    private AutoCompleteListener autoListener;
-    private SelfCompleteListener selfListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +30,7 @@ public class Menu extends BaseActivity implements View.OnClickListener {
 
         //init
         wolf = (GifMovieView) findViewById(R.id.gif_menu_wolf);
-        red = (GifMovieView) findViewById(R.id.gif_menu_red);
+        red = (MenuRedGif) findViewById(R.id.gif_menu_red);
         grand = (GifMovieView) findViewById(R.id.gif_menu_grand);
         btn_read_auto = (GifMovieView) findViewById(R.id.gif_menu_read_auto);
         btn_read_self = (GifMovieView) findViewById(R.id.gif_menu_read_self);
@@ -77,11 +70,7 @@ public class Menu extends BaseActivity implements View.OnClickListener {
         //set listener
         btn_read_auto.setOnClickListener(this);
         btn_read_self.setOnClickListener(this);
-        autoListener = new AutoCompleteListener();
-        selfListener = new SelfCompleteListener();
 
-        //
-        playAuto();
     }
 
     @Override
@@ -96,73 +85,22 @@ public class Menu extends BaseActivity implements View.OnClickListener {
             default:
                 break;
         }
-        releasePlaying();
+        red.releasePlay();
         toPage(Pages.class);
-    }
-
-    private void releasePlaying() {
-        if (autoPlayer != null) {
-            autoPlayer.release();
-            autoPlayer = null;
-        }
-        if (selfPlayer != null) {
-            selfPlayer.release();
-            selfPlayer = null;
-        }
-    }
-
-    class AutoCompleteListener implements MediaPlayer.OnCompletionListener {
-
-        @Override
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            playSelf();
-        }
-    }
-
-    class SelfCompleteListener implements MediaPlayer.OnCompletionListener {
-
-        @Override
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            playAuto();
-        }
     }
 
     @Override
     public void setLanguage(int langId) {
         super.setLanguage(langId);
         /**
-         * super method comtains langPlayer
-         */
-        if (selfPlayer != null && selfPlayer.isPlaying())
-            selfPlayer.setVolume(0, 0);
-        if (autoPlayer != null && autoPlayer.isPlaying())
-            autoPlayer.setVolume(0, 0);
-        /**
          *  here need to change menu button suitted language
          */
         btn_read_auto.setMovieAsset(btnSrc.setLang(langId).getMenuAuto());
         btn_read_self.setMovieAsset(btnSrc.setLang(langId).getMenuSelf());
-    }
-
-    private void playAuto() {
-        autoPlayer = mediaFactory.getMenuAuto();
-        autoPlayer.setOnCompletionListener(autoListener);
-        play(autoPlayer);
-    }
-
-    private void playSelf() {
-        selfPlayer = mediaFactory.getMenuSelf();
-        selfPlayer.setOnCompletionListener(selfListener);
-        play(selfPlayer);
-    }
-
-    private void play(MediaPlayer player) {
-        try {
-            player.prepare();
-            player.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        /**
+         * set player
+         */
+        red.changLanguage();
     }
 
     @Override
@@ -172,7 +110,7 @@ public class Menu extends BaseActivity implements View.OnClickListener {
         grand = null;
         btn_read_self = null;
         btn_read_auto = null;
-        releasePlaying();
         super.onDestroy();
     }
+
 }

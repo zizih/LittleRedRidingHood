@@ -7,9 +7,6 @@ import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 
 import java.io.IOException;
-import java.lang.ref.WeakReference;
-import java.util.Map;
-import java.util.WeakHashMap;
 
 /**
  * Created by rain on 5/18/13.
