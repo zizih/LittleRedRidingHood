@@ -32,7 +32,10 @@ public class MenuRedGif extends GifMovieView {
     }
 
     public void changLanguage() {
-        releasePlay();
+        if (autoPlayer != null && autoPlayer.isPlaying())
+            autoPlayer.setVolume(0.5f, 0.5f);
+        if (selfPlayer != null && selfPlayer.isPlaying())
+            selfPlayer.setVolume(0.5f, 0.5f);
     }
 
     @Override
@@ -56,6 +59,8 @@ public class MenuRedGif extends GifMovieView {
         if (mediaFactory == null) {
             mediaFactory = MediaFactory.getInstance(getContext());
         }
+        if (autoPlayer != null)
+            autoPlayer.release();
         autoPlayer = mediaFactory.getMenuAuto();
         play(autoPlayer);
     }
@@ -64,13 +69,13 @@ public class MenuRedGif extends GifMovieView {
         if (mediaFactory == null) {
             mediaFactory = MediaFactory.getInstance(getContext());
         }
+        if (selfPlayer != null)
+            selfPlayer.release();
         selfPlayer = mediaFactory.getMenuSelf();
         play(selfPlayer);
     }
 
     private void play(MediaPlayer player) {
-        if (player.isPlaying())
-            player.release();
         try {
             player.prepare();
             player.start();
@@ -80,9 +85,9 @@ public class MenuRedGif extends GifMovieView {
     }
 
     public void releasePlay() {
-        if (autoPlayer != null && autoPlayer.isPlaying())
+        if (autoPlayer != null)
             autoPlayer.release();
-        if (selfPlayer != null && selfPlayer.isPlaying())
+        if (selfPlayer != null)
             selfPlayer.release();
     }
 
