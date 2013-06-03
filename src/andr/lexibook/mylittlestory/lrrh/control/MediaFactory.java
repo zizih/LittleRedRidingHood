@@ -35,7 +35,6 @@ public class MediaFactory {
             mPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getDeclaredLength());
             descriptor.close();
         } catch (IOException e) {
-            System.out.println("Err: " + e.getCause());
             e.printStackTrace();
             return null;
         }

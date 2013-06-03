@@ -36,19 +36,19 @@ public class MenuRedGif extends GifMovieView {
             autoPlayer.setVolume(0.5f, 0.5f);
         if (selfPlayer != null && selfPlayer.isPlaying())
             selfPlayer.setVolume(0.5f, 0.5f);
+        isSelfPlayed = false;
+        isAutoPlayed = false;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         if (mMovie != null) {
-            if (!isAutoPlayed && mCurrentAnimationTime < 6600) {
+            if (!isAutoPlayed && mCurrentAnimationTime < 600) {
                 playAuto();
                 isAutoPlayed = true;
-                isSelfPlayed = false;
             }
-            if (!isSelfPlayed && mCurrentAnimationTime > 6600) {
+            if (!isSelfPlayed && mCurrentAnimationTime > 6600 && mCurrentAnimationTime < 7200) {
                 playSelf();
-                isAutoPlayed = false;
                 isSelfPlayed = true;
             }
         }

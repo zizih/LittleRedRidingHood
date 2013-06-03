@@ -9,6 +9,7 @@ import andr.lexibook.mylittlestory.lrrh.ui.widget.Page02;
 import andr.lexibook.mylittlestory.lrrh.ui.widget.Page07;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AbsoluteLayout;
 
@@ -60,7 +61,7 @@ public class Pages extends BaseActivity {
         if (setting.getReadMode().isAuto()) {
             langCompleteListener = new LangListener();
             pageCompleteListener = new PageListener();
-            flipView.setFlipByTouchEnabled(false);
+//            flipView.setFlipByTouchEnabled(false);
             if (isFirst) {
                 mPlayer = mediaFactory.getPage01();
                 mPlayer.setOnCompletionListener(pageCompleteListener);
@@ -73,6 +74,16 @@ public class Pages extends BaseActivity {
                 isFirst = false;
             }
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            if (mPlayer != null && mPlayer.isPlaying())
+                mPlayer.release();
+            toPage(Menu.class);
+        }
+        return false;
     }
 
     @Override
