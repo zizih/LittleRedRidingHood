@@ -36,9 +36,9 @@ public class MenuRedGif extends GifMovieView {
 
     public void changLanguage() {
         if (autoPlayer != null && autoPlayer.isPlaying())
-            autoPlayer.setVolume(.3f, .3f);
+            autoPlayer.setVolume(.2f, .2f);
         if (selfPlayer != null && selfPlayer.isPlaying())
-            selfPlayer.setVolume(.3f, .3f);
+            selfPlayer.setVolume(.2f, .2f);
         isSelfPlayed = false;
         isAutoPlayed = false;
     }
@@ -111,7 +111,7 @@ public class MenuRedGif extends GifMovieView {
             e.printStackTrace();
         }
         autoPlayer.start();
-        autoPlayer.setVolume(.3f, .3f);
+        autoPlayer.setVolume(.2f, .2f);
     }
 
     private void playSelf() {
