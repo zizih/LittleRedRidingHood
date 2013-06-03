@@ -18,6 +18,9 @@ public class MenuRedGif extends GifMovieView {
     private MediaFactory mediaFactory;
     private MediaPlayer autoPlayer;
     private MediaPlayer selfPlayer;
+    private MediaPlayer langPlayer;
+    private MenuCallBack menuCallBack;
+    private MenuListener endListener;
 
     public MenuRedGif(Context context) {
         super(context);
@@ -33,18 +36,48 @@ public class MenuRedGif extends GifMovieView {
 
     public void changLanguage() {
         if (autoPlayer != null && autoPlayer.isPlaying())
-            autoPlayer.setVolume(0.5f, 0.5f);
+            autoPlayer.setVolume(.3f, .3f);
         if (selfPlayer != null && selfPlayer.isPlaying())
-            selfPlayer.setVolume(0.5f, 0.5f);
+            selfPlayer.setVolume(.3f, .3f);
         isSelfPlayed = false;
         isAutoPlayed = false;
+    }
+
+    public void setMenuCallBack(MenuCallBack menuCallBack) {
+        this.menuCallBack = menuCallBack;
+        this.langPlayer = menuCallBack.getLangPlayer();
+        if (endListener == null) {
+            endListener = new MenuListener();
+        }
+        if (this.langPlayer != null)
+            this.langPlayer.setOnCompletionListener(endListener);
+    }
+
+    public interface MenuCallBack {
+
+        public MediaPlayer getLangPlayer();
+    }
+
+    class MenuListener implements MediaPlayer.OnCompletionListener {
+
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            if (autoPlayer != null && autoPlayer.isPlaying())
+                autoPlayer.setVolume(1f, 1f);
+            if (selfPlayer != null && selfPlayer.isPlaying())
+                selfPlayer.setVolume(1f, 1f);
+        }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         if (mMovie != null) {
             if (!isAutoPlayed && mCurrentAnimationTime < 600) {
-                playAuto();
+                if (menuCallBack != null && langPlayer != null && langPlayer.isPlaying())
+                    playAutoLow();
+                else {
+                    playAuto();
+                }
                 isAutoPlayed = true;
             }
             if (!isSelfPlayed && mCurrentAnimationTime > 6600 && mCurrentAnimationTime < 7200) {
@@ -63,6 +96,22 @@ public class MenuRedGif extends GifMovieView {
             autoPlayer.release();
         autoPlayer = mediaFactory.getMenuAuto();
         play(autoPlayer);
+    }
+
+    private void playAutoLow() {
+        if (mediaFactory == null) {
+            mediaFactory = MediaFactory.getInstance(getContext());
+        }
+        if (autoPlayer != null)
+            autoPlayer.release();
+        autoPlayer = mediaFactory.getMenuAuto();
+        try {
+            autoPlayer.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        autoPlayer.start();
+        autoPlayer.setVolume(.3f, .3f);
     }
 
     private void playSelf() {

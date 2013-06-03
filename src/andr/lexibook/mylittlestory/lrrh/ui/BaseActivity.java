@@ -4,6 +4,7 @@ import andr.lexibook.mylittlestory.lrrh.control.BgSrc;
 import andr.lexibook.mylittlestory.lrrh.control.BtnGifSrc;
 import andr.lexibook.mylittlestory.lrrh.control.MediaFactory;
 import andr.lexibook.mylittlestory.lrrh.control.Setting;
+import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.MenuRedGif;
 import andr.lexibook.mylittlestory.lrrh.util.ViewUtil;
 import android.app.Activity;
 import android.content.Intent;
@@ -21,7 +22,7 @@ import java.io.IOException;
  * Date: 4/23/13
  * Time: 8:05 PM
  */
-public class BaseActivity extends Activity {
+public class BaseActivity extends Activity implements MenuRedGif.MenuCallBack {
 
     public final int ENGLISH = 0;
     public final int FRANCH = 1;
@@ -179,6 +180,12 @@ public class BaseActivity extends Activity {
             default:
                 return getResources().getString(R.string.mp3_lang_default);
         }
+    }
+
+    @Override
+    public MediaPlayer getLangPlayer() {
+        System.out.println("Base: " + (langPlayer == null));
+        return langPlayer;
     }
 }
 

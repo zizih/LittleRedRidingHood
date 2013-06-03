@@ -71,6 +71,8 @@ public class Menu extends BaseActivity implements View.OnClickListener {
         btn_read_auto.setOnClickListener(this);
         btn_read_self.setOnClickListener(this);
 
+        //
+        red.setMenuCallBack(this);
     }
 
     @Override
