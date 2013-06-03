@@ -21,20 +21,13 @@ public class PageFactory {
 
     private Activity ctx;
     private static PageFactory instance;
-    private Map<String, WeakReference<PageView>> pages;
+        private Map<String, WeakReference<PageView>> pages;
     private Map<String, Class<?>> pagesMap;
     private String[] pagesKey;
-    //private LruCache<String, WeakReference<PageView>> pages;
-    //private android.support.v4.util.LruCache<String, WeakReference<PageView>> pages;
-    // private PageLruCache<String, WeakReference<PageView>> pages;
-    //private DiskLruCache<String, WeakReference<PageView>> pages;
 
     private PageFactory(Context ctx) {
         this.ctx = (Activity) ctx;
         pages = new WeakHashMap<String, WeakReference<PageView>>();
-        //pages = new LruCache<String, WeakReference<PageView>>(1);
-        //pages = new PageLruCache<String, WeakReference<PageView>>(1);
-        // pages = new DiskLruCache<String, WeakReference<PageView>>(1);
         pagesKey = this.ctx.getResources().getStringArray(R.array.page_index);
         pagesMap = new WeakHashMap<String, Class<?>>();
         pagesMap.put(pagesKey[0], Page01.class);
@@ -49,6 +42,7 @@ public class PageFactory {
         pagesMap.put(pagesKey[9], Page10.class);
         pagesMap.put(pagesKey[10], Page11.class);
         pagesMap.put(pagesKey[11], Page12.class);
+
     }
 
     public static PageFactory getInstance(Context ctx) {
