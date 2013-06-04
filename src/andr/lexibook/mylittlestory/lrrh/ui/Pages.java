@@ -164,7 +164,7 @@ public class Pages extends BaseActivity {
             /**
              * do with abnormal gif of page02
              */
-            if (position == 1) {
+            if (position == 1 && !setting.isOOM()) {
                 p02 = (Page02) pageFactory.getPage(position);
                 p02_grand_start = p02.getGrandStart();
                 p02_grand_loop = p02.getGrandLoop();
@@ -191,7 +191,7 @@ public class Pages extends BaseActivity {
             /**
              * do with abnormal gif of page07
              */
-            if (position == 6) {
+            if (position == 6 && !setting.isOOM()) {
                 p07 = (Page07) pageFactory.getPage(position);
                 p07_window = p07.getWindow();
                 p07WindowIndex = -1;
@@ -207,6 +207,9 @@ public class Pages extends BaseActivity {
                 p07 = null;
                 p07_window = null;
                 System.gc();
+            }
+            if (setting.isOOM()) {
+                setting.setOOM(false);
             }
         }
     }

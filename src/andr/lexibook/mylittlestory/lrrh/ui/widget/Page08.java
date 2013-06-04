@@ -51,6 +51,6 @@ public class Page08 extends PageView {
         hat.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p08);
-        layout.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getPageDrawableId(7));
+        layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(7));
     }
 }

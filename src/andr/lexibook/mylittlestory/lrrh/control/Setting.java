@@ -3,7 +3,6 @@ package andr.lexibook.mylittlestory.lrrh.control;
 import andr.lexibook.mylittlestory.lrrh.model.ReadMode;
 import andr.lexibook.mylittlestory.lrrh.ui.R;
 import andr.lexibook.mylittlestory.lrrh.util.ReadModeToFile;
-import android.app.Activity;
 import android.content.Context;
 
 /**
@@ -16,6 +15,7 @@ public class Setting {
     private ReadModeToFile io;
     private boolean ifP02New = true;
     private boolean ifP07New = true;
+    private boolean ifOOM = false;
 
     /**
      * change language
@@ -104,6 +104,14 @@ public class Setting {
         this.ifP07New = ifP07New;
     }
 
+    public boolean isOOM() {
+        return ifOOM;
+    }
+
+    public void setOOM(boolean ifOOM) {
+        this.ifOOM = ifOOM;
+    }
+
     private String checkIdToLang(int langId) {
         switch (langId) {
             case ENGLISH:
@@ -134,4 +142,5 @@ public class Setting {
             return ITALIANO;
         return ENGLISH;
     }
+
 }

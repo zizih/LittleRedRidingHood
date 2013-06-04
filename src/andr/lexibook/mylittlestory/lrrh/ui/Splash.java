@@ -72,7 +72,7 @@ public class Splash extends BaseActivity implements View.OnClickListener {
     }
 
     private void refreshBg() {
-        this.btn_splash_bg.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getSplashDrawableId());
+        this.btn_splash_bg.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getSplashDrawable());
     }
 
 }

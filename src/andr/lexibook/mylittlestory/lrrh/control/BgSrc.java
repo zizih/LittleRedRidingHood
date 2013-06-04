@@ -3,7 +3,13 @@ package andr.lexibook.mylittlestory.lrrh.control;
 import andr.lexibook.mylittlestory.lrrh.ui.R;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+
+import java.lang.ref.SoftReference;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 /**
  * Created by rain on 5/20/13.
@@ -13,6 +19,7 @@ public class BgSrc {
     private Activity ctx;
     private static BgSrc instance;
     private int langId;
+    private WeakHashMap<String, SoftReference<Drawable>> drawableCache;
 
     private int[] splashs = {R.drawable.eng_splash
             , R.drawable.fra_splash
@@ -95,6 +102,7 @@ public class BgSrc {
 
     private BgSrc(Context ctx) {
         this.ctx = (Activity) ctx;
+        drawableCache = new WeakHashMap<String, SoftReference<Drawable>>();
     }
 
     public static BgSrc getInstance(Context ctx) {
@@ -112,11 +120,15 @@ public class BgSrc {
      * get drawable
      */
     public Drawable getPageDrawable(int pageIndex) {
-        return getDrawable(langPagesId[this.langId][pageIndex]);
+        if (!drawableCache.containsKey(this.langId + "" + pageIndex) || drawableCache.get(this.langId + "" + pageIndex) == null)
+            return getDrawable(langPagesId[this.langId][pageIndex]);
+        return drawableCache.get(this.langId + "" + pageIndex).get();
     }
 
     public Drawable getSplashDrawable() {
-        return getDrawable(splashs[this.langId]);
+        if (!drawableCache.containsKey("splash" + this.langId) || drawableCache.get("splash" + this.langId) == null)
+            return getDrawable(splashs[this.langId]);
+        return drawableCache.get("splash" + this.langId).get();
     }
 
     private Drawable getDrawable(int drawableId) {
@@ -132,5 +144,24 @@ public class BgSrc {
 
     public int getSplashDrawableId() {
         return splashs[this.langId];
+    }
+
+    public void Clear() {
+        if (drawableCache == null || drawableCache.isEmpty())
+            return;
+        for (Map.Entry<String, SoftReference<Drawable>> entry : drawableCache.entrySet()) {
+            Drawable d = entry.getValue().get();
+            if (d != null) {
+                Bitmap b = ((BitmapDrawable) d).getBitmap();
+                if (b != null && !b.isRecycled()) {
+                    b.recycle();
+                }
+                b = null;
+                d = null;
+            }
+        }
+        drawableCache.clear();
+        System.gc();
+        System.gc();
     }
 }

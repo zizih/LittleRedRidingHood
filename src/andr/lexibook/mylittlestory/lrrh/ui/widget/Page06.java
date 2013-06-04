@@ -37,6 +37,6 @@ public class Page06 extends PageView {
         wolf.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p06);
-        layout.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getPageDrawableId(5));
+        layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(5));
     }
 }

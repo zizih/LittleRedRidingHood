@@ -57,7 +57,7 @@ public class Page12 extends PageView implements View.OnClickListener {
         btn_quit.setOnClickListener(this);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p12);
-        layout.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getPageDrawableId(11));
+        layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(11));
     }
 
 
@@ -66,6 +66,8 @@ public class Page12 extends PageView implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.gif_p12_btn_menu:
                 ctx.startActivity(menuIntent);
+                ctx.finish();
+                System.gc();
                 break;
             case R.id.gif_p12_btn_quit:
                 ctx.finish();

@@ -22,7 +22,7 @@ public class Page07 extends PageView {
         super(context, R.layout.page07);
         setting.setP07New(true);
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p07);
-        layout.setBackgroundResource(bgSrc.setLang(setting.getLangId()).getPageDrawableId(6));
+        layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(6));
 
         //get view
         window = (GifMovieView) page.findViewById(R.id.gif_p07_window);
