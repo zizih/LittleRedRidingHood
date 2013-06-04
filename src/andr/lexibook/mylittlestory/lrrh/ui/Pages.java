@@ -168,7 +168,7 @@ public class Pages extends BaseActivity {
         @Override
         public void onViewFlipped(View view, int position) {
             setPosition(position);
-            if (setting.getReadMode().isAuto())
+            if (setting.getReadMode().isAuto() && !langChanged)
                 play(position);
             /**
              * do with abnormal gif of page02
