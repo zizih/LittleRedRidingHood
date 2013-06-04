@@ -58,7 +58,7 @@
     <dimen name="p03_board_y">291px</dimen>
     <dimen name="p03_red_x">68px</dimen>
     <dimen name="p03_red_y">204px</dimen>
-    <dimen name="p03_wolf_x">547px</dimen>
+    <dimen name="p03_wolf_x">508px</dimen>
     <dimen name="p03_wolf_y">167px</dimen>
 
     <dimen name="p04_grand_x">385px</dimen>
