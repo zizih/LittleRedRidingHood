@@ -595,6 +595,13 @@ public class FlipViewController extends AdapterView<Adapter> {
         }
     }
 
+    //add by hezi
+    public void flipToPageAgain() {
+        if (onViewFlipListener != null) {
+            onViewFlipListener.onViewFlipped(bufferedViews.get(bufferIndex), adapterIndex);
+        }
+    }
+
     private void onDataChanged() {
         adapterDataCount = adapter.getCount();
         int activeIndex;

@@ -20,6 +20,7 @@ import java.io.IOException;
  * Date: 4/23/13
  * Time: 8:05 PM
  */
+@SuppressWarnings("deprecation")
 public class Pages extends BaseActivity {
 
     private FlipViewController flipView;
@@ -41,6 +42,8 @@ public class Pages extends BaseActivity {
      * there are a strange thing that p02 is true after call factory.get();
      */
     private int p07WindowIndex = -1;
+    private int p02WindowIndex = -1;
+    private int p02MotherIndex = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +99,7 @@ public class Pages extends BaseActivity {
         if (langChanged) {
             pageFactory.getPage(this.position).getLayoutView().setBackgroundResource(bgSrc.setLang(langId).getPageDrawableId(this.position));
             flipAdapter.notifyDataSetChanged();
+            flipView.flipToPageAgain();
             langChanged = false;
         }
     }
@@ -154,11 +158,16 @@ public class Pages extends BaseActivity {
         }
     }
 
+    private void setPosition(int posit) {
+        this.position = posit;
+    }
+
     @SuppressWarnings("deprecation")
     class Fliplistener implements FlipViewController.ViewFlipListener {
 
         @Override
         public void onViewFlipped(View view, int position) {
+            setPosition(position);
             if (setting.getReadMode().isAuto())
                 play(position);
             /**
@@ -170,13 +179,23 @@ public class Pages extends BaseActivity {
                 p02_grand_loop = p02.getGrandLoop();
                 p02_window = p02.getWindow();
                 p02_mother = p02.getMother();
+                p02WindowIndex = -1;
+                p02MotherIndex = -1;
+                for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
+                    if (((AbsoluteLayout) view).getChildAt(i).getId() == p02_window.getId())
+                        p02WindowIndex = i;
+                    if (((AbsoluteLayout) view).getChildAt(i).getId() == p02_mother.getId())
+                        p02MotherIndex = i;
+                }
                 ((AbsoluteLayout) view).addView(p02_grand_start);
                 ((AbsoluteLayout) view).addView(p02_grand_loop);
                 ((AbsoluteLayout) view).addView(p02_window);
                 ((AbsoluteLayout) view).addView(p02_mother);
-                if (setting.isP02New()) {
-                    ((AbsoluteLayout) view).removeViewAt(0);
-                    ((AbsoluteLayout) view).removeViewAt(0);
+                if (p02MotherIndex != -1) {
+                    ((AbsoluteLayout) view).removeViewAt(p02WindowIndex);
+                    if (p02MotherIndex > p02WindowIndex)
+                        p02MotherIndex--;
+                    ((AbsoluteLayout) view).removeViewAt(p02MotherIndex);
                     setting.setP02New(false);
                 }
                 p02 = null;
