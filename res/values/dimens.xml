@@ -64,7 +64,7 @@
     <dimen name="p04_grand_x">385px</dimen>
     <dimen name="p04_grand_y">183px</dimen>
     <dimen name="p04_wolf_x">8px</dimen>
-    <dimen name="p04_wolf_y">140px</dimen>
+    <dimen name="p04_wolf_y">167px</dimen>
 
     <dimen name="p05_door_x">12px</dimen>
     <dimen name="p05_door_y">77px</dimen>

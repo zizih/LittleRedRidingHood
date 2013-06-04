@@ -20,6 +20,8 @@ public class BgSrc {
     private static BgSrc instance;
     private int langId;
     private WeakHashMap<String, SoftReference<Drawable>> drawableCache;
+    private Drawable d;
+    private Bitmap b;
 
     private int[] splashs = {R.drawable.eng_splash
             , R.drawable.fra_splash
@@ -150,9 +152,9 @@ public class BgSrc {
         if (drawableCache == null || drawableCache.isEmpty())
             return;
         for (Map.Entry<String, SoftReference<Drawable>> entry : drawableCache.entrySet()) {
-            Drawable d = entry.getValue().get();
+            d = entry.getValue().get();
             if (d != null) {
-                Bitmap b = ((BitmapDrawable) d).getBitmap();
+                b = ((BitmapDrawable) d).getBitmap();
                 if (b != null && !b.isRecycled()) {
                     b.recycle();
                 }

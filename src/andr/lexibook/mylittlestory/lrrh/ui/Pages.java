@@ -164,7 +164,7 @@ public class Pages extends BaseActivity {
             /**
              * do with abnormal gif of page02
              */
-            if (position == 1 && !setting.isOOM()) {
+            if (position == 1) {
                 p02 = (Page02) pageFactory.getPage(position);
                 p02_grand_start = p02.getGrandStart();
                 p02_grand_loop = p02.getGrandLoop();
@@ -174,8 +174,6 @@ public class Pages extends BaseActivity {
                 ((AbsoluteLayout) view).addView(p02_grand_loop);
                 ((AbsoluteLayout) view).addView(p02_window);
                 ((AbsoluteLayout) view).addView(p02_mother);
-                for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
-                }
                 if (setting.isP02New()) {
                     ((AbsoluteLayout) view).removeViewAt(0);
                     ((AbsoluteLayout) view).removeViewAt(0);
@@ -186,11 +184,12 @@ public class Pages extends BaseActivity {
                 p02_mother = null;
                 p02_grand_loop = null;
                 p02_grand_start = null;
+                System.gc();
             }
             /**
              * do with abnormal gif of page07
              */
-            if (position == 6 && !setting.isOOM()) {
+            if (position == 6) {
                 p07 = (Page07) pageFactory.getPage(position);
                 p07_window = p07.getWindow();
                 p07WindowIndex = -1;
@@ -205,9 +204,7 @@ public class Pages extends BaseActivity {
                 }
                 p07 = null;
                 p07_window = null;
-            }
-            if (setting.isOOM()) {
-                setting.setOOM(false);
+                System.gc();
             }
         }
     }
