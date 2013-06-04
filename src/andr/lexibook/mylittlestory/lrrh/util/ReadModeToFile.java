@@ -1,6 +1,8 @@
 package andr.lexibook.mylittlestory.lrrh.util;
 
 import andr.lexibook.mylittlestory.lrrh.model.ReadMode;
+import android.app.Activity;
+import android.content.Context;
 import android.os.Environment;
 
 import java.io.*;
@@ -14,21 +16,20 @@ import java.io.*;
  */
 public class ReadModeToFile implements ISerializeToFile<ReadMode> {
 
+    private Activity ctx;
     private ReadMode cls;
-    private File file;
-    private File tmpFile;
+    private FileOutputStream fo;
+    private FileInputStream fi;
 
-    public ReadModeToFile() {
-        tmpFile = new File(getProjectPath() + File.separator + "MyLittleStory");
-        if (!tmpFile.exists())
-            tmpFile.mkdirs();
-        file = new File(tmpFile.getPath() + File.separator + "LittleRedRidingHood.setting");
+    public ReadModeToFile(Context ctx) {
+        this.ctx = (Activity) ctx;
     }
 
     @Override
     public void save(ReadMode cls) {
         try {
-            FileOutputStream fo = new FileOutputStream(file);
+            fo = ctx.openFileOutput("rhhl.setting",
+                    Activity.MODE_PRIVATE);
             ObjectOutputStream oo = new ObjectOutputStream(fo);
             oo.writeObject(cls);
             oo.flush();
@@ -42,7 +43,7 @@ public class ReadModeToFile implements ISerializeToFile<ReadMode> {
     @Override
     public ReadMode get() {
         try {
-            FileInputStream fi = new FileInputStream(file);
+            fi = ctx.openFileInput("rhhl.setting");
             ObjectInputStream oi = new ObjectInputStream(fi);
             cls = (ReadMode) oi.readObject();
             fi.close();
@@ -54,9 +55,5 @@ public class ReadModeToFile implements ISerializeToFile<ReadMode> {
             e.printStackTrace();
         }
         return new ReadMode();
-    }
-
-    public String getProjectPath() {
-        return Environment.getExternalStorageDirectory().getPath();
     }
 }

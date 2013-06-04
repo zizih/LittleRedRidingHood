@@ -33,7 +33,7 @@ public class Setting {
     public String ita;
 
     private Setting(Context ctx) {
-        io = new ReadModeToFile();
+        io = new ReadModeToFile(ctx);
         readMode = io.get();
         eng = ctx.getString(R.string.lang_english);
         fra = ctx.getString(R.string.lang_franch);
