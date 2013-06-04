@@ -23,9 +23,4 @@ public class OOM extends PageView {
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_oom);
     }
 
-    public void refreshBg(int position) {
-        layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(position));
-        bgSrc.Clear();
-    }
-
 }

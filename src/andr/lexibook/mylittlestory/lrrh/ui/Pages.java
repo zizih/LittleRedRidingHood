@@ -186,7 +186,6 @@ public class Pages extends BaseActivity {
                 p02_mother = null;
                 p02_grand_loop = null;
                 p02_grand_start = null;
-                System.gc();
             }
             /**
              * do with abnormal gif of page07
@@ -206,7 +205,6 @@ public class Pages extends BaseActivity {
                 }
                 p07 = null;
                 p07_window = null;
-                System.gc();
             }
             if (setting.isOOM()) {
                 setting.setOOM(false);

@@ -4,6 +4,7 @@ import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.PageView;
 import andr.lexibook.mylittlestory.lrrh.ui.widget.*;
 import android.app.Activity;
 import android.content.Context;
+import android.widget.Toast;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -55,10 +56,9 @@ public class PageFactory {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        System.gc();
+        Toast.makeText(ctx, "Sorry, No Enought Memonry!", 1000).show();
         System.gc();
         setting.setOOM(true);
-        oom.refreshBg(position);
         return oom;
     }
 
