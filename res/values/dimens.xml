@@ -48,7 +48,7 @@
     <dimen name="p02_grand_start_x">540px</dimen>
     <dimen name="p02_grand_start_y">213px</dimen>
     <dimen name="p02_mother_x">0px</dimen>
-    <dimen name="p02_mother_y">111px</dimen>
+    <dimen name="p02_mother_y">112px</dimen>
     <dimen name="p02_window_x">60px</dimen>
     <dimen name="p02_window_y">16px</dimen>
     <dimen name="p02_red_x">447px</dimen>
