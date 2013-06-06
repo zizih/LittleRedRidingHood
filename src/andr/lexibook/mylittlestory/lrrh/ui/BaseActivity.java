@@ -184,7 +184,6 @@ public class BaseActivity extends Activity implements MenuRedGif.MenuCallBack {
 
     @Override
     public MediaPlayer getLangPlayer() {
-        System.out.println("Base: " + (langPlayer == null));
         return langPlayer;
     }
 }
