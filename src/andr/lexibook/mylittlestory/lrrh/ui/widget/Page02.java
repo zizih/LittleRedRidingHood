@@ -25,8 +25,7 @@ public class Page02 extends PageView implements GifMovieView.DispearCallback {
     @SuppressWarnings("deprecation")
     public Page02(Context context) {
         super(context, R.layout.page02);
-        setting.setP02New(true);
-        //about layout
+        //abgout layout
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p02);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(1));
 

@@ -20,7 +20,6 @@ public class Page07 extends PageView {
 
     public Page07(Context context) {
         super(context, R.layout.page07);
-        setting.setP07New(true);
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p07);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(6));
 
