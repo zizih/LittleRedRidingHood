@@ -6,6 +6,7 @@ import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.PageView;
 import android.content.Context;
 import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 /**
@@ -20,7 +21,8 @@ public class Page10 extends PageView {
     private GifMovieView hunter;
     private GifMovieView stone;
     private GifMovieView wolf;
-    private ImageView p10_bkg_cover;
+    //    private ImageView p10_bkg_cover;
+    private LinearLayout ll_bg_cover;
 
     public Page10(Context context) {
         super(context, R.layout.page10);
@@ -66,13 +68,13 @@ public class Page10 extends PageView {
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(9));
 
         //about background imageview
-        p10_bkg_cover = (ImageView) page.findViewById(R.id.img_bg_cover);
-        params = new AbsoluteLayout.LayoutParams(
-                (int) getWinWidth(),
-                (int) getWinHeight(),
-                0, 0
-        );
-        p10_bkg_cover.setLayoutParams(params);
+//        p10_bkg_cover = (ImageView) page.findViewById(R.id.img_bg_cover);
+//        params = new AbsoluteLayout.LayoutParams(
+//                (int) getWinWidth(),
+//                (int) getWinHeight(),
+//                0, 0
+//        );
+//        p10_bkg_cover.setLayoutParams(params);
 //        Toast.makeText(context, "X: " + getWinWidth() + " Y: " + getWinHeight(), 1000).show();
     }
 }

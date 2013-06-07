@@ -1,5 +1,7 @@
 package andr.lexibook.mylittlestory.lrrh.ui.ViewIml;
 
+import andr.lexibook.mylittlestory.lrrh.control.PageFactory;
+import andr.lexibook.mylittlestory.lrrh.control.Setting;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Handler;
@@ -12,9 +14,13 @@ import android.os.Message;
 public class MyProgressDialog extends ProgressDialog {
 
     private Handler mHandler;
+    private PageFactory pageFactory;
+    private Setting setting;
 
     public MyProgressDialog(Context context) {
         super(context);
+        pageFactory = PageFactory.getInstance(context);
+        setting = Setting.getInstance(context);
     }
 
     @Override

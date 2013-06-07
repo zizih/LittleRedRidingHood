@@ -42,13 +42,13 @@
             android:layout_x="@dimen/p10_wolf_x"
             android:layout_y="@dimen/p10_wolf_y"
             />
-
-    <ImageView
-            android:id="@+id/img_bg_cover"
+    <LinearLayout
+            android:id="@+id/ll_bg_cover"
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
             android:layout_x="0px"
             android:layout_y="0px"
-            android:src="@drawable/p10_bkg_cover"/>
-
+            android:background="@drawable/p10_bkg_cover"
+            android:orientation="vertical">
+    </LinearLayout>
 </AbsoluteLayout>

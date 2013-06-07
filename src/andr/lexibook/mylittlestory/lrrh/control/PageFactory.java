@@ -5,7 +5,6 @@ import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.PageView;
 import andr.lexibook.mylittlestory.lrrh.ui.widget.*;
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
@@ -24,6 +23,7 @@ public class PageFactory {
     private Map<String, WeakReference<PageView>> pages;
     private Map<String, Class<?>> pagesMap;
     private String[] pagesKey;
+//    private MyProgressDialog dialog;
 
     private PageFactory(Context ctx) {
         this.ctx = (Activity) ctx;
@@ -42,6 +42,7 @@ public class PageFactory {
         pagesMap.put(pagesKey[9], Page10.class);
         pagesMap.put(pagesKey[10], Page11.class);
         pagesMap.put(pagesKey[11], Page12.class);
+//        dialog = new MyProgressDialog(ctx);
     }
 
     public static PageFactory getInstance(Context ctx) {
@@ -54,20 +55,25 @@ public class PageFactory {
         return getPage(pagesKey[position]);
     }
 
+    public boolean loadPage(int position) {
+        return getPage(pagesKey[position]) != null;
+    }
+
+
     public PageView getPage(String key) {
         if (!pages.containsKey(key) || pages.get(key).get() == null) {
             try {
                 pages.put(key, new WeakReference<PageView>((PageView) pagesMap.get(key).getConstructors()[0].newInstance(ctx)));
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
-                Log.i(" ERR InvocationTargetException ", e.getCause().toString());
-                System.gc();
+                System.out.println(" ERR InvocationTargetException " + e.getCause().toString());
+//               dialog.show();
             } catch (InstantiationException e) {
                 e.printStackTrace();
-                Log.i(" ERR InstantiationException ", e.getCause().toString());
+                System.out.println(" ERR InstantiationException " + e.getCause().toString());
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
-                Log.i(" ERR IllegalAccessException ", e.getCause().toString());
+                System.out.println(" ERR IllegalAccessException " + e.getCause().toString());
             }
         }
         return pages.get(key).get();

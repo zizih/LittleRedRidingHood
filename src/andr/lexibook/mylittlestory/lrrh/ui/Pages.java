@@ -54,6 +54,7 @@ public class Pages extends BaseActivity {
         flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
         flipAdapter = new FlipAdapter(this);
         flipView.setAdapter(flipAdapter);
+        flipAdapter.notifyDataSetChanged();
         setContentView(flipView);
 
 //        setting.setAuto(false);
@@ -174,6 +175,9 @@ public class Pages extends BaseActivity {
              * do with abnormal gif of page02
              */
             if (position == 1) {
+                for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
+                    System.out.println("View " + i + "  " + ((AbsoluteLayout) view).getChildAt(i).getId());
+                }
                 p02 = (Page02) pageFactory.getPage(position);
                 p02_grand_start = p02.getGrandStart();
                 p02_grand_loop = p02.getGrandLoop();
@@ -186,17 +190,20 @@ public class Pages extends BaseActivity {
                         p02WindowIndex = i;
                     if (((AbsoluteLayout) view).getChildAt(i).getId() == p02_mother.getId())
                         p02MotherIndex = i;
+                    System.out.println(i + "  " + ((AbsoluteLayout) view).getChildAt(i).getId());
                 }
                 ((AbsoluteLayout) view).addView(p02_grand_start);
                 ((AbsoluteLayout) view).addView(p02_grand_loop);
                 ((AbsoluteLayout) view).addView(p02_window);
                 ((AbsoluteLayout) view).addView(p02_mother);
+                for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
+                    System.out.println("A View " + i + "  " + ((AbsoluteLayout) view).getChildAt(i).getId());
+                }
                 if (p02MotherIndex != -1) {
                     ((AbsoluteLayout) view).removeViewAt(p02WindowIndex);
                     if (p02MotherIndex > p02WindowIndex)
                         p02MotherIndex--;
                     ((AbsoluteLayout) view).removeViewAt(p02MotherIndex);
-                    setting.setP02New(false);
                 }
                 p02 = null;
                 p02_window = null;
@@ -215,11 +222,11 @@ public class Pages extends BaseActivity {
                 for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
                     if (((AbsoluteLayout) view).getChildAt(i).getId() == p07_window.getId())
                         p07WindowIndex = i;
+                    System.out.println(i + "  " + ((AbsoluteLayout) view).getChildAt(i).getId());
                 }
                 ((AbsoluteLayout) view).addView(p07_window);
                 if (p07WindowIndex != -1) {
                     ((AbsoluteLayout) view).removeViewAt(p07WindowIndex);
-                    setting.setP07New(false);
                 }
                 p07 = null;
                 p07_window = null;
@@ -249,12 +256,14 @@ public class Pages extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        System.out.println("Pages OnResume ");
         flipView.onResume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        System.out.println("Pages OnPause ");
         flipView.onPause();
     }
 
@@ -262,6 +271,7 @@ public class Pages extends BaseActivity {
     protected void onDestroy() {
         flipView = null;
         mPlayer = null;
+        System.out.println("Pages OnDestroy ");
         super.onDestroy();
     }
 }
