@@ -21,7 +21,7 @@ import java.io.IOException;
  * Time: 8:05 PM
  */
 @SuppressWarnings("deprecation")
-public class Pages extends BaseActivity {
+public class Pages extends BaseActivity implements PageFactory.Callback {
 
     private FlipViewController flipView;
     private boolean isFirst = true;
@@ -78,6 +78,7 @@ public class Pages extends BaseActivity {
                 isFirst = false;
             }
         }
+        pageFactory.setCallback(this);
     }
 
     @Override
@@ -163,6 +164,17 @@ public class Pages extends BaseActivity {
         this.position = posit;
     }
 
+    @Override
+    public void autoFlip() {
+        flipView.autoFlip();
+        flipView.setFlipByTouchEnabled(true);
+    }
+
+    @Override
+    public void diableFlip() {
+        flipView.setFlipByTouchEnabled(false);
+    }
+
     @SuppressWarnings("deprecation")
     class Fliplistener implements FlipViewController.ViewFlipListener {
 
@@ -174,10 +186,11 @@ public class Pages extends BaseActivity {
             /**
              * do with abnormal gif of page02
              */
+            for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
+                System.out.println(position + " View " + i + "  " + ((AbsoluteLayout) view).getChildAt(i).getId());
+            }
+
             if (position == 1) {
-                for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
-                    System.out.println("View " + i + "  " + ((AbsoluteLayout) view).getChildAt(i).getId());
-                }
                 p02 = (Page02) pageFactory.getPage(position);
                 p02_grand_start = p02.getGrandStart();
                 p02_grand_loop = p02.getGrandLoop();
@@ -190,15 +203,11 @@ public class Pages extends BaseActivity {
                         p02WindowIndex = i;
                     if (((AbsoluteLayout) view).getChildAt(i).getId() == p02_mother.getId())
                         p02MotherIndex = i;
-                    System.out.println(i + "  " + ((AbsoluteLayout) view).getChildAt(i).getId());
                 }
                 ((AbsoluteLayout) view).addView(p02_grand_start);
                 ((AbsoluteLayout) view).addView(p02_grand_loop);
                 ((AbsoluteLayout) view).addView(p02_window);
                 ((AbsoluteLayout) view).addView(p02_mother);
-                for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
-                    System.out.println("A View " + i + "  " + ((AbsoluteLayout) view).getChildAt(i).getId());
-                }
                 if (p02MotherIndex != -1) {
                     ((AbsoluteLayout) view).removeViewAt(p02WindowIndex);
                     if (p02MotherIndex > p02WindowIndex)
@@ -222,7 +231,6 @@ public class Pages extends BaseActivity {
                 for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
                     if (((AbsoluteLayout) view).getChildAt(i).getId() == p07_window.getId())
                         p07WindowIndex = i;
-                    System.out.println(i + "  " + ((AbsoluteLayout) view).getChildAt(i).getId());
                 }
                 ((AbsoluteLayout) view).addView(p07_window);
                 if (p07WindowIndex != -1) {
@@ -247,7 +255,7 @@ public class Pages extends BaseActivity {
 
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
-            if (position >= 0 && position < 11) {
+            if (position >= 0 && position < 11 && !setting.isOOM()) {
                 flipView.autoFlip();
             }
         }
@@ -274,6 +282,7 @@ public class Pages extends BaseActivity {
         System.out.println("Pages OnDestroy ");
         super.onDestroy();
     }
+
 }
 
 

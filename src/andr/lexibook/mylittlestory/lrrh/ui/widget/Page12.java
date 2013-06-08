@@ -2,6 +2,7 @@ package andr.lexibook.mylittlestory.lrrh.ui.widget;
 
 import andr.lexibook.mylittlestory.lrrh.control.BtnGifSrc;
 import andr.lexibook.mylittlestory.lrrh.ui.Menu;
+import andr.lexibook.mylittlestory.lrrh.ui.Pages;
 import andr.lexibook.mylittlestory.lrrh.ui.R;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.PageView;

@@ -4,6 +4,7 @@ import andr.lexibook.mylittlestory.lrrh.control.BtnGifSrc;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.MenuRedGif;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AbsoluteLayout;
 
@@ -73,6 +74,13 @@ public class Menu extends BaseActivity implements View.OnClickListener {
 
         //
         red.setMenuCallBack(this);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        this.finish();
+        onDestroy();
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

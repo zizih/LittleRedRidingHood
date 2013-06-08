@@ -1,6 +1,7 @@
 package andr.lexibook.mylittlestory.lrrh.control;
 
 import andr.lexibook.mylittlestory.lrrh.ui.R;
+import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.MyProgressDialog;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.PageView;
 import andr.lexibook.mylittlestory.lrrh.ui.widget.*;
 import android.app.Activity;
@@ -23,7 +24,7 @@ public class PageFactory {
     private Map<String, WeakReference<PageView>> pages;
     private Map<String, Class<?>> pagesMap;
     private String[] pagesKey;
-//    private MyProgressDialog dialog;
+    private int pageIndex;
 
     private PageFactory(Context ctx) {
         this.ctx = (Activity) ctx;
@@ -42,7 +43,6 @@ public class PageFactory {
         pagesMap.put(pagesKey[9], Page10.class);
         pagesMap.put(pagesKey[10], Page11.class);
         pagesMap.put(pagesKey[11], Page12.class);
-//        dialog = new MyProgressDialog(ctx);
     }
 
     public static PageFactory getInstance(Context ctx) {
@@ -52,13 +52,9 @@ public class PageFactory {
     }
 
     public PageView getPage(int position) {
+        pageIndex = position;
         return getPage(pagesKey[position]);
     }
-
-    public boolean loadPage(int position) {
-        return getPage(pagesKey[position]) != null;
-    }
-
 
     public PageView getPage(String key) {
         if (!pages.containsKey(key) || pages.get(key).get() == null) {
@@ -66,17 +62,41 @@ public class PageFactory {
                 pages.put(key, new WeakReference<PageView>((PageView) pagesMap.get(key).getConstructors()[0].newInstance(ctx)));
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
-                System.out.println(" ERR InvocationTargetException " + e.getCause().toString());
-//               dialog.show();
+                reloadPage();
             } catch (InstantiationException e) {
                 e.printStackTrace();
-                System.out.println(" ERR InstantiationException " + e.getCause().toString());
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
-                System.out.println(" ERR IllegalAccessException " + e.getCause().toString());
             }
         }
         return pages.get(key).get();
+    }
+
+    private void reloadPage() {
+        Setting.getInstance(ctx).setOOM(true);
+        callback.diableFlip();
+
+        //dialog
+        MyProgressDialog dialog = new MyProgressDialog(ctx, pageIndex);
+        dialog.setMessage("Sorry! No enough memonry of your machine !");
+        dialog.show();
+
+        //after
+        Setting.getInstance(ctx).setOOM(false);
+        callback.autoFlip();
+    }
+
+    public boolean newPage(int position) {
+        try {
+            pages.put(pagesKey[position], new WeakReference<PageView>((PageView) pagesMap.get(pagesKey[position]).getConstructors()[0].newInstance(ctx)));
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return pages.get(pagesKey[position]) != null;
     }
 
     public void removePage(int postion) {
@@ -87,6 +107,18 @@ public class PageFactory {
 
     public int getCount() {
         return pagesMap.size();
+    }
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
+    }
+
+    private Callback callback;
+
+    public interface Callback {
+        public void autoFlip();
+
+        public void diableFlip();
     }
 
 }

@@ -13,6 +13,8 @@ public class Setting {
     private static Setting instance;
     private ReadMode readMode;
     private ReadModeToFile io;
+    private boolean ifP02New = true;
+    private boolean ifP07New = true;
     private boolean ifOOM = false;
 
     /**
@@ -84,6 +86,22 @@ public class Setting {
 
     public void setAuto(boolean isAuto) {
         this.readMode.setAuto(isAuto);
+    }
+
+    public boolean isP02New() {
+        return ifP02New;
+    }
+
+    public boolean isP07New() {
+        return ifP07New;
+    }
+
+    public void setP02New(boolean ifP02New) {
+        this.ifP02New = ifP02New;
+    }
+
+    public void setP07New(boolean ifP07New) {
+        this.ifP07New = ifP07New;
     }
 
     public boolean isOOM() {
