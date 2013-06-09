@@ -42,6 +42,7 @@ public class Page02 extends PageView implements GifMovieView.DispearCallback {
         params.x = (int) (getWidthScale() * getDimens(R.dimen.p02_window_x));
         params.y = (int) (getHeightScale() * getDimens(R.dimen.p02_window_y));
         window.setLayoutParams(params);
+        window.setPaused(2080);
 
         params = (AbsoluteLayout.LayoutParams) mother.getLayoutParams();
         params.x = (int) (getWidthScale() * getDimens(R.dimen.p02_mother_x));
@@ -101,7 +102,7 @@ public class Page02 extends PageView implements GifMovieView.DispearCallback {
     public GifMovieView getWindow() {
         if (window.getParent() != null)
             ((AbsoluteLayout) window.getParent()).removeView(window);
-        window.setPaused(4240);
+        window.setPaused(2080);
         window.invalidate();
         return window;
     }
