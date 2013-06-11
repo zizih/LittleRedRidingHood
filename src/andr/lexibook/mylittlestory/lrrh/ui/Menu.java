@@ -78,8 +78,10 @@ public class Menu extends BaseActivity implements View.OnClickListener {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        this.finish();
-        onDestroy();
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            this.finish();
+            onDestroy();
+        }
         return super.onKeyDown(keyCode, event);
     }
 
