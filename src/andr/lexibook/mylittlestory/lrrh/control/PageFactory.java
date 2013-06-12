@@ -78,7 +78,7 @@ public class PageFactory {
 
         //dialog
         MyProgressDialog dialog = new MyProgressDialog(ctx, pageIndex);
-        dialog.setMessage("Sorry! No enough memonry of your machine !");
+        dialog.setMessage("loading...");
         dialog.show();
 
         //after

@@ -99,6 +99,7 @@ public class Menu extends BaseActivity implements View.OnClickListener {
         }
         red.releasePlay();
         toPage(Pages.class);
+        onDestroy();
     }
 
     @Override

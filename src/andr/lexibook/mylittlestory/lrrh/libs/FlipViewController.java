@@ -17,8 +17,8 @@ limitations under the License.
 
 package andr.lexibook.mylittlestory.lrrh.libs;
 
-import andr.lexibook.mylittlestory.lrrh.ui.R;
 import andr.lexibook.mylittlestory.lrrh.libs.utils.AphidLog;
+import andr.lexibook.mylittlestory.lrrh.ui.R;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -36,6 +36,7 @@ import android.view.ViewDebug;
 import android.widget.AbsListView;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+
 import junit.framework.Assert;
 
 import java.util.LinkedList;
@@ -261,7 +262,6 @@ public class FlipViewController extends AdapterView<Adapter> {
     // Orientation
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
-        //noinspection AndroidLintNewApi
         super.onConfigurationChanged(newConfig);
         //XXX: adds a global layout listener?
     }
@@ -438,15 +438,6 @@ public class FlipViewController extends AdapterView<Adapter> {
         adapterIndex = -1;
     }
 
-    private void setReleasedViews() {
-        for (View view : bufferedViews) {
-            releaseView(view);
-        }
-        bufferedViews.clear();
-        bufferIndex = -1;
-        adapterIndex = -1;
-    }
-
     private void releaseView(View view) {
         Assert.assertNotNull(view);
         detachViewFromParent(view);
@@ -600,13 +591,6 @@ public class FlipViewController extends AdapterView<Adapter> {
         }
     }
 
-    //add by hezi
-    public void flipToPageAgain() {
-        if (onViewFlipListener != null) {
-            onViewFlipListener.onViewFlipped(bufferedViews.get(bufferIndex), adapterIndex);
-        }
-    }
-
     private void onDataChanged() {
         adapterDataCount = adapter.getCount();
         int activeIndex;
@@ -633,7 +617,15 @@ public class FlipViewController extends AdapterView<Adapter> {
         }
     }
 
-    // modify code
+    //add by hz
+    public void flipToPageAgain() {
+        if (onViewFlipListener != null) {
+            onViewFlipListener.onViewFlipped(bufferedViews.get(bufferIndex), adapterIndex);
+        }
+    }
+
+
+    // add by hz
     public void autoFlip() {
         if (adapterIndex + 1 < adapterDataCount) {
             cards.nextPage();

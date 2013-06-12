@@ -19,15 +19,32 @@ package andr.lexibook.mylittlestory.lrrh.libs;
 
 import andr.lexibook.mylittlestory.lrrh.libs.utils.AphidLog;
 
-import javax.microedition.khronos.opengles.GL10;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
+
+import javax.microedition.khronos.opengles.GL10;
 
 import static andr.lexibook.mylittlestory.lrrh.libs.FlipRenderer.checkError;
 import static andr.lexibook.mylittlestory.lrrh.libs.utils.TextureUtils.*;
 import static android.util.FloatMath.cos;
 import static android.util.FloatMath.sin;
-import static javax.microedition.khronos.opengles.GL10.*;
+import static javax.microedition.khronos.opengles.GL10.GL_BACK;
+import static javax.microedition.khronos.opengles.GL10.GL_BLEND;
+import static javax.microedition.khronos.opengles.GL10.GL_CCW;
+import static javax.microedition.khronos.opengles.GL10.GL_CLAMP_TO_EDGE;
+import static javax.microedition.khronos.opengles.GL10.GL_CULL_FACE;
+import static javax.microedition.khronos.opengles.GL10.GL_DEPTH_TEST;
+import static javax.microedition.khronos.opengles.GL10.GL_FLOAT;
+import static javax.microedition.khronos.opengles.GL10.GL_LIGHTING;
+import static javax.microedition.khronos.opengles.GL10.GL_ONE;
+import static javax.microedition.khronos.opengles.GL10.GL_ONE_MINUS_SRC_ALPHA;
+import static javax.microedition.khronos.opengles.GL10.GL_TEXTURE_2D;
+import static javax.microedition.khronos.opengles.GL10.GL_TEXTURE_COORD_ARRAY;
+import static javax.microedition.khronos.opengles.GL10.GL_TEXTURE_WRAP_S;
+import static javax.microedition.khronos.opengles.GL10.GL_TEXTURE_WRAP_T;
+import static javax.microedition.khronos.opengles.GL10.GL_TRIANGLES;
+import static javax.microedition.khronos.opengles.GL10.GL_UNSIGNED_SHORT;
+import static javax.microedition.khronos.opengles.GL10.GL_VERTEX_ARRAY;
 
 public class Card {
 
