@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:id="@+id/layout_p08"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/p08_bkg"
+                android:id="@+id/layout_p08"
         >
 
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
@@ -35,5 +36,7 @@
             android:layout_x="@dimen/p08_basket_x"
             android:layout_y="@dimen/p08_basket_y"
             />
-
+    <AbsoluteLayout android:id="@+id/ll_p08_bg_cover"
+                    android:layout_height="fill_parent"
+                    android:layout_width="fill_parent"></AbsoluteLayout>
 </AbsoluteLayout>

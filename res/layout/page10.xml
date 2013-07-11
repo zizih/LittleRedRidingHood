@@ -48,7 +48,7 @@
             android:layout_width="fill_parent"
             android:layout_x="0px"
             android:layout_y="0px"
-            android:background="@drawable/p10_bkg_cover"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/p10_bkg_cover">
     </LinearLayout>
 </AbsoluteLayout>
