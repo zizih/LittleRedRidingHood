@@ -40,4 +40,11 @@
         <item>page11</item>
         <item>page12</item>
     </string-array>
+
+    <integer-array name="btn_play_pause">
+        <item>726</item>
+        <item>17</item>
+        <item>774</item>
+        <item>65</item>
+    </integer-array>
 </resources>

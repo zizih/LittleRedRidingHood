@@ -22,4 +22,9 @@
             android:layout_y="@dimen/p04_wolf_y"
             />
 
+    <AbsoluteLayout
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:background="@drawable/pause"
+            android:alpha="0.05"></AbsoluteLayout>
 </AbsoluteLayout>

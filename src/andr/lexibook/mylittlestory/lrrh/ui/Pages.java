@@ -9,9 +9,12 @@ import andr.lexibook.mylittlestory.lrrh.ui.widget.Page02;
 import andr.lexibook.mylittlestory.lrrh.ui.widget.Page07;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsoluteLayout;
+import android.widget.LinearLayout;
 
 import java.io.IOException;
 
@@ -21,7 +24,7 @@ import java.io.IOException;
  * Time: 8:05 PM
  */
 @SuppressWarnings("deprecation")
-public class Pages extends BaseActivity implements PageFactory.Callback {
+public class Pages extends BaseActivity implements PageFactory.Callback, FlipViewController.PlayPauseCallBack {
 
     private FlipViewController flipView;
     private boolean isFirst = true;
@@ -45,6 +48,21 @@ public class Pages extends BaseActivity implements PageFactory.Callback {
     private int p02WindowIndex = -1;
     private int p02MotherIndex = -1;
 
+    /**
+     * add play & pause
+     */
+    protected Handler mHandler;
+    protected TimerThread mTimerThead;
+    protected boolean ifAllowFlip = false;
+    protected int[] playPauseLocation;
+    protected boolean isPaused = false;
+    protected boolean isPlayed = false;
+
+    private AbsoluteLayout ll_play;
+    private AbsoluteLayout ll_pause;
+    private AbsoluteLayout.LayoutParams params;
+    private View preView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +70,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback {
         pageFactory = PageFactory.getInstance(this);
 
         flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
+        flipView.setPlayPauseCallBack(this);
         flipAdapter = new FlipAdapter(this);
         flipView.setAdapter(flipAdapter);
         flipAdapter.notifyDataSetChanged();
@@ -79,7 +98,50 @@ public class Pages extends BaseActivity implements PageFactory.Callback {
             }
         }
         pageFactory.setCallback(this);
+        mHandler = new Handler();
+        mTimerThead = new TimerThread();
+        playPauseLocation = getResources().getIntArray(R.array.btn_play_pause);
+
+        ll_play = new AbsoluteLayout(this);
+        ll_pause = new AbsoluteLayout(this);
+        ll_play.setBackgroundDrawable(getResources().getDrawable(R.drawable.play));
+        ll_pause.setBackgroundDrawable(getResources().getDrawable(R.drawable.pause));
+        params = new AbsoluteLayout.LayoutParams((int) getWinWidth(), (int) getWinHeight(), 0, 0);
+        ll_play.setLayoutParams(params);
+        ll_pause.setLayoutParams(params);
+        ll_play.setAlpha(.20f);
+        ll_pause.setAlpha(.12f);
     }
+
+    @Override
+    public void pauseOrPlay(View view, MotionEvent e) {
+        preView = view;
+        if ((e.getAction() == MotionEvent.ACTION_DOWN && checkLocation(e, playPauseLocation))) {// && checkLocation(e, playPauseLocation)
+            if (ll_pause.getParent() != null)
+                ((AbsoluteLayout) ll_pause.getParent()).removeView(ll_pause);
+            if (ll_play.getParent() != null)
+                ((AbsoluteLayout) ll_play.getParent()).removeView(ll_play);
+            if (isPaused) {
+                ((AbsoluteLayout) view).addView(ll_pause);
+                isPaused = false;
+                if (isPlayed)
+                    play(position);
+            } else {
+                ((AbsoluteLayout) view).addView(ll_play);
+                isPaused = true;
+            }
+        }
+    }
+
+
+    @Override
+    public void onFliped(View view) {
+        if (preView != null) {
+            if (ll_play.getParent() != null)
+                ((AbsoluteLayout) ll_play.getParent()).removeView(ll_play);
+        }
+    }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -180,6 +242,15 @@ public class Pages extends BaseActivity implements PageFactory.Callback {
 
         @Override
         public void onViewFlipped(View view, int position) {
+            isPaused = false;
+            isPlayed = false;
+            mHandler.postDelayed(mTimerThead, 2000);
+            flipView.setFlipByTouchEnabled(false);
+
+            if (ll_pause.getParent() != null)
+                ((AbsoluteLayout) ll_pause.getParent()).removeView(ll_pause);
+            ((AbsoluteLayout) view).addView(ll_pause);
+
             setPosition(position);
             if (setting.getReadMode().isAuto() && !langChanged)
                 play(position);
@@ -243,6 +314,28 @@ public class Pages extends BaseActivity implements PageFactory.Callback {
         }
     }
 
+
+    class TimerThread implements Runnable {
+
+        @Override
+        public void run() {
+            (Pages.this).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    timer();
+                }
+            });
+        }
+
+    }
+
+
+    protected void timer() {
+        if (!ifAllowFlip) {
+            flipView.setFlipByTouchEnabled(true);
+        }
+    }
+
     class LangListener implements MediaPlayer.OnCompletionListener {
 
         @Override
@@ -255,7 +348,8 @@ public class Pages extends BaseActivity implements PageFactory.Callback {
 
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
-            if (position >= 0 && position < 11 && !setting.isOOM()) {
+            isPlayed = true;
+            if (!isPaused && position >= 0 && position < 11 && !setting.isOOM()) {
                 flipView.autoFlip();
             }
         }

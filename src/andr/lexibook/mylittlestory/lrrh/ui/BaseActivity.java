@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 
 import java.io.IOException;
 
@@ -62,6 +63,16 @@ public class BaseActivity extends Activity implements MenuRedGif.MenuCallBack {
         WIN_WIDTH = getWindowManager().getDefaultDisplay().getWidth();
         WIN_HEIGHT = getWindowManager().getDefaultDisplay().getHeight();
 
+    }
+
+    public boolean checkLocation(MotionEvent event, int[] location) {
+        if (event.getX() > location[0] * getWidthScale()
+                && event.getY() > location[1] * getHeightScale()
+                && event.getX() < location[2] * getWidthScale()
+                && event.getY() < location[3] * getHeightScale()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -163,6 +174,14 @@ public class BaseActivity extends Activity implements MenuRedGif.MenuCallBack {
 
     public float getHeightScale() {
         return ViewUtil.getInstance(this).getHeightScale();
+    }
+
+    public float getWinWidth() {
+        return ViewUtil.getInstance(this).getWinWidth();
+    }
+
+    public float getWinHeight() {
+        return ViewUtil.getInstance(this).getWinHeight();
     }
 
     private String checkLangToPath(String lang) {

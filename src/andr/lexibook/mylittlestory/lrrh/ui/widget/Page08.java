@@ -50,7 +50,7 @@ public class Page08 extends PageView {
         params.y = (int) (getHeightScale() * getDimens(R.dimen.p08_hat_y));
         hat.setLayoutParams(params);
 
-        layout = (AbsoluteLayout) page.findViewById(R.id.layout_p08);
+        layout = (AbsoluteLayout) page.findViewById(R.id.ll_p08_bg_cover);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(7));
     }
 }

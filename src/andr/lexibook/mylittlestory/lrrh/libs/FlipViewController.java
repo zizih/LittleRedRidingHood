@@ -20,7 +20,6 @@ package andr.lexibook.mylittlestory.lrrh.libs;
 import andr.lexibook.mylittlestory.lrrh.libs.utils.AphidLog;
 import andr.lexibook.mylittlestory.lrrh.ui.R;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
@@ -36,7 +35,6 @@ import android.view.ViewDebug;
 import android.widget.AbsListView;
 import android.widget.Adapter;
 import android.widget.AdapterView;
-
 import junit.framework.Assert;
 
 import java.util.LinkedList;
@@ -249,8 +247,25 @@ public class FlipViewController extends AdapterView<Adapter> {
         }
     }
 
+    public interface PlayPauseCallBack {
+        public void pauseOrPlay(View view, MotionEvent e);
+
+        public void onFliped(View view);
+    }
+
+    private PlayPauseCallBack playPauseCallBack;
+
+
+    public void setPlayPauseCallBack(PlayPauseCallBack playPauseCallBack) {
+        this.playPauseCallBack = playPauseCallBack;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (playPauseCallBack != null) {
+            System.out.println("bufferedViews==null: " + bufferedViews);
+            playPauseCallBack.pauseOrPlay(bufferedViews.get(bufferIndex), event);
+        }
         if (flipByTouchEnabled) {
             return cards.handleTouchEvent(event, true);
         } else {
@@ -260,11 +275,11 @@ public class FlipViewController extends AdapterView<Adapter> {
 
     //--------------------------------------------------------------------------------------------------------------------
     // Orientation
-    @Override
-    protected void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        //XXX: adds a global layout listener?
-    }
+//    @Override
+//    protected void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        //XXX: adds a global layout listener?
+//    }
 
     //--------------------------------------------------------------------------------------------------------------------
     // AdapterView<Adapter>
@@ -578,6 +593,8 @@ public class FlipViewController extends AdapterView<Adapter> {
 
             if (onViewFlipListener != null) {
                 onViewFlipListener.onViewFlipped(bufferedViews.get(bufferIndex), adapterIndex);
+                if (playPauseCallBack != null)
+                    playPauseCallBack.onFliped(bufferedViews.get(bufferIndex));
             }
 
             handler.post(new Runnable() {
@@ -621,6 +638,8 @@ public class FlipViewController extends AdapterView<Adapter> {
     public void flipToPageAgain() {
         if (onViewFlipListener != null) {
             onViewFlipListener.onViewFlipped(bufferedViews.get(bufferIndex), adapterIndex);
+            if (playPauseCallBack != null)
+                playPauseCallBack.onFliped(bufferedViews.get(bufferIndex));
         }
     }
 
