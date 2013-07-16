@@ -66,9 +66,9 @@
         <item>457</item>
     </integer-array>
     <integer-array name="btn_play_pause_p05">
-        <item>678</item>
+        <item>680</item>
         <item>425</item>
-        <item>721</item>
+        <item>723</item>
         <item>468</item>
     </integer-array>
     <integer-array name="btn_play_pause_p06">
@@ -84,16 +84,16 @@
         <item>460</item>
     </integer-array>
     <integer-array name="btn_play_pause_p08">
-        <item>677</item>
+        <item>678</item>
         <item>420</item>
-        <item>720</item>
+        <item>721</item>
         <item>463</item>
     </integer-array>
     <integer-array name="btn_play_pause_p09">
         <item>675</item>
-        <item>415</item>
+        <item>417</item>
         <item>718</item>
-        <item>458</item>
+        <item>460</item>
     </integer-array>
     <integer-array name="btn_play_pause_p10">
         <item>679</item>

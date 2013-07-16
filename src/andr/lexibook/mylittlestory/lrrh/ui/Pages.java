@@ -293,10 +293,12 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
         public void onViewFlipped(View view, int position) {
             isPaused = false;
             isPrepared = false;
-            params.x = (int) (getWidthScale() * getResources().getDimension(dimenXs[position]));
-            params.y = (int) (getHeightScale() * getResources().getDimension(dimenYs[position]));
-            params.width = (int) (getWidthScale() * 43);
-            params.height = (int) (getWidthScale() * 43);
+            if ((position >= 0 && position < 11)) {
+                params.x = (int) (getWidthScale() * getResources().getDimension(dimenXs[position]));
+                params.y = (int) (getHeightScale() * getResources().getDimension(dimenYs[position]));
+                params.width = (int) (getWidthScale() * 43);
+                params.height = (int) (getWidthScale() * 43);
+            }
 
             /**
              * about slowwer
