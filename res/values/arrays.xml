@@ -44,67 +44,67 @@
     <integer-array name="btn_play_pause_p01">
         <item>677</item>
         <item>412</item>
-        <item>722</item>
-        <item>457</item>
+        <item>720</item>
+        <item>455</item>
     </integer-array>
     <integer-array name="btn_play_pause_p02">
         <item>685</item>
         <item>413</item>
-        <item>730</item>
-        <item>458</item>
+        <item>728</item>
+        <item>456</item>
     </integer-array>
     <integer-array name="btn_play_pause_p03">
         <item>679</item>
-        <item>416</item>
-        <item>724</item>
+        <item>418</item>
+        <item>722</item>
         <item>461</item>
     </integer-array>
     <integer-array name="btn_play_pause_p04">
-        <item>684</item>
-        <item>415</item>
-        <item>729</item>
-        <item>460</item>
+        <item>685</item>
+        <item>414</item>
+        <item>728</item>
+        <item>457</item>
     </integer-array>
     <integer-array name="btn_play_pause_p05">
         <item>678</item>
-        <item>422</item>
-        <item>723</item>
-        <item>467</item>
+        <item>425</item>
+        <item>721</item>
+        <item>468</item>
     </integer-array>
     <integer-array name="btn_play_pause_p06">
         <item>680</item>
         <item>415</item>
-        <item>725</item>
-        <item>460</item>
+        <item>723</item>
+        <item>458</item>
     </integer-array>
     <integer-array name="btn_play_pause_p07">
         <item>679</item>
         <item>417</item>
-        <item>726</item>
-        <item>462</item>
+        <item>724</item>
+        <item>460</item>
     </integer-array>
     <integer-array name="btn_play_pause_p08">
         <item>677</item>
         <item>420</item>
-        <item>722</item>
-        <item>465</item>
+        <item>720</item>
+        <item>463</item>
     </integer-array>
     <integer-array name="btn_play_pause_p09">
-        <item>679</item>
+        <item>675</item>
         <item>415</item>
-        <item>726</item>
-        <item>460</item>
+        <item>718</item>
+        <item>458</item>
     </integer-array>
     <integer-array name="btn_play_pause_p10">
         <item>679</item>
         <item>417</item>
-        <item>726</item>
-        <item>462</item>
+        <item>722</item>
+        <item>460</item>
     </integer-array>
     <integer-array name="btn_play_pause_p11">
         <item>678</item>
         <item>415</item>
-        <item>723</item>
-        <item>460</item>
+        <item>721</item>
+        <item>458</item>
     </integer-array>
 </resources>

@@ -4,6 +4,7 @@ import andr.lexibook.mylittlestory.lrrh.control.BtnGifSrc;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.MenuRedGif;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AbsoluteLayout;
@@ -98,8 +99,13 @@ public class Menu extends BaseActivity implements View.OnClickListener {
                 break;
         }
         red.releasePlay();
-        toPage(Pages.class);
-        onDestroy();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                toPage(Pages.class);
+                onDestroy();
+            }
+        }, 1000);
     }
 
     @Override

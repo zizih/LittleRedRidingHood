@@ -53,8 +53,8 @@ public class Page07 extends PageView {
             params = (AbsoluteLayout.LayoutParams) pause.getLayoutParams();
             params.x = (int) (getWidthScale() * getDimens(R.dimen.btn_play_pause_p07_x));
             params.y = (int) (getHeightScale() * getDimens(R.dimen.btn_play_pause_p07_y));
-            params.width = (int) (getWidthScale() * 45);
-            params.height = (int) (getWidthScale() * 45);
+            params.width = (int) (getWidthScale() * 43);
+            params.height = (int) (getWidthScale() * 43);
             pause.setLayoutParams(params);
         }
     }

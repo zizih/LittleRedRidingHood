@@ -15,7 +15,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import java.io.IOException;
 
@@ -56,7 +55,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
     protected TimerThread mTimerThead;
     protected boolean ifAllowFlip = false;
     protected boolean isPaused = false;
-    protected boolean isPlayed = false;
+    protected boolean isPrepared = false;
 
     private ImageView ll_play;
     private ImageView ll_pause;
@@ -129,6 +128,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
                 mPlayer.setOnCompletionListener(pageCompleteListener);
                 try {
                     mPlayer.prepare();
+                    isPrepared = true;
                     mPlayer.start();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -144,22 +144,19 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
         ll_pause = new ImageView(this);
         ll_play.setBackgroundDrawable(bgSrc.getPlayDrawable());
         ll_pause.setBackgroundDrawable(bgSrc.getPauseDrawable());
-        params = new AbsoluteLayout.LayoutParams(45, 45, 677, 412);
+        params = new AbsoluteLayout.LayoutParams(43, 43, 677, 412);
         params.x = (int) (getWidthScale() * getResources().getDimension(dimenXs[0]));
         params.y = (int) (getHeightScale() * getResources().getDimension(dimenYs[0]));
-        params.width = (int) (getWidthScale() * 45);
-        params.height = (int) (getWidthScale() * 45);
+        params.width = (int) (getWidthScale() * 43);
+        params.height = (int) (getWidthScale() * 43);
     }
 
     @Override
     public void pauseOrPlay(View view, MotionEvent e) {
         preView = view;
-        if (setting.isAuto() && (position >= 0 && position < 12)
+        if (setting.isAuto() && (position >= 0 && position < 11)
                 && (e.getAction() == MotionEvent.ACTION_DOWN
                 && checkLocation(e, getResources().getIntArray(playPauseLocations[position])))) {
-            System.out.println("position: " + position);
-            System.out.println("isPaused: " + isPaused);
-            System.out.println("isPlayed: " + isPlayed);
             if (ll_pause.getParent() != null)
                 ((AbsoluteLayout) ll_pause.getParent()).removeView(ll_pause);
             if (ll_play.getParent() != null)
@@ -168,12 +165,17 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
                 ll_pause.setLayoutParams(params);
                 ((AbsoluteLayout) view).addView(ll_pause);
                 isPaused = false;
-                if (isPlayed)
-                    play(position);
+                if (isPrepared)
+                    mPlayer.start();
             } else {
                 ll_play.setLayoutParams(params);
                 ((AbsoluteLayout) view).addView(ll_play);
                 isPaused = true;
+                try {
+                    mPlayer.pause();
+                } catch (Exception ePause) {
+                    System.out.println("ePause: " + ePause.getCause());
+                }
             }
         }
     }
@@ -262,6 +264,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
         try {
             mPlayer.setOnCompletionListener(pageCompleteListener);
             mPlayer.prepare();
+            isPrepared = true;
             mPlayer.start();
         } catch (IOException e) {
             e.printStackTrace();
@@ -289,11 +292,11 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
         @Override
         public void onViewFlipped(View view, int position) {
             isPaused = false;
-            isPlayed = false;
+            isPrepared = false;
             params.x = (int) (getWidthScale() * getResources().getDimension(dimenXs[position]));
             params.y = (int) (getHeightScale() * getResources().getDimension(dimenYs[position]));
-            params.width = (int) (getWidthScale() * 45);
-            params.height = (int) (getWidthScale() * 45);
+            params.width = (int) (getWidthScale() * 43);
+            params.height = (int) (getWidthScale() * 43);
 
             /**
              * about slowwer
@@ -399,7 +402,6 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
 
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
-            isPlayed = true;
             if (!isPaused && position >= 0 && position < 11 && !setting.isOOM()) {
                 flipView.autoFlip();
             }
