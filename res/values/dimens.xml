@@ -128,7 +128,7 @@
 
 
     <dimen name="btn_play_pause_p01_x">677px</dimen>
-    <dimen name="btn_play_pause_p01_y">412px</dimen>
+    <dimen name="btn_play_pause_p01_y">414px</dimen>
     <dimen name="btn_play_pause_p02_x">685px</dimen>
     <dimen name="btn_play_pause_p02_y">413px</dimen>
     <dimen name="btn_play_pause_p03_x">679px</dimen>

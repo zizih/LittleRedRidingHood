@@ -43,9 +43,9 @@
 
     <integer-array name="btn_play_pause_p01">
         <item>677</item>
-        <item>412</item>
+        <item>414</item>
         <item>720</item>
-        <item>455</item>
+        <item>457</item>
     </integer-array>
     <integer-array name="btn_play_pause_p02">
         <item>685</item>
