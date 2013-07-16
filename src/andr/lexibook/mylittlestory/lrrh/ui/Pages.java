@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsoluteLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.io.IOException;
@@ -54,14 +55,52 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
     protected Handler mHandler;
     protected TimerThread mTimerThead;
     protected boolean ifAllowFlip = false;
-    protected int[] playPauseLocation;
     protected boolean isPaused = false;
     protected boolean isPlayed = false;
 
-    private AbsoluteLayout ll_play;
-    private AbsoluteLayout ll_pause;
+    private ImageView ll_play;
+    private ImageView ll_pause;
     private AbsoluteLayout.LayoutParams params;
     private View preView;
+
+    protected int[] playPauseLocations = {
+            R.array.btn_play_pause_p01
+            , R.array.btn_play_pause_p02
+            , R.array.btn_play_pause_p03
+            , R.array.btn_play_pause_p04
+            , R.array.btn_play_pause_p05
+            , R.array.btn_play_pause_p06
+            , R.array.btn_play_pause_p07
+            , R.array.btn_play_pause_p08
+            , R.array.btn_play_pause_p09
+            , R.array.btn_play_pause_p10
+            , R.array.btn_play_pause_p11
+    };
+
+    private int[] dimenXs = {R.dimen.btn_play_pause_p01_x
+            , R.dimen.btn_play_pause_p02_x
+            , R.dimen.btn_play_pause_p03_x
+            , R.dimen.btn_play_pause_p04_x
+            , R.dimen.btn_play_pause_p05_x
+            , R.dimen.btn_play_pause_p06_x
+            , R.dimen.btn_play_pause_p07_x
+            , R.dimen.btn_play_pause_p08_x
+            , R.dimen.btn_play_pause_p09_x
+            , R.dimen.btn_play_pause_p10_x
+            , R.dimen.btn_play_pause_p11_x
+    };
+    private int[] dimenYs = {R.dimen.btn_play_pause_p01_y
+            , R.dimen.btn_play_pause_p02_y
+            , R.dimen.btn_play_pause_p03_y
+            , R.dimen.btn_play_pause_p04_y
+            , R.dimen.btn_play_pause_p05_y
+            , R.dimen.btn_play_pause_p06_y
+            , R.dimen.btn_play_pause_p07_y
+            , R.dimen.btn_play_pause_p08_y
+            , R.dimen.btn_play_pause_p09_y
+            , R.dimen.btn_play_pause_p10_y
+            , R.dimen.btn_play_pause_p11_y
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,33 +139,39 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
         pageFactory.setCallback(this);
         mHandler = new Handler();
         mTimerThead = new TimerThread();
-        playPauseLocation = getResources().getIntArray(R.array.btn_play_pause);
 
-        ll_play = new AbsoluteLayout(this);
-        ll_pause = new AbsoluteLayout(this);
-        ll_play.setBackgroundDrawable(getResources().getDrawable(R.drawable.play));
-        ll_pause.setBackgroundDrawable(getResources().getDrawable(R.drawable.pause));
-        params = new AbsoluteLayout.LayoutParams((int) getWinWidth(), (int) getWinHeight(), 0, 0);
-        ll_play.setLayoutParams(params);
-        ll_pause.setLayoutParams(params);
-        ll_play.setAlpha(.20f);
-        ll_pause.setAlpha(.12f);
+        ll_play = new ImageView(this);
+        ll_pause = new ImageView(this);
+        ll_play.setBackgroundDrawable(bgSrc.getPlayDrawable());
+        ll_pause.setBackgroundDrawable(bgSrc.getPauseDrawable());
+        params = new AbsoluteLayout.LayoutParams(45, 45, 677, 412);
+        params.x = (int) (getWidthScale() * getResources().getDimension(dimenXs[0]));
+        params.y = (int) (getHeightScale() * getResources().getDimension(dimenYs[0]));
+        params.width = (int) (getWidthScale() * 45);
+        params.height = (int) (getWidthScale() * 45);
     }
 
     @Override
     public void pauseOrPlay(View view, MotionEvent e) {
         preView = view;
-        if ((e.getAction() == MotionEvent.ACTION_DOWN && checkLocation(e, playPauseLocation))) {// && checkLocation(e, playPauseLocation)
+        if (setting.isAuto() && (position >= 0 && position < 12)
+                && (e.getAction() == MotionEvent.ACTION_DOWN
+                && checkLocation(e, getResources().getIntArray(playPauseLocations[position])))) {
+            System.out.println("position: " + position);
+            System.out.println("isPaused: " + isPaused);
+            System.out.println("isPlayed: " + isPlayed);
             if (ll_pause.getParent() != null)
                 ((AbsoluteLayout) ll_pause.getParent()).removeView(ll_pause);
             if (ll_play.getParent() != null)
                 ((AbsoluteLayout) ll_play.getParent()).removeView(ll_play);
             if (isPaused) {
+                ll_pause.setLayoutParams(params);
                 ((AbsoluteLayout) view).addView(ll_pause);
                 isPaused = false;
                 if (isPlayed)
                     play(position);
             } else {
+                ll_play.setLayoutParams(params);
                 ((AbsoluteLayout) view).addView(ll_play);
                 isPaused = true;
             }
@@ -136,6 +181,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
 
     @Override
     public void onFliped(View view) {
+        System.out.println("onFliped: " + (preView != null));
         if (preView != null) {
             if (ll_play.getParent() != null)
                 ((AbsoluteLayout) ll_play.getParent()).removeView(ll_play);
@@ -244,12 +290,21 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
         public void onViewFlipped(View view, int position) {
             isPaused = false;
             isPlayed = false;
+            params.x = (int) (getWidthScale() * getResources().getDimension(dimenXs[position]));
+            params.y = (int) (getHeightScale() * getResources().getDimension(dimenYs[position]));
+            params.width = (int) (getWidthScale() * 45);
+            params.height = (int) (getWidthScale() * 45);
+
+            /**
+             * about slowwer
+             */
             mHandler.postDelayed(mTimerThead, 2000);
             flipView.setFlipByTouchEnabled(false);
 
-            if (ll_pause.getParent() != null)
-                ((AbsoluteLayout) ll_pause.getParent()).removeView(ll_pause);
-            ((AbsoluteLayout) view).addView(ll_pause);
+            //about innormal page
+//            if (ll_pause.getParent() != null)
+//                ((AbsoluteLayout) ll_pause.getParent()).removeView(ll_pause);
+//            ((AbsoluteLayout) view).addView(ll_pause);
 
             setPosition(position);
             if (setting.getReadMode().isAuto() && !langChanged)
@@ -257,10 +312,6 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
             /**
              * do with abnormal gif of page02
              */
-            for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
-                System.out.println(position + " View " + i + "  " + ((AbsoluteLayout) view).getChildAt(i).getId());
-            }
-
             if (position == 1) {
                 p02 = (Page02) pageFactory.getPage(position);
                 p02_grand_start = p02.getGrandStart();

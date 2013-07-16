@@ -46,5 +46,16 @@ public class Page09 extends PageView {
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p09);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(8));
+
+        if (setting.isAuto()) {
+            pause = (AbsoluteLayout) page.findViewById(R.id.al_pause_p09);
+            pause.setVisibility(VISIBLE);
+            params = (AbsoluteLayout.LayoutParams) pause.getLayoutParams();
+            params.x = (int) (getWidthScale() * getDimens(R.dimen.btn_play_pause_p09_x));
+            params.y = (int) (getHeightScale() * getDimens(R.dimen.btn_play_pause_p09_y));
+            params.width = (int) (getWidthScale() * 45);
+            params.height = (int) (getWidthScale() * 45);
+            pause.setLayoutParams(params);
+        }
     }
 }

@@ -99,7 +99,6 @@ public class BgSrc {
             , R.drawable.ita_p12_bkg
     };
 
-
     private int[][] langPagesId = {engs, fras, deus, esps, itas};
 
     private BgSrc(Context ctx) {
@@ -165,5 +164,23 @@ public class BgSrc {
         drawableCache.clear();
         System.gc();
         System.gc();
+    }
+
+
+    private Drawable play;
+    private Drawable pause;
+
+    public Drawable getPlayDrawable() {
+        if (play == null) {
+            play = ctx.getResources().getDrawable(R.drawable.lrrh_play);
+        }
+        return play;
+    }
+
+    public Drawable getPauseDrawable() {
+        if (pause == null) {
+            pause = ctx.getResources().getDrawable(R.drawable.lrrh_pasue);
+        }
+        return pause;
     }
 }

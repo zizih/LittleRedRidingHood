@@ -262,8 +262,7 @@ public class FlipViewController extends AdapterView<Adapter> {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (playPauseCallBack != null) {
-            System.out.println("bufferedViews==null: " + bufferedViews);
+        if (playPauseCallBack != null && (event.getAction() == MotionEvent.ACTION_DOWN)) {
             playPauseCallBack.pauseOrPlay(bufferedViews.get(bufferIndex), event);
         }
         if (flipByTouchEnabled) {

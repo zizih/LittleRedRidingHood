@@ -19,6 +19,7 @@ public class PageView extends View {
     protected static Activity ctx;
     public AbsoluteLayout page;
     public AbsoluteLayout layout;
+    public AbsoluteLayout pause;
     public AbsoluteLayout.LayoutParams params;
     public BgSrc bgSrc;
     public Setting setting;

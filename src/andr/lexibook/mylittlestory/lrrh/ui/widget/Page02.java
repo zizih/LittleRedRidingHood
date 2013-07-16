@@ -76,6 +76,16 @@ public class Page02 extends PageView implements GifMovieView.DispearCallback {
                 (int) (getHeightScale() * getDimens(R.dimen.p02_grand_loop_y)));
         grand_loop.setLayoutParams(params);
 
+        if (setting.isAuto()) {
+            pause = (AbsoluteLayout) page.findViewById(R.id.al_pause_p02);
+            pause.setVisibility(VISIBLE);
+            params = (AbsoluteLayout.LayoutParams) pause.getLayoutParams();
+            params.x = (int) (getWidthScale() * getDimens(R.dimen.btn_play_pause_p02_x));
+            params.y = (int) (getHeightScale() * getDimens(R.dimen.btn_play_pause_p02_y));
+            params.width = (int) (getWidthScale() * 45);
+            params.height = (int) (getWidthScale() * 45);
+            pause.setLayoutParams(params);
+        }
     }
 
     @Override

@@ -47,7 +47,7 @@
     <dimen name="p02_grand_loop_y">226px</dimen>
     <dimen name="p02_grand_start_x">540px</dimen>
     <dimen name="p02_grand_start_y">213px</dimen>
-    <dimen name="p02_mother_x">0px</dimen>
+    <dimen name="p02_mother_x">-3px</dimen>
     <dimen name="p02_mother_y">112px</dimen>
     <dimen name="p02_window_x">60px</dimen>
     <dimen name="p02_window_y">16px</dimen>
@@ -61,7 +61,7 @@
     <dimen name="p03_wolf_x">508px</dimen>
     <dimen name="p03_wolf_y">167px</dimen>
 
-    <dimen name="p04_grand_x">385px</dimen>
+    <dimen name="p04_grand_x">390px</dimen>
     <dimen name="p04_grand_y">183px</dimen>
     <dimen name="p04_wolf_x">8px</dimen>
     <dimen name="p04_wolf_y">140px</dimen>
@@ -100,7 +100,7 @@
     <dimen name="p09_wolf_y">144px</dimen>
 
     <dimen name="p10_cloud_x">6px</dimen>
-    <dimen name="p10_cloud_y">89px</dimen>
+    <dimen name="p10_cloud_y">94px</dimen>
     <dimen name="p10_grand_red_x">57px</dimen>
     <dimen name="p10_grand_red_y">190px</dimen>
     <dimen name="p10_hunter_x">424px</dimen>
@@ -123,7 +123,30 @@
     <dimen name="p12_btn_menu_y">378px</dimen>
     <dimen name="p12_btn_quit_x">564px</dimen>
     <dimen name="p12_btn_quit_y">378px</dimen>
-    <dimen name="p12_red_x">123px</dimen>
+    <dimen name="p12_red_x">115px</dimen>
     <dimen name="p12_red_y">66px</dimen>
 
+
+    <dimen name="btn_play_pause_p01_x">677px</dimen>
+    <dimen name="btn_play_pause_p01_y">412px</dimen>
+    <dimen name="btn_play_pause_p02_x">685px</dimen>
+    <dimen name="btn_play_pause_p02_y">413px</dimen>
+    <dimen name="btn_play_pause_p03_x">679px</dimen>
+    <dimen name="btn_play_pause_p03_y">416px</dimen>
+    <dimen name="btn_play_pause_p04_x">684px</dimen>
+    <dimen name="btn_play_pause_p04_y">415px</dimen>
+    <dimen name="btn_play_pause_p05_x">678px</dimen>
+    <dimen name="btn_play_pause_p05_y">422px</dimen>
+    <dimen name="btn_play_pause_p06_x">680px</dimen>
+    <dimen name="btn_play_pause_p06_y">415px</dimen>
+    <dimen name="btn_play_pause_p07_x">679px</dimen>
+    <dimen name="btn_play_pause_p07_y">417px</dimen>
+    <dimen name="btn_play_pause_p08_x">677px</dimen>
+    <dimen name="btn_play_pause_p08_y">420px</dimen>
+    <dimen name="btn_play_pause_p09_x">679px</dimen>
+    <dimen name="btn_play_pause_p09_y">415px</dimen>
+    <dimen name="btn_play_pause_p10_x">679px</dimen>
+    <dimen name="btn_play_pause_p10_y">417px</dimen>
+    <dimen name="btn_play_pause_p11_x">678px</dimen>
+    <dimen name="btn_play_pause_p11_y">415px</dimen>
 </resources>

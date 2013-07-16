@@ -47,6 +47,16 @@ public class Page07 extends PageView {
         params.y = (int) (getHeightScale() * getDimens(R.dimen.p07_wolf_y));
         wolf.setLayoutParams(params);
 
+        if (setting.isAuto()) {
+            pause = (AbsoluteLayout) page.findViewById(R.id.al_pause_p07);
+            pause.setVisibility(VISIBLE);
+            params = (AbsoluteLayout.LayoutParams) pause.getLayoutParams();
+            params.x = (int) (getWidthScale() * getDimens(R.dimen.btn_play_pause_p07_x));
+            params.y = (int) (getHeightScale() * getDimens(R.dimen.btn_play_pause_p07_y));
+            params.width = (int) (getWidthScale() * 45);
+            params.height = (int) (getWidthScale() * 45);
+            pause.setLayoutParams(params);
+        }
     }
 
     public GifMovieView getWindow() {
