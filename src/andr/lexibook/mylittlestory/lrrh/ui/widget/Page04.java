@@ -25,15 +25,15 @@ public class Page04 extends PageView {
         wolf.setMovieAsset(ctx.getString(R.string.p04_wolf));
         grand.setMovieAsset(ctx.getString(R.string.p04_grand));
 
-        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p04_wolf_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p04_wolf_y));
-        wolf.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) grand.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p04_grand_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p04_grand_y));
-        grand.setLayoutParams(params);
+//        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        wolf.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) grand.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        grand.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p04);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(3));

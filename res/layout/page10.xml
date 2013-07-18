@@ -9,38 +9,28 @@
 
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p10_cloud"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p10_cloud_x"
-            android:layout_y="@dimen/p10_cloud_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p10_grand_red"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p10_grand_red_x"
-            android:layout_y="@dimen/p10_grand_red_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p10_hunter"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p10_hunter_x"
-            android:layout_y="@dimen/p10_hunter_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p10_stone"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p10_stone_x"
-            android:layout_y="@dimen/p10_stone_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p10_wolf"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p10_wolf_x"
-            android:layout_y="@dimen/p10_wolf_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <LinearLayout
             android:id="@+id/ll_bg_cover"

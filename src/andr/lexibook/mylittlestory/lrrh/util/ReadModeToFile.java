@@ -3,7 +3,6 @@ package andr.lexibook.mylittlestory.lrrh.util;
 import andr.lexibook.mylittlestory.lrrh.model.ReadMode;
 import android.app.Activity;
 import android.content.Context;
-import android.os.Environment;
 
 import java.io.*;
 

@@ -9,27 +9,27 @@
 
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p02_window"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p02_window_x"
-            android:layout_y="@dimen/p02_window_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
 
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p02_mother"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p02_mother_x"
-            android:layout_y="@dimen/p02_mother_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p02_red"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p02_red_x"
-            android:layout_y="@dimen/p02_red_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
 
+    <AbsoluteLayout
+            android:id="@+id/al_p02_mother"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:background="@drawable/p02_mother"
+            ></AbsoluteLayout>
     <AbsoluteLayout
             android:id="@+id/al_pause_p02"
             android:layout_height="wrap_content"

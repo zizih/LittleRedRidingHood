@@ -5,9 +5,6 @@ import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.PageView;
 import android.content.Context;
 import android.widget.AbsoluteLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 /**
  * User: rain
@@ -37,30 +34,30 @@ public class Page10 extends PageView {
         stone.setMovieAsset(ctx.getString(R.string.p10_stone));
         wolf.setMovieAsset(ctx.getString(R.string.p10_wolf));
 
-        params = (AbsoluteLayout.LayoutParams) cloud.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p10_cloud_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p10_cloud_y));
-        cloud.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) grand_red.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p10_grand_red_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p10_grand_red_y));
-        grand_red.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) hunter.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p10_hunter_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p10_hunter_y));
-        hunter.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) stone.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p10_stone_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p10_stone_y));
-        stone.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p10_wolf_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p10_wolf_y));
-        wolf.setLayoutParams(params);
+//        params = (AbsoluteLayout.LayoutParams) cloud.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        cloud.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) grand_red.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        grand_red.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) hunter.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        hunter.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) stone.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        stone.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        wolf.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p10);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(9));

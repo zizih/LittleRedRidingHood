@@ -34,15 +34,15 @@ public class Page09 extends PageView {
         params.y = (int) (getHeightScale() * getDimens(R.dimen.p09_basket_y));
         basket.setLayoutParams(params);
 
-        params = (AbsoluteLayout.LayoutParams) hunter.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p09_hunter_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p09_hunter_y));
-        hunter.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p09_wolf_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p09_wolf_y));
-        wolf.setLayoutParams(params);
+//        params = (AbsoluteLayout.LayoutParams) hunter.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        hunter.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        wolf.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p09);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(8));

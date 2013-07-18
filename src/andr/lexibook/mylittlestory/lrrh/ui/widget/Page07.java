@@ -32,20 +32,20 @@ public class Page07 extends PageView {
         wolf.setMovieAsset(ctx.getString(R.string.p07_wolf));
 
         //dynamic
-        params = (AbsoluteLayout.LayoutParams) window.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p07_window_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p07_window_y));
-        window.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) red.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p07_red_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p07_red_y));
-        red.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p07_wolf_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p07_wolf_y));
-        wolf.setLayoutParams(params);
+//        params = (AbsoluteLayout.LayoutParams) window.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        window.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) red.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        red.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        wolf.setLayoutParams(params);
 
         if (setting.isAuto()) {
             pause = (AbsoluteLayout) page.findViewById(R.id.al_pause_p07);

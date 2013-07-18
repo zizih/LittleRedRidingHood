@@ -31,24 +31,25 @@ public class Page08 extends PageView {
         wolf.setMovieAsset(ctx.getString(R.string.p08_wolf));
         hat.setMovieAsset(ctx.getString(R.string.p08_hat));
 
-        params = (AbsoluteLayout.LayoutParams) basket.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p08_basket_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p08_basket_y));
-        basket.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) red.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p08_red_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p08_red_y));
-
-        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p08_wolf_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p08_wolf_y));
-        wolf.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) hat.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p08_hat_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p08_hat_y));
-        hat.setLayoutParams(params);
+//        params = (AbsoluteLayout.LayoutParams) basket.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        basket.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) red.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        red.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        wolf.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) hat.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        hat.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.ll_p08_bg_cover);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(7));

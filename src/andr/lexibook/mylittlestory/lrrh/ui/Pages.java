@@ -198,6 +198,8 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
                 mPlayer.release();
             toPage(Menu.class);
         }
+        if (keyCode == KeyEvent.KEYCODE_HOME && mPlayer != null)
+            mPlayer.release();
         return false;
     }
 
@@ -335,6 +337,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
                 ((AbsoluteLayout) view).addView(p02_grand_loop);
                 ((AbsoluteLayout) view).addView(p02_window);
                 ((AbsoluteLayout) view).addView(p02_mother);
+                ((AbsoluteLayout) view).addView(p02.getMotherCover());
                 if (p02MotherIndex != -1) {
                     ((AbsoluteLayout) view).removeViewAt(p02WindowIndex);
                     if (p02MotherIndex > p02WindowIndex)
@@ -422,6 +425,8 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
         super.onPause();
         System.out.println("Pages OnPause ");
         flipView.onPause();
+        if (mPlayer != null)
+            mPlayer.release();
     }
 
     @Override

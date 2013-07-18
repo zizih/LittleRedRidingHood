@@ -31,25 +31,25 @@ public class Page11 extends PageView {
         red.setMovieAsset(ctx.getString(R.string.p11_red));
         wolf.setMovieAsset(ctx.getString(R.string.p11_wolf));
 
-        params = (AbsoluteLayout.LayoutParams) grand.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p11_grand_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p11_grand_y));
-        grand.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) hunter.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p11_hunter_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p11_hunter_y));
-        hunter.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) red.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p11_red_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p11_red_y));
-        red.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p11_wolf_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p11_wolf_y));
-        wolf.setLayoutParams(params);
+//        params = (AbsoluteLayout.LayoutParams) grand.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        grand.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) hunter.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        hunter.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) red.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        red.setLayoutParams(params);
+//
+//        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
+//        params.width = (int) getWinWidth();
+//        params.height = (int) getWinHeight();
+//        wolf.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p11);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(10));

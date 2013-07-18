@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Movie;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -193,11 +194,11 @@ public class GifMovieView extends View {
 			/*
              * calculate overall scale
 			 */
-            mScaleX = 1f / scaleW * ViewUtil.getInstance(ctx).getWidthScale();
-            mScaleY = 1f / scaleH * ViewUtil.getInstance(ctx).getHeightScale();
+            mScaleX = ViewUtil.getInstance(ctx).getWidthScale();
+            mScaleY = ViewUtil.getInstance(ctx).getHeightScale();
 
             mMeasuredMovieWidth = (int) (movieWidth * mScaleX);
-            mMeasuredMovieHeight = (int) (movieHeight * mScaleY);
+            mMeasuredMovieHeight = (int) (movieWidth * mScaleY);
 
             setMeasuredDimension(mMeasuredMovieWidth, mMeasuredMovieHeight);
 

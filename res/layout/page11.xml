@@ -9,31 +9,23 @@
 
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p11_grand"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p11_grand_x"
-            android:layout_y="@dimen/p11_grand_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p11_hunter"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p11_hunter_x"
-            android:layout_y="@dimen/p11_hunter_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p11_red"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p11_red_x"
-            android:layout_y="@dimen/p11_red_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p11_wolf"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p11_wolf_x"
-            android:layout_y="@dimen/p11_wolf_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
 
     <AbsoluteLayout

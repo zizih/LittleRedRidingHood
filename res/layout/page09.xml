@@ -16,17 +16,13 @@
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p09_hunter"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p09_hunter_x"
-            android:layout_y="@dimen/p09_hunter_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p09_wolf"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p09_wolf_x"
-            android:layout_y="@dimen/p09_wolf_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
 
     <AbsoluteLayout

@@ -23,9 +23,7 @@
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p12_red"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p12_red_x"
-            android:layout_y="@dimen/p12_red_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
 </AbsoluteLayout>
