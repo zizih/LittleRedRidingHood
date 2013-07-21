@@ -25,7 +25,7 @@ public class Menu extends BaseActivity implements View.OnClickListener {
     private AbsoluteLayout.LayoutParams params;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
         btnSrc = BtnGifSrc.getInstance(this);
@@ -75,6 +75,7 @@ public class Menu extends BaseActivity implements View.OnClickListener {
 
         //
         red.setMenuCallBack(this);
+        setMenuView(findViewById(R.id.any_widget_4_menu));
     }
 
     @Override

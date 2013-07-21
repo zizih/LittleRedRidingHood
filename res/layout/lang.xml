@@ -6,6 +6,11 @@
                 android:layout_height="fill_parent"
                 android:background="@drawable/lang_bkg">
 
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/any_widget_4_menu_lang"/>
+
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_lang_eng"
             android:layout_height="wrap_content"

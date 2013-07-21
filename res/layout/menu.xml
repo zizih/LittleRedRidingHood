@@ -7,6 +7,10 @@
                 android:id="@+id/layout_menu"
                 android:background="@drawable/menu_bkg"
         >
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/any_widget_4_menu"/>
 
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_menu_grand"

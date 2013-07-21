@@ -61,6 +61,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
     private ImageView ll_pause;
     private AbsoluteLayout.LayoutParams params;
     private View preView;
+    private AbsoluteLayout al_pages;
 
     protected int[] playPauseLocations = {
             R.array.btn_play_pause_p01
@@ -102,17 +103,19 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.pages);
         bgSrc = BgSrc.getInstance(this);
         pageFactory = PageFactory.getInstance(this);
+        al_pages = (AbsoluteLayout) findViewById(R.id.al_pages);
 
         flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
         flipView.setPlayPauseCallBack(this);
         flipAdapter = new FlipAdapter(this);
         flipView.setAdapter(flipAdapter);
         flipAdapter.notifyDataSetChanged();
-        setContentView(flipView);
+        al_pages.addView(flipView);
 
 //        setting.setAuto(false);
         flipListener = new Fliplistener();
@@ -149,6 +152,8 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
         params.y = (int) (getHeightScale() * getResources().getDimension(dimenYs[0]));
         params.width = (int) (getWidthScale() * 43);
         params.height = (int) (getWidthScale() * 43);
+
+        setMenuView(findViewById(R.id.any_widget_4_menu_pages));
     }
 
     @Override
@@ -193,6 +198,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        super.onKeyDown(keyCode, event);
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             if (mPlayer != null && mPlayer.isPlaying())
                 mPlayer.release();

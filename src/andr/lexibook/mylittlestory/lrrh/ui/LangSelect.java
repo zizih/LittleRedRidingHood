@@ -24,9 +24,10 @@ public class LangSelect extends BaseActivity implements GifMovieView.DispearCall
     private AbsoluteLayout.LayoutParams params;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lang);
+        setMenuView(findViewById(R.id.any_widget_4_menu_lang));
 
         //init
         eng = (GifMovieView) findViewById(R.id.gif_lang_eng);
@@ -72,16 +73,6 @@ public class LangSelect extends BaseActivity implements GifMovieView.DispearCall
         params.x = (int) (getWidthScale() * getDimens(R.dimen.lang_grand_x));
         params.y = (int) (getHeightScale() * getDimens(R.dimen.lang_grand_y));
         grand.setLayoutParams(params);
-
-//        eng.dispear(3400, this);
-//        fra.delay(3000);
-//        fra.dispear(3000 + 3400, this);
-//        deu.delay(3000 * 2);
-//        deu.dispear(3000 * 2 + 3400, this);
-//        esp.delay(3000 * 3);
-//        esp.dispear(3000 * 3 + 3000, this);
-//        ita.delay(3000 * 4);
-//        ita.dispear(3000 * 4 + 3000, this);
 
         eng.setOnClickListener(this);
         fra.setOnClickListener(this);

@@ -4,6 +4,7 @@ import andr.lexibook.mylittlestory.lrrh.control.BgSrc;
 import andr.lexibook.mylittlestory.lrrh.control.BtnGifSrc;
 import andr.lexibook.mylittlestory.lrrh.control.MediaFactory;
 import andr.lexibook.mylittlestory.lrrh.control.Setting;
+import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.CustomMenuItem;
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.MenuRedGif;
 import andr.lexibook.mylittlestory.lrrh.util.ViewUtil;
 import android.app.Activity;
@@ -23,13 +24,7 @@ import java.io.IOException;
  * Date: 4/23/13
  * Time: 8:05 PM
  */
-public class BaseActivity extends Activity implements MenuRedGif.MenuCallBack {
-
-    public final int ENGLISH = 0;
-    public final int FRANCH = 1;
-    public final int EUTSCH = 2;
-    public final int ESPANOL = 3;
-    public final int ITALIANO = 4;
+public class BaseActivity extends CustomMenuBase implements MenuRedGif.MenuCallBack {
 
     public int WIN_WIDTH;
     public int WIN_HEIGHT;
@@ -48,7 +43,7 @@ public class BaseActivity extends Activity implements MenuRedGif.MenuCallBack {
     public boolean langChanged;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(" Oncreate: ", this.getClass().getName());
         toPage = new Intent();
@@ -76,31 +71,9 @@ public class BaseActivity extends Activity implements MenuRedGif.MenuCallBack {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        inflater.inflate(R.menu.language, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.lang_english:
-                setLanguage(ENGLISH);
-                break;
-            case R.id.lang_franch:
-                setLanguage(FRANCH);
-                break;
-            case R.id.lang_eutsch:
-                setLanguage(EUTSCH);
-                break;
-            case R.id.lang_espanol:
-                setLanguage(ESPANOL);
-                break;
-            case R.id.lang_italiano:
-                setLanguage(ITALIANO);
-                break;
-        }
-        return true;
+    public void MenuItemSelectedEvent(CustomMenuItem selection) {
+        super.MenuItemSelectedEvent(selection);
+        setLanguage(selection.getId());
     }
 
     @Override
@@ -115,6 +88,7 @@ public class BaseActivity extends Activity implements MenuRedGif.MenuCallBack {
     /**
      * 清理gif后 页面跳转
      */
+
     public void toPage(Class<?> cls) {
         toPage.setClass(this, cls);
         startActivity(toPage);
