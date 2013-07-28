@@ -17,6 +17,7 @@ public class PageFactory {
 
     private Activity ctx;
     private static PageFactory instance;
+    private PageView pageView;
     private int pageIndex;
     private Class[] clzz = {
             Page01.class
@@ -44,9 +45,12 @@ public class PageFactory {
     }
 
     public PageView getPage(int position) {
-        pageIndex = position;
+        if (position != position) {
+            pageIndex = position;
+            pageView.Clear();
+        }
         try {
-            return (PageView) clzz[position].getConstructors()[0].newInstance(ctx);
+            pageView = (PageView) clzz[position].getConstructors()[0].newInstance(ctx);
         } catch (InstantiationException e) {
             e.printStackTrace();
             reloadPage();
@@ -55,7 +59,7 @@ public class PageFactory {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        return null;
+        return pageView;
     }
 
     public int getCount() {
