@@ -31,22 +31,6 @@ public class Page07 extends PageView {
         red.setMovieAsset(ctx.getString(R.string.p07_red));
         wolf.setMovieAsset(ctx.getString(R.string.p07_wolf));
 
-        //dynamic
-        params = (AbsoluteLayout.LayoutParams) window.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p07_window_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p07_window_y));
-        window.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) red.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p07_red_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p07_red_y));
-        red.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p07_wolf_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p07_wolf_y));
-        wolf.setLayoutParams(params);
-
         if (setting.isAuto()) {
             pause = (AbsoluteLayout) page.findViewById(R.id.al_pause_p07);
             pause.setVisibility(VISIBLE);

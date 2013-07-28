@@ -1,10 +1,8 @@
 package andr.lexibook.mylittlestory.lrrh.ui;
 
 import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AbsoluteLayout;
+import android.view.MotionEvent;
 
 
 /**
@@ -13,7 +11,7 @@ import android.widget.AbsoluteLayout;
  * Time: 7:44 PM
  */
 @SuppressWarnings("deprecation")
-public class LangSelect extends BaseActivity implements GifMovieView.DispearCallback, View.OnClickListener {
+public class LangSelect extends BaseActivity{
 
     private GifMovieView eng;
     private GifMovieView fra;
@@ -21,7 +19,12 @@ public class LangSelect extends BaseActivity implements GifMovieView.DispearCall
     private GifMovieView esp;
     private GifMovieView ita;
     private GifMovieView grand;
-    private AbsoluteLayout.LayoutParams params;
+
+    private int[] eng_location;
+    private int[] fra_location;
+    private int[] deu_location;
+    private int[] esp_location;
+    private int[] ita_location;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,78 +47,47 @@ public class LangSelect extends BaseActivity implements GifMovieView.DispearCall
         ita.setMovieAsset(getString(R.string.lang_ita_box));
         grand.setMovieAsset(getString(R.string.lang_grand));
 
-        params = (AbsoluteLayout.LayoutParams) eng.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.lang_eng_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.lang_eng_y));
-        eng.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) fra.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.lang_fra_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.lang_fra_y));
-        fra.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) deu.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.lang_deu_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.lang_deu_y));
-        deu.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) esp.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.lang_esp_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.lang_esp_y));
-        esp.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) ita.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.lang_ita_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.lang_ita_y));
-        ita.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) grand.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.lang_grand_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.lang_grand_y));
-        grand.setLayoutParams(params);
-
-        eng.setOnClickListener(this);
-        fra.setOnClickListener(this);
-        deu.setOnClickListener(this);
-        esp.setOnClickListener(this);
-        ita.setOnClickListener(this);
+        eng_location = getResources().getIntArray(R.array.lang_eng_location);
+        fra_location = getResources().getIntArray(R.array.lang_fra_location);
+        deu_location = getResources().getIntArray(R.array.lang_deu_location);
+        esp_location = getResources().getIntArray(R.array.lang_esp_location);
+        ita_location = getResources().getIntArray(R.array.lang_ita_location);
 
     }
 
     @Override
-    public void dispear(View view) {
-        view.setBackgroundColor(Color.TRANSPARENT);
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.gif_lang_eng:
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (checkLocation(event, eng_location)) {
                 setLanguage(ENGLISH);
-                break;
-            case R.id.gif_lang_fra:
+            }
+            if (checkLocation(event, fra_location)) {
                 setLanguage(FRANCH);
-                break;
-            case R.id.gif_lang_deu:
+            }
+            if (checkLocation(event, deu_location)) {
                 setLanguage(EUTSCH);
-                break;
-            case R.id.gif_lang_esp:
+            }
+            if (checkLocation(event, esp_location)) {
                 setLanguage(ESPANOL);
-                break;
-            case R.id.gif_lang_ita:
+            }
+            if (checkLocation(event, ita_location)) {
                 setLanguage(ITALIANO);
-                break;
+            }
+            System.out.println("Lang To Menu...");
+            toPage(Menu.class);
         }
-        toPage(Menu.class);
+        return super.onTouchEvent(event);
     }
 
     @Override
     protected void onDestroy() {
+        System.out.println("Lang Destroy");
         eng.Clear();
         fra.Clear();
         deu.Clear();
         esp.Clear();
         ita.Clear();
+        grand.Clear();
         super.onDestroy();
     }
 }

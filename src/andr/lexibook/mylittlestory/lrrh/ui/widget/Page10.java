@@ -21,6 +21,7 @@ public class Page10 extends PageView {
     private GifMovieView hunter;
     private GifMovieView stone;
     private GifMovieView wolf;
+    private AbsoluteLayout al_p10_cover;
 
     public Page10(Context context) {
         super(context, R.layout.page10);
@@ -30,6 +31,7 @@ public class Page10 extends PageView {
         hunter = (GifMovieView) page.findViewById(R.id.gif_p10_hunter);
         stone = (GifMovieView) page.findViewById(R.id.gif_p10_stone);
         wolf = (GifMovieView) page.findViewById(R.id.gif_p10_wolf);
+        al_p10_cover = (AbsoluteLayout) findViewById(R.id.ll_p10_bg_cover);
 
         cloud.setMovieAsset(ctx.getString(R.string.p10_cloud));
         grand_red.setMovieAsset(ctx.getString(R.string.p10_grand_red));
@@ -37,30 +39,11 @@ public class Page10 extends PageView {
         stone.setMovieAsset(ctx.getString(R.string.p10_stone));
         wolf.setMovieAsset(ctx.getString(R.string.p10_wolf));
 
-        params = (AbsoluteLayout.LayoutParams) cloud.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p10_cloud_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p10_cloud_y));
-        cloud.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) grand_red.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p10_grand_red_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p10_grand_red_y));
-        grand_red.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) hunter.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p10_hunter_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p10_hunter_y));
-        hunter.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) stone.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p10_stone_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p10_stone_y));
-        stone.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p10_wolf_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p10_wolf_y));
-        wolf.setLayoutParams(params);
+        //dynamic
+        params = (AbsoluteLayout.LayoutParams) al_p10_cover.getLayoutParams();
+        params.width = (int) getWinWidth();
+        params.height = (int) getWinHeight();
+        al_p10_cover.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p10);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(9));

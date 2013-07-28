@@ -43,21 +43,6 @@ public class Menu extends BaseActivity implements View.OnClickListener {
         btn_read_auto.setMovieAsset(btnSrc.setLang(setting.getLangId()).getMenuAuto());
         btn_read_self.setMovieAsset(btnSrc.setLang(setting.getLangId()).getMenuSelf());
 
-        params = (AbsoluteLayout.LayoutParams) wolf.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.menu_wolf_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.menu_wolf_y));
-        wolf.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) red.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.menu_red_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.menu_red_y));
-        red.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) grand.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.menu_grand_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.menu_grand_y));
-        grand.setLayoutParams(params);
-
         params = (AbsoluteLayout.LayoutParams) btn_read_auto.getLayoutParams();
         params.x = (int) (getWidthScale() * getDimens(R.dimen.menu_read_auto_x));
         params.y = (int) (getHeightScale() * getDimens(R.dimen.menu_read_auto_y));
@@ -103,7 +88,6 @@ public class Menu extends BaseActivity implements View.OnClickListener {
             @Override
             public void run() {
                 toPage(Pages.class);
-                onDestroy();
             }
         }, 2000);
     }
@@ -123,12 +107,19 @@ public class Menu extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        red.releasePlay();
+    }
+
+    @Override
     protected void onDestroy() {
-        wolf = null;
-        red = null;
-        grand = null;
-        btn_read_self = null;
-        btn_read_auto = null;
+        System.out.println("Menu Destroy");
+        wolf.Clear();
+        red.Clear();
+        grand.Clear();
+        btn_read_self.Clear();
+        btn_read_auto.Clear();
         super.onDestroy();
     }
 

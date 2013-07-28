@@ -318,11 +318,6 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
             mHandler.postDelayed(mTimerThead, 2000);
             flipView.setFlipByTouchEnabled(false);
 
-            //about innormal page
-//            if (ll_pause.getParent() != null)
-//                ((AbsoluteLayout) ll_pause.getParent()).removeView(ll_pause);
-//            ((AbsoluteLayout) view).addView(ll_pause);
-
             setPosition(position);
             if (setting.getReadMode().isAuto() && !langChanged)
                 play(position);
@@ -347,6 +342,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
                 ((AbsoluteLayout) view).addView(p02_grand_loop);
                 ((AbsoluteLayout) view).addView(p02_window);
                 ((AbsoluteLayout) view).addView(p02_mother);
+                ((AbsoluteLayout) view).addView(p02.getMotherCover());
                 if (p02MotherIndex != -1) {
                     ((AbsoluteLayout) view).removeViewAt(p02WindowIndex);
                     if (p02MotherIndex > p02WindowIndex)

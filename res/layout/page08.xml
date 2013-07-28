@@ -10,35 +10,27 @@
 
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p08_hat"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p08_hat_x"
-            android:layout_y="@dimen/p08_hat_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p08_red"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p08_red_x"
-            android:layout_y="@dimen/p08_red_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p08_wolf"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p08_wolf_x"
-            android:layout_y="@dimen/p08_wolf_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p08_basket"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_x="@dimen/p08_basket_x"
-            android:layout_y="@dimen/p08_basket_y"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             />
     <AbsoluteLayout android:id="@+id/ll_p08_bg_cover"
-                  android:layout_height="fill_parent"
-                  android:layout_width="fill_parent"></AbsoluteLayout>
+                    android:layout_height="fill_parent"
+                    android:layout_width="fill_parent"></AbsoluteLayout>
 
     <AbsoluteLayout
             android:id="@+id/al_pause_p08"

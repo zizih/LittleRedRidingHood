@@ -24,16 +24,6 @@ public class Page01 extends PageView {
         red.setMovieAsset(context.getString(R.string.p01_red));
         grand.setMovieAsset(context.getString(R.string.p01_grand));
 
-        params = ((AbsoluteLayout.LayoutParams) red.getLayoutParams());
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p01_red_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p01_red_y));
-        red.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) grand.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p01_grand_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p01_grand_y));
-        grand.setLayoutParams(params);
-
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p01);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(0));
 

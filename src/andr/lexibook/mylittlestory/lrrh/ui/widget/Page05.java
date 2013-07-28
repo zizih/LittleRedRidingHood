@@ -25,16 +25,6 @@ public class Page05 extends PageView {
         door.setMovieAsset(ctx.getString(R.string.p05_door));
         grand_wolf.setMovieAsset(ctx.getString(R.string.p05_grand_wolf));
 
-        params = (AbsoluteLayout.LayoutParams) door.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p05_door_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p05_door_y));
-        door.setLayoutParams(params);
-
-        params = (AbsoluteLayout.LayoutParams) grand_wolf.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p05_grand_wolf_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p05_grand_wolf_y));
-        grand_wolf.setLayoutParams(params);
-
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p05);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(4));
 

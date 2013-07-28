@@ -39,11 +39,6 @@ public class Page12 extends PageView implements View.OnClickListener {
         btn_quit.setMovieAsset(btnSrc.setLang(setting.getLangId()).getQuit());
         red.setMovieAsset(ctx.getString(R.string.p12_red));
 
-        params = (AbsoluteLayout.LayoutParams) red.getLayoutParams();
-        params.x = (int) (getWidthScale() * getDimens(R.dimen.p12_red_x));
-        params.y = (int) (getHeightScale() * getDimens(R.dimen.p12_red_y));
-        red.setLayoutParams(params);
-
         params = (AbsoluteLayout.LayoutParams) btn_menu.getLayoutParams();
         params.x = (int) (getWidthScale() * getDimens(R.dimen.p12_btn_menu_x));
         params.y = (int) (getHeightScale() * getDimens(R.dimen.p12_btn_menu_y));
