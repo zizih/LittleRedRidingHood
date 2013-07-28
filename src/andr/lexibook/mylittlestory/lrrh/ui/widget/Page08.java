@@ -64,4 +64,12 @@ public class Page08 extends PageView {
             pause.setLayoutParams(params);
         }
     }
+
+    @Override
+    public void Clear() {
+        basket.Clear();
+        red.Clear();
+        wolf.Clear();
+        hat.Clear();
+    }
 }

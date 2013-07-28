@@ -49,4 +49,9 @@ public class Page01 extends PageView {
         }
     }
 
+    @Override
+    public void Clear() {
+        red.Clear();
+        grand.Clear();
+    }
 }

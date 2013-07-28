@@ -111,11 +111,11 @@ public class LangSelect extends BaseActivity implements GifMovieView.DispearCall
 
     @Override
     protected void onDestroy() {
-        eng = null;
-        fra = null;
-        deu = null;
-        esp = null;
-        ita = null;
+        eng.Clear();
+        fra.Clear();
+        deu.Clear();
+        esp.Clear();
+        ita.Clear();
         super.onDestroy();
     }
 }

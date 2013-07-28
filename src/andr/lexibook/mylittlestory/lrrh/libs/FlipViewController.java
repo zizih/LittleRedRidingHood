@@ -251,6 +251,8 @@ public class FlipViewController extends AdapterView<Adapter> {
         public void pauseOrPlay(View view, MotionEvent e);
 
         public void onFliped(View view);
+
+        public void startFlip(View view);
     }
 
     private PlayPauseCallBack playPauseCallBack;
@@ -565,8 +567,12 @@ public class FlipViewController extends AdapterView<Adapter> {
 
     void showFlipAnimation() {
         if (!inFlipAnimation) {
-            inFlipAnimation = true;
+            if (onViewFlipListener != null) {
+                if (playPauseCallBack != null)
+                    playPauseCallBack.startFlip(bufferedViews.get(bufferIndex));
+            }
 
+            inFlipAnimation = true;
             cards.setVisible(true);
             cards.setFirstDrawFinished(false);
             surfaceView.requestRender();
@@ -648,5 +654,9 @@ public class FlipViewController extends AdapterView<Adapter> {
         if (adapterIndex + 1 < adapterDataCount) {
             cards.nextPage();
         }
+    }
+
+    public void Clear() {
+        releaseViews();
     }
 }

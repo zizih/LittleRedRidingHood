@@ -67,4 +67,11 @@ public class Page07 extends PageView {
         return window;
     }
 
+    @Override
+    public void Clear() {
+        window.Clear();
+        red.Clear();
+        wolf.Clear();
+    }
+
 }

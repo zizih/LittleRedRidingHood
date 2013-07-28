@@ -138,6 +138,10 @@ public class MenuRedGif extends GifMovieView {
             autoPlayer.release();
         if (selfPlayer != null)
             selfPlayer.release();
+        //add release gif
+        clearAnimation();
+        isAutoPlayed = true;
+        isSelfPlayed = true;
     }
 
 }

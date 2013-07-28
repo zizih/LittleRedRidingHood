@@ -353,4 +353,9 @@ public class GifMovieView extends View {
         mVisible = visibility == View.VISIBLE;
         invalidateView();
     }
+
+    public void Clear() {
+        mMovie = null;
+        clearAnimation();
+    }
 }

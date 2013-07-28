@@ -36,9 +36,9 @@
             android:layout_x="@dimen/p08_basket_x"
             android:layout_y="@dimen/p08_basket_y"
             />
-    <AbsoluteLayout android:id="@+id/ll_p08_bg_cover"
-                    android:layout_height="fill_parent"
-                    android:layout_width="fill_parent"></AbsoluteLayout>
+    <LinearLayout android:id="@+id/ll_p08_bg_cover"
+                  android:layout_height="fill_parent"
+                  android:layout_width="fill_parent"></LinearLayout>
 
     <AbsoluteLayout
             android:id="@+id/al_pause_p08"

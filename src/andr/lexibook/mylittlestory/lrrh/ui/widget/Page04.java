@@ -49,4 +49,10 @@ public class Page04 extends PageView {
             pause.setLayoutParams(params);
         }
     }
+
+    @Override
+    public void Clear() {
+        wolf.Clear();
+        grand.Clear();
+    }
 }

@@ -188,10 +188,16 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
 
     @Override
     public void onFliped(View view) {
-        System.out.println("onFliped: " + (preView != null));
         if (preView != null) {
             if (ll_play.getParent() != null)
                 ((AbsoluteLayout) ll_play.getParent()).removeView(ll_play);
+        }
+    }
+
+    @Override
+    public void startFlip(View view) {
+        if (mPlayer != null && mPlayer.isPlaying()) {
+            mPlayer.release();
         }
     }
 
@@ -205,6 +211,12 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
             toPage(Menu.class);
         }
         return false;
+    }
+
+    @Override
+    public void toPage(Class<?> cls) {
+        flipView.Clear();
+        super.toPage(cls);
     }
 
     @Override
@@ -376,7 +388,6 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
         }
     }
 
-
     class TimerThread implements Runnable {
 
         @Override
@@ -427,17 +438,16 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
     protected void onPause() {
         super.onPause();
         System.out.println("Pages OnPause ");
+        if (mPlayer != null)
+            mPlayer.release();
         flipView.onPause();
     }
 
     @Override
     protected void onDestroy() {
-        flipView = null;
-        mPlayer = null;
+        flipView.Clear();
         System.out.println("Pages OnDestroy ");
         super.onDestroy();
     }
 
 }
-
-

@@ -62,4 +62,7 @@ public class PageView extends View {
         return ViewUtil.getInstance(ctx).getWinHeight();
     }
 
+    public void Clear() {
+    }
+
 }

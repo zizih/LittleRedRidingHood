@@ -89,6 +89,15 @@ public class Page02 extends PageView implements GifMovieView.DispearCallback {
     }
 
     @Override
+    public void Clear() {
+        window.Clear();
+        mother.Clear();
+        red.Clear();
+        grand_loop.Clear();
+        grand_start.Clear();
+    }
+
+    @Override
     public void dispear(View view) {
         view.setVisibility(GONE);
     }

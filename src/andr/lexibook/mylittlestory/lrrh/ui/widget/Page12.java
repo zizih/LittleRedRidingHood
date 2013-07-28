@@ -68,13 +68,19 @@ public class Page12 extends PageView implements View.OnClickListener {
             case R.id.gif_p12_btn_menu:
                 ctx.startActivity(menuIntent);
                 ctx.finish();
-                System.gc();
                 break;
             case R.id.gif_p12_btn_quit:
                 ctx.finish();
                 System.exit(0);
                 break;
         }
+    }
+
+    @Override
+    public void Clear() {
+        btn_menu.Clear();
+        btn_quit.Clear();
+        red.Clear();
     }
 
 }

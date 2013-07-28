@@ -76,4 +76,13 @@ public class Page10 extends PageView {
             pause.setLayoutParams(params);
         }
     }
+
+    @Override
+    public void Clear() {
+        cloud.Clear();
+        wolf.Clear();
+        grand_red.Clear();
+        hunter.Clear();
+        stone.Clear();
+    }
 }

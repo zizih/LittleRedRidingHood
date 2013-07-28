@@ -57,4 +57,11 @@ public class Page03 extends PageView {
             pause.setLayoutParams(params);
         }
     }
+
+    @Override
+    public void Clear() {
+        red.Clear();
+        board.Clear();
+        wolf.Clear();
+    }
 }

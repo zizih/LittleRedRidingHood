@@ -65,4 +65,12 @@ public class Page11 extends PageView {
             pause.setLayoutParams(params);
         }
     }
+
+    @Override
+    public void Clear() {
+        grand.Clear();
+        red.Clear();
+        hunter.Clear();
+        wolf.Clear();
+    }
 }
