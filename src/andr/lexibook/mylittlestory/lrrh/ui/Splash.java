@@ -62,7 +62,6 @@ public class Splash extends BaseActivity implements View.OnClickListener {
         } else {
             toPage(Menu.class);
         }
-        finish();
     }
 
     @Override

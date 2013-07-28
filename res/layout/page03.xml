@@ -17,6 +17,8 @@
             android:id="@+id/gif_p03_red"
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
+            android:layout_x="@dimen/p03_red_x"
+            android:layout_y="@dimen/p03_red_y"
             />
 
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView

@@ -9,11 +9,6 @@
         >
 
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
-            android:id="@+id/gif_p08_hat"
-            android:layout_height="fill_parent"
-            android:layout_width="fill_parent"
-            />
-    <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p08_red"
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
@@ -23,6 +18,13 @@
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
             />
+
+    <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
+            android:id="@+id/gif_p08_hat"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            />
+
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p08_basket"
             android:layout_height="fill_parent"

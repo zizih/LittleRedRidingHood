@@ -28,6 +28,12 @@ public class Page03 extends PageView {
         board.setMovieAsset(ctx.getString(R.string.p03_board));
         wolf.setMovieAsset(ctx.getString(R.string.p03_wolf));
 
+        //dynamic
+        params = (AbsoluteLayout.LayoutParams) red.getLayoutParams();
+        params.x = (int) (getWidthScale() * getDimens(R.dimen.p03_red_x));
+        params.y = (int) (getHeightScale() * getDimens(R.dimen.p03_red_y));
+        red.setLayoutParams(params);
+
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p03);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(2));
 

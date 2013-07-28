@@ -73,7 +73,6 @@ public class LangSelect extends BaseActivity{
             if (checkLocation(event, ita_location)) {
                 setLanguage(ITALIANO);
             }
-            System.out.println("Lang To Menu...");
             toPage(Menu.class);
         }
         return super.onTouchEvent(event);
@@ -81,7 +80,6 @@ public class LangSelect extends BaseActivity{
 
     @Override
     protected void onDestroy() {
-        System.out.println("Lang Destroy");
         eng.Clear();
         fra.Clear();
         deu.Clear();

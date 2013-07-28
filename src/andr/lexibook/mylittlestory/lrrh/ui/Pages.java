@@ -10,6 +10,7 @@ import andr.lexibook.mylittlestory.lrrh.ui.widget.Page07;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -349,6 +350,14 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
                         p02MotherIndex--;
                     ((AbsoluteLayout) view).removeViewAt(p02MotherIndex);
                 }
+
+                //add pause
+                if (ll_pause.getParent() != null)
+                    ((AbsoluteLayout) ll_pause.getParent()).removeView(ll_pause);
+                ll_pause.setLayoutParams(params);
+                ((AbsoluteLayout) view).addView(ll_pause);
+
+                //
                 p02 = null;
                 p02_window = null;
                 p02_mother = null;
@@ -420,14 +429,12 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
     @Override
     protected void onResume() {
         super.onResume();
-        System.out.println("Pages OnResume ");
         flipView.onResume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        System.out.println("Pages OnPause ");
         if (mPlayer != null)
             mPlayer.release();
         flipView.onPause();
@@ -436,7 +443,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
     @Override
     protected void onDestroy() {
         flipView.Clear();
-        System.out.println("Pages OnDestroy ");
+        Log.i(" Activity: ", "Pages OnDestroy ");
         super.onDestroy();
     }
 

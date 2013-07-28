@@ -35,7 +35,7 @@ public class Page02 extends PageView implements GifMovieView.DispearCallback {
         window = (GifMovieView) page.findViewById(R.id.gif_p02_window);
         mother = (GifMovieView) page.findViewById(R.id.gif_p02_mother);
         red = (GifMovieView) page.findViewById(R.id.gif_p02_red);
-        
+
         window.setMovieAsset(ctx.getString(R.string.p02_window));
         mother.setMovieAsset(ctx.getString(R.string.p02_mother));
         red.setMovieAsset(ctx.getString(R.string.p02_red));
@@ -54,19 +54,20 @@ public class Page02 extends PageView implements GifMovieView.DispearCallback {
         grand_start = new GifMovieView(ctx);
         grand_start.setMovieAsset(ctx.getString(R.string.p02_grand_start));
         params = new AbsoluteLayout.LayoutParams(
-                0, 0,
-                (int) getWinWidth(),
-                (int) getWinHeight());
+                (int) getDimens(R.dimen.p02_grand_start_width),
+                (int) getDimens(R.dimen.p02_grand_start_height),
+                (int) (getWidthScale() * getDimens(R.dimen.p02_grand_start_x)),
+                (int) (getHeightScale() * getDimens(R.dimen.p02_grand_start_y)));
         grand_start.setLayoutParams(params);
 
         grand_loop = new GifMovieView(ctx);
         grand_loop.setMovieAsset(ctx.getString(R.string.p02_grand_loop));
         params = new AbsoluteLayout.LayoutParams(
-                0, 0,
-                (int) getWinWidth(),
-                (int) getWinHeight());
+                (int) getDimens(R.dimen.p02_grand_loop_width),
+                (int) getDimens(R.dimen.p02_grand_loop_height),
+                (int) (getWidthScale() * getDimens(R.dimen.p02_grand_loop_x)),
+                (int) (getHeightScale() * getDimens(R.dimen.p02_grand_loop_y)));
         grand_loop.setLayoutParams(params);
-
 
         if (setting.isAuto()) {
             pause = (AbsoluteLayout) page.findViewById(R.id.al_pause_p02);
@@ -97,7 +98,7 @@ public class Page02 extends PageView implements GifMovieView.DispearCallback {
     public GifMovieView getGrandStart() {
         if (grand_start.getParent() != null)
             ((AbsoluteLayout) grand_start.getParent()).removeView(grand_start);
-        grand_start.dispear(6400, this);
+        grand_start.dispear(2080, this);
         grand_start.invalidate();
         return grand_start;
     }
@@ -105,7 +106,7 @@ public class Page02 extends PageView implements GifMovieView.DispearCallback {
     public GifMovieView getGrandLoop() {
         if (grand_loop.getParent() != null)
             ((AbsoluteLayout) grand_loop.getParent()).removeView(grand_loop);
-        grand_loop.delay(6400);
+        grand_loop.delay(2080);
         grand_loop.invalidate();
         return grand_loop;
     }

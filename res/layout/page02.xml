@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             />
+
     <andr.lexibook.mylittlestory.lrrh.ui.ViewIml.GifMovieView
             android:id="@+id/gif_p02_red"
             android:layout_height="wrap_content"

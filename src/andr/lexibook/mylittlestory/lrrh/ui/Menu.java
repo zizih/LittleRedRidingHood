@@ -114,7 +114,6 @@ public class Menu extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onDestroy() {
-        System.out.println("Menu Destroy");
         wolf.Clear();
         red.Clear();
         grand.Clear();
