@@ -2,7 +2,6 @@ package andr.lexibook.mylittlestory.lrrh.model;
 
 import andr.lexibook.mylittlestory.lrrh.control.BgSrc;
 import andr.lexibook.mylittlestory.lrrh.control.PageFactory;
-import andr.lexibook.mylittlestory.lrrh.ui.ViewIml.PageView;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;

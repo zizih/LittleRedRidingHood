@@ -334,6 +334,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
                 p02WindowIndex = -1;
                 p02MotherIndex = -1;
                 for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
+                    System.out.println(i + " view : " + ((AbsoluteLayout) view).getChildAt(i).getId());
                     if (((AbsoluteLayout) view).getChildAt(i).getId() == p02_window.getId())
                         p02WindowIndex = i;
                     if (((AbsoluteLayout) view).getChildAt(i).getId() == p02_mother.getId())
@@ -352,10 +353,12 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
                 }
 
                 //add pause
-                if (ll_pause.getParent() != null)
-                    ((AbsoluteLayout) ll_pause.getParent()).removeView(ll_pause);
-                ll_pause.setLayoutParams(params);
-                ((AbsoluteLayout) view).addView(ll_pause);
+                if (setting.isAuto()) {
+                    if (ll_pause.getParent() != null)
+                        ((AbsoluteLayout) ll_pause.getParent()).removeView(ll_pause);
+                    ll_pause.setLayoutParams(params);
+                    ((AbsoluteLayout) view).addView(ll_pause);
+                }
 
                 //
                 p02 = null;
@@ -438,6 +441,8 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
         if (mPlayer != null)
             mPlayer.release();
         flipView.onPause();
+        isPaused = false;
+        isPrepared = false;
     }
 
     @Override

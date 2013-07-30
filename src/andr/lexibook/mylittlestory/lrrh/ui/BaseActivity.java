@@ -176,6 +176,12 @@ public class BaseActivity extends CustomMenuBase implements MenuRedGif.MenuCallB
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        onDestroy();
+    }
+
+    @Override
     public MediaPlayer getLangPlayer() {
         return langPlayer;
     }
