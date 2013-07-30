@@ -4,7 +4,7 @@
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@drawable/p08_bkg"
+                android:background="@drawable/p08_bkg1"
                 android:id="@+id/layout_p08"
         >
 
