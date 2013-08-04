@@ -316,7 +316,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
             /**
              * about slowwer
              */
-            mHandler.postDelayed(mTimerThead, 2000);
+            mHandler.postDelayed(mTimerThead, 1000);
             flipView.setFlipByTouchEnabled(false);
 
             setPosition(position);
@@ -327,6 +327,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
              */
             if (position == 1) {
                 p02 = (Page02) pageFactory.getPage(position);
+                pageFactory.removePage(1);
                 p02_grand_start = p02.getGrandStart();
                 p02_grand_loop = p02.getGrandLoop();
                 p02_window = p02.getWindow();
@@ -334,7 +335,6 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
                 p02WindowIndex = -1;
                 p02MotherIndex = -1;
                 for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
-                    System.out.println(i + " view : " + ((AbsoluteLayout) view).getChildAt(i).getId());
                     if (((AbsoluteLayout) view).getChildAt(i).getId() == p02_window.getId())
                         p02WindowIndex = i;
                     if (((AbsoluteLayout) view).getChildAt(i).getId() == p02_mother.getId())
