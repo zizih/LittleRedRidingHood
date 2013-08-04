@@ -176,9 +176,9 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
             } else {
                 ll_play.setLayoutParams(params);
                 ((AbsoluteLayout) view).addView(ll_play);
-                isPaused = true;
                 try {
                     mPlayer.pause();
+                    isPaused = true;
                 } catch (Exception ePause) {
                     System.out.println("ePause: " + ePause.getCause());
                 }
@@ -432,15 +432,35 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
     @Override
     protected void onResume() {
         super.onResume();
+        System.out.println("Pages onResume ");
         flipView.onResume();
+        if (isPaused) {
+            isPaused = false;
+            if (isPrepared) {
+                mPlayer.start();
+            }
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (mPlayer != null)
-            mPlayer.release();
+        System.out.println("Pages onPause ");
+        if (mPlayer != null && mPlayer.isPlaying()) {
+            mPlayer.pause();
+            isPaused = true;
+        }
         flipView.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("Pages onStop ");
+        if (mPlayer != null) {
+            mPlayer.release();
+            mPlayer = null;
+        }
         isPaused = false;
         isPrepared = false;
     }
@@ -448,7 +468,7 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
     @Override
     protected void onDestroy() {
         flipView.Clear();
-        Log.i(" Activity: ", "Pages OnDestroy ");
+        System.out.println("Pages OnDestroy ");
         super.onDestroy();
     }
 
