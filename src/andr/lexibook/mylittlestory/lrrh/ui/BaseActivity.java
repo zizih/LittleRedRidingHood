@@ -12,10 +12,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.*;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 
 import java.io.IOException;
 
@@ -45,6 +43,7 @@ public class BaseActivity extends CustomMenuBase implements MenuRedGif.MenuCallB
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         Log.i(" Oncreate: ", this.getClass().getName());
         toPage = new Intent();
         inflater = getMenuInflater();

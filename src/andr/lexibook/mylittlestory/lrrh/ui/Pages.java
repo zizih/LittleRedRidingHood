@@ -446,9 +446,13 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
     protected void onPause() {
         super.onPause();
         System.out.println("Pages onPause ");
-        if (mPlayer != null && mPlayer.isPlaying()) {
-            mPlayer.pause();
-            isPaused = true;
+        if (mPlayer != null) {
+            try {
+                mPlayer.pause();
+                isPaused = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         flipView.onPause();
     }
