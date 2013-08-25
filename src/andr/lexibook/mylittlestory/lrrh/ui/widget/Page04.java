@@ -16,23 +16,15 @@ public class Page04 extends PageView {
 
     private GifMovieView wolf;
     private GifMovieView grand;
-    private AbsoluteLayout al_extra_up;
 
     public Page04(Context context) {
         super(context, R.layout.page04);
 
         wolf = (GifMovieView) page.findViewById(R.id.gif_p04_wolf);
         grand = (GifMovieView) page.findViewById(R.id.gif_p04_grand);
-        al_extra_up = (AbsoluteLayout) page.findViewById(R.id.al_extra_up);
 
         wolf.setMovieAsset(ctx.getString(R.string.p04_wolf));
         grand.setMovieAsset(ctx.getString(R.string.p04_grand));
-
-        //dynamic
-        params = (AbsoluteLayout.LayoutParams) al_extra_up.getLayoutParams();
-        params.width = (int) getWinWidth();
-        params.height = (int) getWinHeight();
-        al_extra_up.setLayoutParams(params);
 
         layout = (AbsoluteLayout) page.findViewById(R.id.layout_p04);
         layout.setBackgroundDrawable(bgSrc.setLang(setting.getLangId()).getPageDrawable(3));
