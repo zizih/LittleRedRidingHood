@@ -98,6 +98,7 @@ public class Page02 extends PageView implements GifMovieView.DispearCallback {
     public GifMovieView getGrandStart() {
         if (grand_start.getParent() != null)
             ((AbsoluteLayout) grand_start.getParent()).removeView(grand_start);
+        grand_start.setId(1111);
         grand_start.dispear(2080, this);
         grand_start.invalidate();
         return grand_start;
@@ -106,6 +107,7 @@ public class Page02 extends PageView implements GifMovieView.DispearCallback {
     public GifMovieView getGrandLoop() {
         if (grand_loop.getParent() != null)
             ((AbsoluteLayout) grand_loop.getParent()).removeView(grand_loop);
+        grand_loop.setId(2222);
         grand_loop.delay(2080);
         grand_loop.invalidate();
         return grand_loop;

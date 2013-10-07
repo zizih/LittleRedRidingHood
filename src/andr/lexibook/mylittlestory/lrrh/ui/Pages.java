@@ -38,7 +38,6 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
     private GifMovieView p02_grand_start;
     private GifMovieView p02_grand_loop;
     private GifMovieView p02_window;
-    private GifMovieView p02_mother;
     private GifMovieView p07_window;
     private Page02 p02;
     private Page07 p07;
@@ -46,8 +45,6 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
      * there are a strange thing that p02 is true after call factory.get();
      */
     private int p07WindowIndex = -1;
-    private int p02WindowIndex = -1;
-    private int p02MotherIndex = -1;
 
     /**
      * add play & pause
@@ -331,26 +328,23 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
                 p02_grand_start = p02.getGrandStart();
                 p02_grand_loop = p02.getGrandLoop();
                 p02_window = p02.getWindow();
-                p02_mother = p02.getMother();
-                p02WindowIndex = -1;
-                p02MotherIndex = -1;
-                for (int i = 0; i < ((AbsoluteLayout) view).getChildCount(); i++) {
-                    if (((AbsoluteLayout) view).getChildAt(i).getId() == p02_window.getId())
-                        p02WindowIndex = i;
-                    if (((AbsoluteLayout) view).getChildAt(i).getId() == p02_mother.getId())
-                        p02MotherIndex = i;
+                AbsoluteLayout currView = ((AbsoluteLayout) view);
+                View loop = null;
+                View start = null;
+                for (int i = 0; i < currView.getChildCount(); i++) {
+                    if (currView.getChildAt(i).getId() == p02_grand_start.getId()) {
+                        start = currView.getChildAt(i);
+                    }
+                    if (currView.getChildAt(i).getId() == p02_grand_loop.getId()) {
+                        loop = currView.getChildAt(i);
+                    }
                 }
+                currView.removeView(start);
+                currView.removeView(loop);
                 ((AbsoluteLayout) view).addView(p02_grand_start);
                 ((AbsoluteLayout) view).addView(p02_grand_loop);
                 ((AbsoluteLayout) view).addView(p02_window);
-                ((AbsoluteLayout) view).addView(p02_mother);
                 ((AbsoluteLayout) view).addView(p02.getMotherCover());
-                if (p02MotherIndex != -1) {
-                    ((AbsoluteLayout) view).removeViewAt(p02WindowIndex);
-                    if (p02MotherIndex > p02WindowIndex)
-                        p02MotherIndex--;
-                    ((AbsoluteLayout) view).removeViewAt(p02MotherIndex);
-                }
 
                 //add pause
                 if (setting.isAuto()) {
@@ -363,7 +357,6 @@ public class Pages extends BaseActivity implements PageFactory.Callback, FlipVie
                 //
                 p02 = null;
                 p02_window = null;
-                p02_mother = null;
                 p02_grand_loop = null;
                 p02_grand_start = null;
                 System.gc();
